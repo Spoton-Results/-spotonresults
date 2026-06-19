@@ -1300,14 +1300,14 @@
       <h2 class="section-title reveal">Built for every type of<br><span class="gradient-text">local business</span></h2>
     </div>
     <div class="ind-grid">
-      <div class="ind reveal" style="transition-delay:.04s"><span class="ind-e">🍕</span><h3>Restaurants &amp; Food Service</h3><p>Table-side payments, QR ordering, tip management, happy-hour promotions</p></div>
-      <div class="ind reveal" style="transition-delay:.08s"><span class="ind-e">🛍️</span><h3>Retail Stores</h3><p>Inventory sync, multi-location support, e-commerce integration</p></div>
-      <div class="ind reveal" style="transition-delay:.12s"><span class="ind-e">🏥</span><h3>Healthcare &amp; Dental</h3><p>HSA/FSA accepted, HIPAA-aware processing, patient payment plans</p></div>
-      <div class="ind reveal" style="transition-delay:.16s"><span class="ind-e">💈</span><h3>Salons &amp; Spas</h3><p>Booking integration, membership billing, digital loyalty cards</p></div>
-      <div class="ind reveal" style="transition-delay:.04s"><span class="ind-e">🔧</span><h3>Home Services &amp; Contractors</h3><p>Mobile tap-to-pay, invoice financing, field payment collection</p></div>
-      <div class="ind reveal" style="transition-delay:.08s"><span class="ind-e">🚗</span><h3>Auto Repair &amp; Dealerships</h3><p>Large-ticket processing, text-to-pay, service financing options</p></div>
-      <div class="ind reveal" style="transition-delay:.12s"><span class="ind-e">💼</span><h3>Professional Services</h3><p>ACH bank payments, recurring invoicing, CRM pipeline integration</p></div>
-      <div class="ind reveal" style="transition-delay:.16s"><span class="ind-e">💪</span><h3>Gyms &amp; Fitness Studios</h3><p>Membership subscriptions, class pack billing, mobile check-in</p></div>
+      <div class="ind reveal" id="ind-restaurants" style="transition-delay:.04s"><span class="ind-e">🍕</span><h3>Restaurants &amp; Food Service</h3><p>Table-side payments, QR ordering, tip management, happy-hour promotions</p></div>
+      <div class="ind reveal" id="ind-retail" style="transition-delay:.08s"><span class="ind-e">🛍️</span><h3>Retail Stores</h3><p>Inventory sync, multi-location support, e-commerce integration</p></div>
+      <div class="ind reveal" id="ind-healthcare" style="transition-delay:.12s"><span class="ind-e">🏥</span><h3>Healthcare &amp; Dental</h3><p>HSA/FSA accepted, HIPAA-aware processing, patient payment plans</p></div>
+      <div class="ind reveal" id="ind-salons" style="transition-delay:.16s"><span class="ind-e">💈</span><h3>Salons &amp; Spas</h3><p>Booking integration, membership billing, digital loyalty cards</p></div>
+      <div class="ind reveal" id="ind-home" style="transition-delay:.04s"><span class="ind-e">🔧</span><h3>Home Services &amp; Contractors</h3><p>Mobile tap-to-pay, invoice financing, field payment collection</p></div>
+      <div class="ind reveal" id="ind-auto" style="transition-delay:.08s"><span class="ind-e">🚗</span><h3>Auto Repair &amp; Dealerships</h3><p>Large-ticket processing, text-to-pay, service financing options</p></div>
+      <div class="ind reveal" id="ind-professional" style="transition-delay:.12s"><span class="ind-e">💼</span><h3>Professional Services</h3><p>ACH bank payments, recurring invoicing, CRM pipeline integration</p></div>
+      <div class="ind reveal" id="ind-fitness" style="transition-delay:.16s"><span class="ind-e">💪</span><h3>Gyms &amp; Fitness Studios</h3><p>Membership subscriptions, class pack billing, mobile check-in</p></div>
     </div>
   </div>
 </section>
@@ -1518,14 +1518,14 @@
       <div class="foot-col">
         <h4>Industries</h4>
         <ul>
-          <li><a href="#industries">Restaurants</a></li>
-          <li><a href="#industries">Retail</a></li>
-          <li><a href="#industries">Healthcare</a></li>
-          <li><a href="#industries">Salons &amp; Spas</a></li>
-          <li><a href="#industries">Home Services</a></li>
-          <li><a href="#industries">Auto Repair</a></li>
-          <li><a href="#industries">Professional Services</a></li>
-          <li><a href="#industries">Gyms &amp; Fitness</a></li>
+          <li><a href="#ind-restaurants">Restaurants</a></li>
+          <li><a href="#ind-retail">Retail</a></li>
+          <li><a href="#ind-healthcare">Healthcare</a></li>
+          <li><a href="#ind-salons">Salons &amp; Spas</a></li>
+          <li><a href="#ind-home">Home Services</a></li>
+          <li><a href="#ind-auto">Auto Repair</a></li>
+          <li><a href="#ind-professional">Professional Services</a></li>
+          <li><a href="#ind-fitness">Gyms &amp; Fitness</a></li>
         </ul>
       </div>
       <div class="foot-col">
@@ -1666,10 +1666,4 @@ function toggleSvc(btn){
 /* ---- FAQ Accordion ---- */
 function toggleFaq(el){
   const item = el.parentElement;
-  const open = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-  if(!open) item.classList.add('open');
-}
-</script>
-</body>
-</html>
+  const open = item.classList.contains('open'
