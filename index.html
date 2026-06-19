@@ -114,7 +114,7 @@ nav.sc{padding:12px 0;background:rgba(6,15,30,.88);backdrop-filter:blur(22px);bo
 
 /* ── SECTION: HERO ── */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:140px 0 80px;overflow:hidden}
-#pcanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.9}
+#pcanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.9;pointer-events:none}
 .hero-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);width:800px;height:800px;background:radial-gradient(ellipse,rgba(245,158,11,.1) 0%,transparent 68%);pointer-events:none;z-index:1}
 .hero-in{position:relative;z-index:2;width:var(--cw);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px 7px 10px;background:rgba(245,158,11,.1);border:1px solid var(--border-m);border-radius:50px;font-size:13px;font-weight:600;color:var(--gold);margin-bottom:28px}
@@ -1265,5 +1265,157 @@ const rateSlider = document.getElementById('rate-slider');
 const volDisp = document.getElementById('vol-disp');
 const rateDisp = document.getElementById('rate-disp');
 const calcSavings = document.getElementById('calc-savings');
-const cbCurrent = document.getElementById('cb-current');
-const cbSpoton = docu
+const cbSpoton = document.getElementById('cb-spoton');
+
+function updateCalc() {
+  const vol = parseInt(volSlider.value);
+  const rate = parseFloat(rateSlider.value);
+  const spotonRate = Math.max(rate - 1.0, 1.5);
+  const currentAnnual = vol * (rate / 100) * 12;
+  const spotonAnnual = vol * (spotonRate / 100) * 12;
+  const savings = currentAnnual - spotonAnnual;
+  volDisp.textContent = '$' + vol.toLocaleString();
+  rateDisp.textContent = rate.toFixed(2) + '%';
+  calcSavings.textContent = '$' + Math.round(savings).toLocaleString();
+  cbCurrent.textContent = '$' + Math.round(currentAnnual).toLocaleString();
+  cbSpoton.textContent = '$' + Math.round(spotonAnnual).toLocaleString();
+}
+volSlider.addEventListener('input', updateCalc);
+rateSlider.addEventListener('input', updateCalc);
+updateCalc();
+
+/* ── SECTION: BOOKING MODAL ── */
+function openBooking() {
+  document.getElementById('bookingModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBooking() {
+  document.getElementById('bookingModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeBookingOnOverlay(e) {
+  if (e.target === document.getElementById('bookingModal')) closeBooking();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBooking(); });
+
+/* ── SECTION: DEV PANEL ── */
+let devOpen = false;
+let devTab = 'sections';
+let fps = 0, frames = 0;
+let fpsCtr, fpsRaf;
+
+function toggleDevPanel() {
+  devOpen = !devOpen;
+  const panel = document.getElementById('dev-panel');
+  panel.classList.toggle('vis', devOpen);
+  if (devOpen) { renderDevPanel(); startFPS(); }
+  else {
+    clearInterval(fpsCtr);
+    cancelAnimationFrame(fpsRaf);
+    fpsRaf = null;
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'd') { e.preventDefault(); toggleDevPanel(); }
+});
+
+function switchTab(el, tab) {
+  document.querySelectorAll('.dv-tab').forEach(t => t.classList.remove('a'));
+  el.classList.add('a');
+  devTab = tab;
+  renderDevPanel();
+}
+
+function startFPS() {
+  function loop() { fpsRaf = requestAnimationFrame(() => { frames++; loop(); }); }
+  loop();
+  fpsCtr = setInterval(() => {
+    fps = frames;
+    frames = 0;
+    const fpsEl = document.getElementById('dv-fps');
+    if (fpsEl) fpsEl.textContent = fps;
+  }, 1000);
+}
+
+function renderDevPanel() {
+  const con = document.getElementById('dv-content');
+  if (devTab === 'sections') {
+    const sections = document.querySelectorAll('section,nav,footer');
+    let html = '<div class="dv-sec"><div class="dv-slbl">Page Sections — click to highlight</div>';
+    sections.forEach((s, idx) => {
+      const tag = s.tagName.toLowerCase();
+      const safeLabel = tag + (s.id ? '#' + s.id.replace(/[<>"'&]/g, '') : '');
+      html += `<div class="dv-si" data-sec-idx="${idx}"><span class="name">${safeLabel}</span><span class="id" style="color:var(--gold)">${s.childElementCount} children</span></div>`;
+    });
+    html += '</div>';
+    con.innerHTML = html;
+    const sectionList = Array.from(sections);
+    con.querySelectorAll('.dv-si[data-sec-idx]').forEach(row => {
+      row.addEventListener('click', () => {
+        const el = sectionList[parseInt(row.dataset.secIdx)];
+        if (!el) return;
+        document.querySelectorAll('.dev-hl').forEach(e => e.classList.remove('dev-hl'));
+        el.classList.add('dev-hl');
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+  } else if (devTab === 'perf') {
+    const nodes = document.querySelectorAll('*').length;
+    const mem = performance.memory ? (performance.memory.usedJSHeapSize / 1048576).toFixed(1) + ' MB' : 'N/A';
+    con.innerHTML = `<div class="dv-perf">
+      <div class="dv-met"><div class="dv-mv" id="dv-fps">${fps}</div><div class="dv-mk">FPS</div></div>
+      <div class="dv-met"><div class="dv-mv">${nodes}</div><div class="dv-mk">DOM Nodes</div></div>
+      <div class="dv-met"><div class="dv-mv">${mem}</div><div class="dv-mk">JS Heap</div></div>
+      <div class="dv-met"><div class="dv-mv">${typeof ScrollTrigger !== 'undefined' ? ScrollTrigger.getAll().length : 'N/A'}</div><div class="dv-mk">ScrollTriggers</div></div>
+    </div>`;
+  } else if (devTab === 'colors') {
+    const colors = [
+      ['--gold','#F59E0B'],['--gold-l','#FCD34D'],['--gold-m','#F97316'],['--navy','#060f1e'],
+      ['--navy2','#0a1628'],['--navy3','#0f1e35'],['--text','#E2EAF6']
+    ];
+    let html = '<div class="dv-sec"><div class="dv-slbl">CSS Custom Properties</div><div class="dv-cg">';
+    colors.forEach(([name, val]) => {
+      html += `<div class="dv-ci"><div class="dv-csw" style="background:${val}"></div><div class="dv-cn">${name}</div></div>`;
+    });
+    html += '</div></div>';
+    con.innerHTML = html;
+  } else if (devTab === 'tools') {
+    con.innerHTML = `<div class="dv-sec">
+      <div class="dv-slbl">Utilities</div>
+      <button class="dv-btn" onclick="copyHTML()">📋 Copy Full HTML to Clipboard</button>
+      <button class="dv-btn" onclick="removeDevHL()">🚫 Remove All Highlights</button>
+      <button class="dv-btn" onclick="toggleGrid()">🔲 Toggle Grid Overlay</button>
+      <div style="margin-top:10px;color:var(--text-d);font-size:10px">Click any section in the Sections tab to highlight it. Press Ctrl+D or click ⚙ to close.</div>
+    </div>`;
+  }
+}
+
+function devHighlight(id) {
+  document.querySelectorAll('.dev-hl').forEach(e => e.classList.remove('dev-hl'));
+  const el = document.getElementById(id) || document.querySelector(id);
+  if (el) { el.classList.add('dev-hl'); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+}
+function removeDevHL() { document.querySelectorAll('.dev-hl').forEach(e => e.classList.remove('dev-hl')); }
+function copyHTML() {
+  navigator.clipboard.writeText(document.documentElement.outerHTML)
+    .then(() => alert('HTML copied to clipboard!'))
+    .catch(() => alert('Copy failed — try manually'));
+}
+let gridOn = false;
+function toggleGrid() {
+  gridOn = !gridOn;
+  let overlay = document.getElementById('dev-grid');
+  if (gridOn) {
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'dev-grid';
+      overlay.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9500;background:repeating-linear-gradient(transparent,transparent 7px,rgba(245,158,11,.07) 7px,rgba(245,158,11,.07) 8px),repeating-linear-gradient(90deg,transparent,transparent 7px,rgba(245,158,11,.07) 7px,rgba(245,158,11,.07) 8px)';
+      document.body.appendChild(overlay);
+    }
+    overlay.style.display = 'block';
+  } else if (overlay) { overlay.style.display = 'none'; }
+}
+</script>
+</body>
+</html>
