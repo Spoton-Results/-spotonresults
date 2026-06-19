@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SpotOn Results – Business Payment Advisors. We save local businesses thousands per year on credit card processing, POS, loyalty programs, and digital marketing. Book a free consultation today.">
+  <meta name="keywords" content="merchant services, credit card processing, payment processing, POS systems, loyalty programs, digital marketing, Utah">
+  <meta property="og:title" content="SpotOn Results | Stop Overpaying for Payment Processing">
+  <meta property="og:description" content="Custom merchant solutions that save local businesses thousands per year. No contracts. No hidden fees. Just results.">
+  <title>SpotOn Results | Business Payment Advisors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ===================== VARIABLES ===================== */
+    :root {
+      --gold:        #F59E0B;
+      --gold-dark:   #D97706;
+      --gold-light:  #FCD34D;
+      --bg:          #050811;
+      --bg-2:        #080d1a;
+      --bg-card:     rgba(255,255,255,0.04);
+      --border:      rgba(255,255,255,0.08);
+      --border-gold: rgba(245,158,11,0.3);
+      --text:        #F8FAFC;
+      --text-muted:  #94A3B8;
+      --text-dim:    #4B5563;
+      --radius:      16px;
+      --radius-sm:   10px;
+      --shadow-gold: 0 0 60px rgba(245,158,11,0.12);
+      --ease:        cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ===================== RESET ===================== */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; font-size:16px; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { max-width:100%; display:block; }
+    a { text-decoration:none; color:inherit; }
+    button { font-family:inherit; }
+    input { font-family:inherit; }
+
+    /* ===================== UTILITIES ===================== */
+    .container { max-width:1200px; margin:0 auto; padding:0 28px; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+
+    .section-pill {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(245,158,11,0.1);
+      border:1px solid var(--border-gold);
+      border-radius:100px;
+      padding:6px 16px;
+      font-size:12px; font-weight:700; letter-spacing:0.08em;
+      text-transform:uppercase; color:var(--gold);
+      margin-bottom:22px;
+    }
+    .section-pill::before {
+      content:''; width:6px; height:6px;
+      border-radius:50%; background:var(--gold);
+    }
+
+    .section-title {
+      font-family:'Plus Jakarta Sans', sans-serif;
+      font-size:clamp(30px, 4.5vw, 52px);
+      font-weight:800; line-height:1.13;
+      letter-spacing:-0.025em;
+      margin-bottom:16px;
+    }
+    .section-sub {
+      font-size:17px; color:var(--text-muted);
+      line-height:1.65; max-width:540px;
+    }
+
+    /* Scroll animations */
+    .reveal        { opacity:0; transform:translateY(44px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+    .reveal-left   { opacity:0; transform:translateX(-44px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+    .reveal-right  { opacity:0; transform:translateX(44px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+    .reveal.vis, .reveal-left.vis, .reveal-right.vis { opacity:1; transform:none; }
+
+    /* Buttons */
+    .btn {
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:700; border-radius:100px;
+      cursor:pointer; border:none;
+      transition:all .25s var(--ease);
+      white-space:nowrap;
+    }
+    .btn-gold {
+      background:linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color:#000; padding:14px 28px; font-size:15px;
+    }
+    .btn-gold:hover {
+      transform:translateY(-2px);
+      box-shadow:0 10px 36px rgba(245,158,11,0.45);
+    }
+    .btn-gold-lg { padding:18px 44px; font-size:17px; }
+    .btn-ghost {
+      background:transparent; color:var(--text);
+      border:1px solid var(--border);
+      padding:14px 28px; font-size:15px;
+    }
+    .btn-ghost:hover { border-color:var(--gold); color:var(--gold); }
+    .btn-ghost-lg { padding:18px 44px; font-size:17px; }
+
+    /* ===================== NAV ===================== */
+    #nav {
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      padding:22px 0;
+      transition:all .35s var(--ease);
+    }
+    #nav.stuck {
+      background:rgba(5,8,17,.93);
+      backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+      border-bottom:1px solid var(--border);
+      padding:14px 0;
+    }
+    .nav-in {
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .logo {
+      display:flex; align-items:center; gap:12px;
+    }
+    .logo-mark {
+      width:42px; height:42px;
+      background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+      border-radius:11px;
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Plus Jakarta Sans',sans-serif;
+      font-weight:900; font-size:17px; color:#000;
+      flex-shrink:0;
+    }
+    .logo-name {
+      font-family:'Plus Jakarta Sans',sans-serif;
+      font-weight:800; font-size:17px; color:var(--text);
+    }
+    .logo-name em { color:var(--gold); font-style:normal; }
+    .nav-links {
+      display:flex; align-items:center; gap:36px; list-style:none;
+    }
+    .nav-links a {
+      font-size:14px; font-weight:500;
+      color:var(--text-muted);
+      transition:color .2s;
+    }
+    .nav-links a:hover { color:var(--text); }
+    .ham {
+      display:none; flex-direction:column; gap:5px;
+      cursor:pointer; padding:6px; background:none; border:none;
+    }
+    .ham span {
+      display:block; width:24px; height:2px;
+      background:var(--text); border-radius:2px;
+      transition:all .3s var(--ease);
+    }
+
+    /* ===================== HERO ===================== */
+    #hero {
+      min-height:100vh;
+      display:flex; align-items:center;
+      position:relative; overflow:hidden;
+      padding:130px 0 100px;
+    }
+    .hero-bg { position:absolute; inset:0; pointer-events:none; }
+    .orb {
+      position:absolute; border-radius:50%;
+      filter:blur(90px); opacity:.25;
+    }
+    .orb1 { width:700px;height:700px; background:radial-gradient(circle,#F59E0B 0%,transparent 70%); top:-250px;right:-180px; animation:o1 9s ease-in-out infinite; }
+    .orb2 { width:500px;height:500px; background:radial-gradient(circle,#D97706 0%,transparent 70%); bottom:-150px;left:-120px; animation:o2 12s ease-in-out infinite; }
+    .orb3 { width:350px;height:350px; background:radial-gradient(circle,#1D4ED8 0%,transparent 70%); top:40%;left:35%; animation:o3 15s ease-in-out infinite; opacity:.15; }
+    @keyframes o1 { 0%,100%{transform:translate(0,0) scale(1)} 40%{transform:translate(-40px,30px) scale(1.06)} 70%{transform:translate(25px,-25px) scale(.95)} }
+    @keyframes o2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(50px,-40px) scale(1.08)} }
+    @keyframes o3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-35px,50px)} }
+
+    .particles { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+    .p { position:absolute; border-radius:50%; background:var(--gold); opacity:0; animation:pfloat linear infinite; }
+    @keyframes pfloat {
+      0%{transform:translateY(110vh);opacity:0}
+      10%{opacity:.5} 90%{opacity:.2}
+      100%{transform:translateY(-80px);opacity:0}
+    }
+
+    .hero-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:64px; align-items:center; position:relative; z-index:1;
+    }
+    .hero-pill {
+      display:inline-flex; align-items:center; gap:10px;
+      background:rgba(245,158,11,.1);
+      border:1px solid rgba(245,158,11,.3);
+      border-radius:100px; padding:8px 18px;
+      font-size:13px; font-weight:600; color:var(--gold);
+      margin-bottom:26px;
+      animation:fd .8s ease both;
+    }
+    .pulse-dot {
+      width:8px;height:8px;border-radius:50%;
+      background:var(--gold);
+      animation:pdot 2s ease-in-out infinite;
+    }
+    @keyframes pdot { 0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,.7)} 50%{box-shadow:0 0 0 7px rgba(245,158,11,0)} }
+    @keyframes fd { from{opacity:0;transform:translateY(-18px)} to{opacity:1;transform:none} }
+    @keyframes fu { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:none} }
+    @keyframes fr { from{opacity:0;transform:translateX(44px)} to{opacity:1;transform:none} }
+
+    .hero-title {
+      font-family:'Plus Jakarta Sans',sans-serif;
+      font-size:clamp(38px,5.5vw,70px);
+      font-weight:900; line-height:1.08;
+      letter-spacing:-0.032em; margin-bottom:26px;
+      animation:fu .8s ease .1s both;
+    }
+    .hero-sub {
+      font-size:18px; color:var(--text-muted);
+      line-height:1.7; margin-bottom:38px;
+      max-width:500px;
+      animation:fu .8s ease .2s both;
+    }
+    .hero-btns {
+      display:flex; gap:16px; flex-wrap:wrap;
+      margin-bottom:48px;
+      animation:fu .8s ease .3s both;
+    }
+    .hero-proof {
+      display:flex; align-items:center; gap:16px;
+      animation:fu .8s ease .4s both;
+    }
+    .avatars { display:flex; }
+    .av {
+      width:38px;height:38px;border-radius:50%;
+      border:2px solid var(--bg);
+      background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+      display:flex;align-items:center;justify-content:center;
+      font-size:11px;font-weight:800;color:#000;
+      margin-left:-10px;
+    }
+    .av:first-child{margin-left:0;}
+    .proof-txt { font-size:13px; color:var(--text-muted); }
+    .proof-txt strong { color:var(--text); }
+    .stars-sm { color:var(--gold); font-size:13px; letter-spacing:1px; }
+
+    /* Dashboard Card */
+    .hero-visual { animation:fr .8s ease .3s both; }
+    .dash {
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--border);
+      border-radius:24px; padding:34px;
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      box-shadow:0 48px 96px rgba(0,0,0,.45), var(--shadow-gold);
+      position:relative;
+    }
+    .dash-top {
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:22px;
+    }
+    .dash-lbl{font-size:12px;color:var(--text-muted);font-weight:600;letter-spacing:.03em;}
+    .dash-status{
+      background:rgba(16,185,129,.15);color:#10B981;
+      font-size:11px;font-weight:700;padding:4px 11px;
+      border-radius:100px;border:1px solid rgba(16,185,129,.25);
+    }
+    .dash-big{
+      font-family:'Plus Jakarta Sans',sans-serif;
+      font-size:54px;font-weight:900;letter-spacing:-0.04em;
+      background:linear-gradient(135deg,var(--gold),var(--gold-light));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+      margin-bottom:4px;line-height:1;
+    }
+    .dash-sub{font-size:13px;color:var(--text-muted);margin-bottom:26px;}
+    .dash-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+    .dash-m{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--border);
+      border-radius:12px;padding:16px;
+    }
+    .dash-mv{font-size:22px;font-weight:800;font-family:'Plus Jakarta Sans',sans-serif;margin-bottom:3px;}
+    .dash-ml{font-size:11px;color:var(--text-muted);}
+    .dash-nets{
+      display:flex;gap:8px;align-items:center;
+      padding-top:16px;border-top:1px solid var(--border);flex-wrap:wrap;
+    }
+    .net{
+      background:rgba(255,255,255,.07);border:1px solid var(--border);
+      border-radius:7px;padding:5px 11px;
+      font-size:10px;font-weight:800;color:var(--text-muted);
+      letter-spacing:.05em;
+    }
+    .net-gold{border-color:var(--border-gold);color:var(--gold);}
+
+    .fbadge{
+      position:absolute;
+      background:rgba(8,13,26,.92);
+      border:1px solid var(--border-gold);
+      border-radius:12px;padding:12px 16px;
+      backdrop-filter:blur(12px);
+    }
+    .fb1{top:-16px;right:-24px;animation:fb1a 4.5s ease-in-out infinite;}
+    .fb2{bottom:24px;left:-28px;animation:fb2a 5.5s ease-in-out infinite;}
+    @keyframes fb1a{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-12px) rotate(-2deg)}}
+    @keyframes fb2a{0%,100%{transform:translateY(0) rotate(2deg)}50%{transform:translateY(12px) rotate(2deg)}}
+    .fb-ico{font-size:20px;margin-bottom:3px;}
+    .fb-lbl{font-size:10px;color:var(--text-muted);}
+    .fb-val{font-size:13px;font-weight:700;}
+
+    /* Trust strip */
+    .trust-strip{
+      display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+      padding:26px 0 0;
+      border-top:1px solid var(--border);
+      margin-top:52px;
+      position:relative;z-index:1;
+    }
+    .trust-strip-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);}
+    .trust-chip{
+      display:flex;align-items:center;gap:7px;
+      font-size:13px;color:var(--text-muted);font-weight:500;
+    }
+    .trust-chip span{font-size:15px;}
+
+    /* ===================== STATS BAR ===================== */
+    #stats{
+      background:rgba(245,158,11,.055);
+      border-top:1px solid rgba(245,158,11,.18);
+      border-bottom:1px solid rgba(245,158,11,.18);
+      padding:44px 0;
+    }
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);}
+    .stat-box{text-align:center;padding:0 24px;position:relative;}
+    .stat-box+.stat-box::before{
+      content:'';position:absolute;left:0;top:8%;height:84%;
+      width:1px;background:var(--border);
+    }
+    .stat-n{
+      font-family:'Plus Jakarta Sans',sans-serif;
+      font-size:46px;font-weight:900;letter-spacing:-0.04em;
+      background:linear-gradient(135deg,var(--gold),var(--gold-light));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;line-height:1;margin-bottom:8px;
+    }
+    .stat-d{font-size:14px;color:var(--text-muted);font-weight:500;}
+
+    /* ===================== PAIN ===================== */
+    #pain{padding:108px 0;}
+    .pain-head{text-align:center;margin-bottom:64px;}
+    .pain-head .section-sub{margin:0 auto;}
+    .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    .pain-card{
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:var(--radius);padding:34px;
+      transition:all .3s var(--ease);
+    }
+    .pain-card:hover{
+      border-color:rgba(245,158,11,.3);
+      background:rgba(245,158,11,.04);
+      transform:translateY(-5px);
+    }
+    .pain-ico{
+      width:52px;height:52px;border-radius:13px;
+      background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);
+      display:flex;align-items:center;justify-content:center;
+      font-size:24px;margin-bottom:22px;
+    }
+    .pain-card h3{font-size:18px;font-weight:700;margin-bottom:11px;}
+    .pain-card p{font-size:14px;color:var(--text-muted);line-height:1.65;}
+    .pain-arrow{text-align:center;padding:52px 0 32px;font-size:32px;color:var(--gold);animation:bounce 2s ease-in-out infinite;}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+    .solution-hed{text-align:center;font-family:'Plus Jakarta Sans',sans-serif;font-size:32px;font-weight:800;margin-bottom:12px;}
+    .solution-p{text-align:center;color:var(--text-muted);max-width:540px;margin:0 auto;}
+
+    /* ===================== SERVICES ===================== */
+    #services{
+      padding:108px 0;
+      background:linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%);
+    }
+    .services-top{
+      display:flex;justify-content:space-between;align-items:flex-end;
+      margin-bottom:64px;flex-wrap:wrap;gap:24px;
+    }
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    .svc{
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:var(--radius);padding:36px 32px;
+      transition:all .3s var(--ease);position:relative;overflow:hidden;
+    }
+    .svc::after{
+      content:'';position:absolute;top:0;left:0;right:0;height:2px;
+      background:linear-gradient(90deg,var(--gold),var(--gold-light));
+      transform:scaleX(0);transform-origin:left;
+      transition:transform .4s ease;
+    }
+    .svc:hover::after{transform:scaleX(1);}
+    .svc:hover{
+      border-color:var(--border-gold);
+      background:rgba(245,158,11,.04);
+      transform:translateY(-7px);
+      box-shadow:0 24px 64px rgba(0,0,0,.35), 0 0 40px rgba(245,158,11,.07);
+    }
+    .svc-ico{
+      width:62px;height:62px;border-radius:16px;
+      background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.2);
+      display:flex;align-items:center;justify-content:center;
+      font-size:28px;margin-bottom:26px;
+      transition:all .3s var(--ease);
+    }
+    .svc:hover .svc-ico{background:rgba(245,158,11,.22);transform:scale(1.06) rotate(-4deg);}
+    .svc h3{font-size:20px;font-weight:700;margin-bottom:12px;}
+    .svc p{font-size:14px;color:var(--text-muted);line-height:1.65;margin-bottom:22px;}
+    .svc-link{
+      display:inline-flex;align-items:center;gap:6px;
+      color:var(--gold);font-size:14px;font-weight:700;
+    }
+    .svc-arrow{transition:transform .2s ease;}
+    .svc:hover .svc-arrow{transform:translateX(5px);}
+
+    /* ===================== PROCESS ===================== */
+    #process{padding:108px 0;}
+    .process-head{text-align:center;margin-bottom:84px;}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);position:relative;}
+    .steps::before{
+      content:'';position:absolute;top:40px;left:16.67%;right:16.67%;
+      height:2px;
+      background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold));
+      opacity:.25;
+    }
+    .step{text-align:center;padding:0 36px;}
+    .step-n{
+      width:82px;height:82px;border-radius:50%;
+      background:rgba(245,158,11,.1);border:2px solid var(--gold);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Plus Jakarta Sans',sans-serif;font-size:28px;font-weight:900;color:var(--gold);
+      margin:0 auto 36px;position:relative;z-index:1;
+    }
+    .step-n::after{
+      content:'';position:absolute;inset:-7px;border-radius:50%;
+      border:1px solid rgba(245,158,11,.18);
+    }
+    .step h3{font-size:20px;font-weight:700;margin-bottom:12px;}
+    .step p{font-size:14px;color:var(--text-muted);line-height:1.65;}
+
+    /* ===================== CALCULATOR ===================== */
+    #calculator{padding:108px 0;background:var(--bg-2);}
+    .calc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+    .calc-l .section-sub{margin-bottom:48px;}
+    .calc-form{
+      background:rgba(255,255,255,.04);border:1px solid var(--border);
+      border-radius:var(--radius);padding:40px;
+    }
+    .calc-field{margin-bottom:34px;}
+    .calc-field:last-child{margin-bottom:0;}
+    .calc-lbl{
+      display:flex;justify-content:space-between;align-items:center;
+      margin-bottom:14px;font-size:14px;font-weight:600;
+    }
+    .calc-val{font-size:22px;font-weight:800;color:var(--gold);}
+    input[type=range]{
+      -webkit-appearance:none;width:100%;height:4px;
+      border-radius:2px;background:var(--border);outline:none;
+    }
+    input[type=range]::-webkit-slider-thumb{
+      -webkit-appearance:none;width:22px;height:22px;border-radius:50%;
+      background:var(--gold);cursor:pointer;
+      box-shadow:0 0 0 5px rgba(245,158,11,.18);
+      transition:box-shadow .2s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:hover{
+      box-shadow:0 0 0 9px rgba(245,158,11,.13);
+    }
+    .calc-r{
+      background:linear-gradient(135deg,rgba(245,158,11,.15) 0%,rgba(217,119,6,.07) 100%);
+      border:1px solid rgba(245,158,11,.3);
+      border-radius:var(--radius);padding:42px;text-align:center;
+    }
+    .cr-lbl{font-size:14px;color:var(--text-muted);margin-bottom:12px;font-weight:500;}
+    .cr-amt{
+      font-family:'Plus Jakarta Sans',sans-serif;
+      font-size:64px;font-weight:900;letter-spacing:-0.04em;
+      background:linear-gradient(135deg,var(--gold),var(--gold-light));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;line-height:1;margin-bottom:6px;
+    }
+    .cr-per{font-size:15px;color:var(--text-muted);margin-bottom:32px;}
+    .cr-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px;}
+    .cr-item{background:rgba(255,255,255,.07);border-radius:11px;padding:17px;}
+    .cr-il{font-size:11px;color:var(--text-muted);margin-bottom:4px;}
+    .cr-iv{font-size:19px;font-weight:800;}
+    .cr-disc{font-size:11px;color:var(--text-dim);margin-top:16px;line-height:1.5;}
+
+    /* ===================== INDUSTRIES ===================== */
+    #industries{padding:108px 0;}
+    .ind-head{text-align:center;margin-bottom:64px;}
+    .ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+    .ind{
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:var(--radius);padding:30px 22px;text-align:center;
+      transition:all .3s var(--ease);cursor:pointer;
+    }
+    .ind:hover{
+      border-color:var(--border-gold);
+      background:rgba(245,158,11,.06);
+      transform:translateY(-5px);
+    }
+    .ind-e{font-size:38px;margin-bottom:13px;display:block;}
+    .ind h3{font-size:15px;font-weight:700;margin-bottom:6px;}
+    .ind p{font-size:13px;color:var(--text-muted);line-height:1.5;}
+
+    /* ===================== WHY ===================== */
+    #why{padding:108px 0;background:var(--bg-2);}
+    .why-wrap{display:grid;grid-template-columns:1fr 1fr;gap:84px;align-items:start;}
+    .why-list{margin-top:8px;}
+    .why-item{display:flex;gap:18px;margin-bottom:32px;}
+    .why-chk{
+      width:30px;height:30px;min-width:30px;border-radius:50%;
+      background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--gold);font-size:13px;font-weight:800;margin-top:2px;
+    }
+    .why-txt h4{font-size:16px;font-weight:700;margin-bottom:5px;}
+    .why-txt p{font-size:14px;color:var(--text-muted);line-height:1.6;}
+    .comp-tbl{
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:var(--radius);overflow:hidden;
+    }
+    .comp-hd{
+      display:grid;grid-template-columns:2.2fr 1fr 1fr;
+      background:rgba(255,255,255,.04);
+      border-bottom:1px solid var(--border);
+    }
+    .comp-hd div{padding:15px 20px;font-size:12px;font-weight:700;text-align:center;letter-spacing:.04em;text-transform:uppercase;}
+    .comp-hd div:first-child{text-align:left;color:var(--text-muted);}
+    .comp-hd .col-sr{color:var(--gold);}
+    .comp-hd .col-ot{color:var(--text-dim);}
+    .comp-r{display:grid;grid-template-columns:2.2fr 1fr 1fr;border-bottom:1px solid var(--border);transition:background .2s;}
+    .comp-r:last-child{border-bottom:none;}
+    .comp-r:hover{background:rgba(255,255,255,.02);}
+    .comp-r div{padding:15px 20px;font-size:14px;text-align:center;}
+    .comp-r div:first-child{text-align:left;font-weight:500;color:var(--text-muted);}
+    .ck{color:#10B981;font-size:19px;}
+    .cx{color:#EF4444;font-size:19px;}
+
+    /* ===================== TESTIMONIALS ===================== */
+    #testimonials{padding:108px 0;overflow:hidden;}
+    .test-head{text-align:center;margin-bottom:64px;}
+    .test-wrap{overflow:hidden;position:relative;}
+    .test-wrap::before,.test-wrap::after{
+      content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none;
+    }
+    .test-wrap::before{left:0;background:linear-gradient(to right,var(--bg),transparent);}
+    .test-wrap::after{right:0;background:linear-gradient(to left,var(--bg),transparent);}
+    .test-track{
+      display:flex;gap:24px;
+      animation:scroll 35s linear infinite;
+      width:max-content;
+    }
+    .test-track:hover{animation-play-state:paused;}
+    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .test-card{
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:var(--radius);padding:32px;
+      width:370px;min-width:370px;flex-shrink:0;
+    }
+    .test-stars{color:var(--gold);font-size:16px;letter-spacing:2px;margin-bottom:16px;}
+    .test-q{font-size:15px;color:var(--text-muted);line-height:1.68;margin-bottom:24px;}
+    .test-auth{display:flex;align-items:center;gap:13px;}
+    .test-av{
+      width:46px;height:46px;border-radius:50%;
+      background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;font-size:13px;color:#000;flex-shrink:0;
+    }
+    .test-name{font-size:14px;font-weight:700;margin-bottom:2px;}
+    .test-biz{font-size:13px;color:var(--text-muted);}
+
+    /* ===================== FAQ ===================== */
+    #faq{padding:108px 0;background:var(--bg-2);}
+    .faq-head{text-align:center;margin-bottom:64px;}
+    .faq-wrap{max-width:780px;margin:0 auto;}
+    .faq-item{
+      border:1px solid var(--border);border-radius:var(--radius-sm);
+      margin-bottom:12px;overflow:hidden;
+      transition:border-color .2s;
+    }
+    .faq-item.open{border-color:var(--border-gold);}
+    .faq-q{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:20px 26px;cursor:pointer;
+      font-size:16px;font-weight:600;gap:16px;
+      transition:color .2s;
+    }
+    .faq-q:hover{color:var(--gold);}
+    .faq-ico{
+      width:30px;height:30px;min-width:30px;border-radius:50%;
+      background:rgba(255,255,255,.06);border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      font-size:20px;color:var(--gold);
+      transition:transform .35s var(--ease);
+    }
+    .faq-item.open .faq-ico{transform:rotate(45deg);}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .42s ease;}
+    .faq-item.open .faq-a{max-height:320px;}
+    .faq-a-in{padding:0 26px 22px;font-size:15px;color:var(--text-muted);line-height:1.72;}
+
+    /* ===================== CTA SECTION ===================== */
+    #cta{padding:130px 0;text-align:center;position:relative;overflow:hidden;}
+    .cta-glow{
+      position:absolute;inset:0;
+      background:radial-gradient(ellipse at center,rgba(245,158,11,.13) 0%,transparent 65%);
+      pointer-events:none;
+    }
+    .cta-in{position:relative;z-index:1;}
+    .cta-in h2{
+      font-family:'Plus Jakarta Sans',sans-serif;
+      font-size:clamp(34px,5vw,58px);
+      font-weight:900;letter-spacing:-0.025em;margin-bottom:20px;
+    }
+    .cta-in p{
+      font-size:18px;color:var(--text-muted);line-height:1.65;
+      max-width:520px;margin:0 auto 48px;
+    }
+    .cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+    .btn-pulse{animation:bpulse 3s ease-in-out infinite;}
+    @keyframes bpulse{0%,100%{box-shadow:0 10px 36px rgba(245,158,11,.45)}50%{box-shadow:0 10px 36px rgba(245,158,11,.45),0 0 0 14px rgba(245,158,11,0)}}
+    .cta-fine{margin-top:22px;font-size:13px;color:var(--text-dim);}
+
+    /* ===================== FOOTER ===================== */
+    footer{background:#02040a;border-top:1px solid var(--border);padding:68px 0 36px;}
+    .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;margin-bottom:52px;}
+    .foot-brand p{font-size:14px;color:var(--text-muted);line-height:1.7;margin:18px 0 22px;max-width:260px;}
+    .foot-contact a{display:block;color:var(--text-muted);font-size:14px;margin-bottom:8px;transition:color .2s;}
+    .foot-contact a:hover{color:var(--gold);}
+    .foot-col h4{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);margin-bottom:22px;}
+    .foot-col ul{list-style:none;}
+    .foot-col ul li{margin-bottom:10px;}
+    .foot-col ul li a{color:var(--text-muted);font-size:14px;transition:color .2s;}
+    .foot-col ul li a:hover{color:var(--text);}
+    .foot-bot{
+      border-top:1px solid var(--border);padding-top:28px;
+      display:flex;justify-content:space-between;align-items:center;
+      font-size:13px;color:var(--text-dim);flex-wrap:wrap;gap:12px;
+    }
+
+    /* ===================== STICKY FLOAT BTN ===================== */
+    .float-cta{
+      position:fixed;bottom:28px;right:28px;z-index:999;
+      animation:slideIn 1s ease 2s both;
+    }
+    @keyframes slideIn{from{opacity:0;transform:translateX(80px)}to{opacity:1;transform:none}}
+    .float-cta a{
+      display:inline-flex;align-items:center;gap:9px;
+      background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+      color:#000;font-weight:800;font-size:14px;
+      padding:14px 24px;border-radius:100px;
+      box-shadow:0 8px 32px rgba(245,158,11,.5);
+      animation:bpulse 3s ease-in-out infinite;
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media(max-width:1024px){
+      .hero-grid{grid-template-columns:1fr;}
+      .hero-visual{display:none;}
+      .ind-grid{grid-template-columns:repeat(2,1fr);}
+      .foot-grid{grid-template-columns:1fr 1fr;gap:40px;}
+      .calc-wrap{grid-template-columns:1fr;}
+    }
+    @media(max-width:768px){
+      .nav-links{
+        display:none;flex-direction:column;position:absolute;
+        top:100%;left:0;right:0;
+        background:rgba(5,8,17,.98);
+        padding:28px;border-bottom:1px solid var(--border);gap:26px;
+      }
+      .nav-links.open{display:flex;}
+      .ham{display:flex;}
+      .pain-grid{grid-template-columns:1fr;}
+      .services-grid{grid-template-columns:1fr;}
+      .steps{grid-template-columns:1fr;gap:52px;}
+      .steps::before{display:none;}
+      .why-wrap{grid-template-columns:1fr;}
+      .stats-row{grid-template-columns:repeat(2,1fr);gap:36px;}
+      .stat-box+.stat-box::before{display:none;}
+      .foot-grid{grid-template-columns:1fr;}
+      .services-top{flex-direction:column;align-items:flex-start;}
+      .hero-btns{flex-direction:column;align-items:flex-start;}
+      .float-cta{bottom:16px;right:16px;}
+      .ind-grid{grid-template-columns:1fr 1fr;}
+      .cr-row{grid-template-columns:1fr;}
+    }
+    @media(max-width:480px){
+      .ind-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- FLOATING CTA -->
+<div class="float-cta">
+  <a href="#cta">📅 Book Free Consultation</a>
+</div>
+
+<!-- ==================== NAV ==================== -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-in">
+      <a href="#" class="logo">
+        <div class="logo-mark">SR</div>
+        <div class="logo-name">SpotOn <em>Results</em></div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#calculator">Savings</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#cta" class="btn btn-gold" style="padding:11px 22px;font-size:14px;">Book Consultation</a></li>
+      </ul>
+      <button class="ham" id="ham" onclick="toggleNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="particles" id="pts"></div>
+  </div>
+  <div class="container">
+    <div class="hero-grid">
+      <!-- Left -->
+      <div>
+        <div class="hero-pill">
+          <div class="pulse-dot"></div>
+          240+ Local Businesses Trust SpotOn Results
+        </div>
+        <h1 class="hero-title">
+          Stop Overpaying<br>for <span class="gradient-text">Payment Processing</span>
+        </h1>
+        <p class="hero-sub">
+          We're your local payment advisor — we shop 30+ processors, analyze your statement, and deliver custom solutions that save your business real money. No contracts. No hidden fees. Just results.
+        </p>
+        <div class="hero-btns">
+          <a href="#cta" class="btn btn-gold btn-gold-lg">📅 Book Free Consultation</a>
+          <a href="#calculator" class="btn btn-ghost btn-ghost-lg">💰 Calculate My Savings</a>
+        </div>
+        <div class="hero-proof">
+          <div class="avatars">
+            <div class="av">MR</div>
+            <div class="av">JT</div>
+            <div class="av">KL</div>
+            <div class="av">DA</div>
+          </div>
+          <div class="proof-txt">
+            <div class="stars-sm">★★★★★</div>
+            Trusted by <strong>240+ businesses</strong> — avg. savings $800/mo
+          </div>
+        </div>
+      </div>
+      <!-- Right: dashboard mockup -->
+      <div class="hero-visual">
+        <div style="position:relative;margin:20px 10px;">
+          <div class="dash">
+            <div class="dash-top">
+              <span class="dash-lbl">Monthly Savings Report</span>
+              <span class="dash-status">↑ Active</span>
+            </div>
+            <div class="dash-big">$1,840</div>
+            <div class="dash-sub">Saved vs. previous processor this month</div>
+            <div class="dash-row">
+              <div class="dash-m">
+                <div class="dash-mv">1.89%</div>
+                <div class="dash-ml">Your effective rate</div>
+              </div>
+              <div class="dash-m">
+                <div class="dash-mv" style="color:#EF4444;">2.9%</div>
+                <div class="dash-ml">Previous rate</div>
+              </div>
+            </div>
+            <div class="dash-row">
+              <div class="dash-m">
+                <div class="dash-mv" style="color:#10B981;">$97.4K</div>
+                <div class="dash-ml">Volume processed</div>
+              </div>
+              <div class="dash-m">
+                <div class="dash-mv">Next Day</div>
+                <div class="dash-ml">Deposit speed</div>
+              </div>
+            </div>
+            <div class="dash-nets">
+              <div class="net">VISA</div>
+              <div class="net">MC</div>
+              <div class="net">AMEX</div>
+              <div class="net">DISC</div>
+              <div class="net net-gold">+ MORE</div>
+            </div>
+          </div>
+          <div class="fbadge fb1">
+            <div class="fb-ico">🔒</div>
+            <div class="fb-lbl">Security</div>
+            <div class="fb-val">PCI Level 1</div>
+          </div>
+          <div class="fbadge fb2">
+            <div class="fb-ico">⚡</div>
+            <div class="fb-lbl">Setup Time</div>
+            <div class="fb-val">Under 48 hrs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust strip -->
+    <div class="trust-strip">
+      <span class="trust-strip-lbl">Accepted networks:</span>
+      <div class="trust-chip"><span>💳</span> Visa</div>
+      <div class="trust-chip"><span>💳</span> Mastercard</div>
+      <div class="trust-chip"><span>💳</span> American Express</div>
+      <div class="trust-chip"><span>💳</span> Discover</div>
+      <div class="trust-chip"><span>📱</span> Apple Pay</div>
+      <div class="trust-chip"><span>📱</span> Google Pay</div>
+      <div class="trust-chip"><span>🏦</span> ACH / Bank Transfer</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== STATS ==================== -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-box reveal">
+        <div class="stat-n"><span class="ctr" data-t="240">0</span>+</div>
+        <div class="stat-d">Satisfied Business Clients</div>
+      </div>
+      <div class="stat-box reveal" style="transition-delay:.1s">
+        <div class="stat-n">$<span class="ctr" data-t="0">0</span></div>
+        <div class="stat-d">Setup &amp; Contract Fees</div>
+      </div>
+      <div class="stat-box reveal" style="transition-delay:.2s">
+        <div class="stat-n"><span class="ctr" data-t="30">0</span>%</div>
+        <div class="stat-d">Avg. Rate Reduction</div>
+      </div>
+      <div class="stat-box reveal" style="transition-delay:.3s">
+        <div class="stat-n"><span class="ctr" data-t="48">0</span>hr</div>
+        <div class="stat-d">Typical Setup Time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PAIN POINTS ==================== -->
+<section id="pain">
+  <div class="container">
+    <div class="pain-head reveal">
+      <div class="section-pill">The Problem</div>
+      <h2 class="section-title">Is your processor secretly<br>working <em>against</em> you?</h2>
+      <p class="section-sub">Most business owners have no idea they're overpaying by 1–2% every single swipe. That's thousands of dollars slipping away every month.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card reveal" style="transition-delay:.05s">
+        <div class="pain-ico">💸</div>
+        <h3>Hidden Fees &amp; Markups</h3>
+        <p>Statement fees, PCI non-compliance fees, batch fees, monthly minimums — processors quietly stack charges you never negotiated. On a $100K/month business, that's $1,000–2,000 in junk fees alone.</p>
+      </div>
+      <div class="pain-card reveal" style="transition-delay:.1s">
+        <div class="pain-ico">📄</div>
+        <h3>Locked-In Long Contracts</h3>
+        <p>3-year contracts with $500–$1,000 early termination fees trap you in bad deals. You can't negotiate when you're handcuffed — and they know it.</p>
+      </div>
+      <div class="pain-card reveal" style="transition-delay:.15s">
+        <div class="pain-ico">📞</div>
+        <h3>Zero Real Support</h3>
+        <p>When your terminal goes down on a Saturday night, you're calling a 1-800 number and talking to bots. Your revenue is on the line and no one has a real answer.</p>
+      </div>
+    </div>
+    <div class="pain-arrow reveal">↓</div>
+    <h3 class="solution-hed reveal"><span class="gradient-text">SpotOn Results fixes all of this.</span></h3>
+    <p class="solution-p reveal">We analyze your current statement, shop the best solutions across our trusted network, and deliver custom pricing tailored to your exact business — all at no cost to switch.</p>
+  </div>
+</section>
+
+<!-- ==================== SERVICES ==================== -->
+<section id="services">
+  <div class="container">
+    <div class="services-top">
+      <div>
+        <div class="section-pill reveal">What We Offer</div>
+        <h2 class="section-title reveal">Everything your business<br>needs to <span class="gradient-text">thrive</span></h2>
+      </div>
+      <a href="#cta" class="btn btn-ghost reveal">Get a Free Audit →</a>
+    </div>
+    <div class="services-grid">
+      <div class="svc reveal" style="transition-delay:.05s">
+        <div class="svc-ico">💳</div>
+        <h3>Credit Card Processing</h3>
+        <p>Custom interchange-plus rates based on your volume and industry. We accept every card type — Visa, Mastercard, Amex, Discover — and pass on the real savings to you.</p>
+        <span class="svc-link">Learn more <span class="svc-arrow">→</span></span>
+      </div>
+      <div class="svc reveal" style="transition-delay:.1s">
+        <div class="svc-ico">🖥️</div>
+        <h3>Point of Sale Systems</h3>
+        <p>Modern POS solutions for restaurants, retail, and service businesses. Includes inventory management, employee tracking, detailed reporting, and next-day deposits.</p>
+        <span class="svc-link">Learn more <span class="svc-arrow">→</span></span>
+      </div>
+      <div class="svc reveal" style="transition-delay:.15s">
+        <div class="svc-ico">🏆</div>
+        <h3>Loyalty &amp; Rewards Programs</h3>
+        <p>Fully customizable digital loyalty programs that drive repeat visits and increase average ticket. Our clients see 30–80% higher customer return rates within 6 months.</p>
+        <span class="svc-link">Learn more <span class="svc-arrow">→</span></span>
+      </div>
+      <div class="svc reveal" style="transition-delay:.2s">
+        <div class="svc-ico">📣</div>
+        <h3>Digital Marketing</h3>
+        <p>SEO campaigns, Google Business optimization, social media management, and reputation marketing — all designed to bring more qualified local customers through your door.</p>
+        <span class="svc-link">Learn more <span class="svc-arrow">→</span></span>
+      </div>
+      <div class="svc reveal" style="transition-delay:.25s">
+        <div class="svc-ico">🌐</div>
+        <h3>Websites &amp; CRM</h3>
+        <p>High-converting websites paired with a CRM to manage leads, book appointments, and automate follow-ups — turning more visitors into paying customers, automatically.</p>
+        <span class="svc-link">Learn more <span class="svc-arrow">→</span></span>
+      </div>
+      <div class="svc reveal" style="transition-delay:.3s">
+        <div class="svc-ico">🏦</div>
+        <h3>Business Funding</h3>
+        <p>Working capital advances based on your processing volume. Fast approvals, flexible repayment tied to daily sales — no collateral, no lengthy bank applications required.</p>
+        <span class="svc-link">Learn more <span class="svc-arrow">→</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PROCESS ==================== -->
+<section id="process">
+  <div class="container">
+    <div class="process-head">
+      <div class="section-pill reveal">How It Works</div>
+      <h2 class="section-title reveal">Up and running in<br><span class="gradient-text">3 simple steps</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal" style="transition-delay:.05s">
+        <div class="step-n">1</div>
+        <h3>Free Statement Analysis</h3>
+        <p>Send us your current processing statement. We do a full line-by-line audit and show you exactly what you're overpaying — no obligation, no pressure, 100% free.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.15s">
+        <div class="step-n">2</div>
+        <h3>Custom Solution Design</h3>
+        <p>We match your business type, volume, and needs with the right processor, rate structure, and equipment from our network of 30+ top-tier providers.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.25s">
+        <div class="step-n">3</div>
+        <h3>Seamless Setup &amp; Ongoing Support</h3>
+        <p>We handle everything — equipment, software, staff training. Then we stay your dedicated advisor, monitoring your account and ensuring you always get the best deal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SAVINGS CALCULATOR ==================== -->
+<section id="calculator">
+  <div class="container">
+    <div class="calc-wrap">
+      <div class="calc-l reveal-left">
+        <div class="section-pill">Savings Calculator</div>
+        <h2 class="section-title">Find out how much you're <span class="gradient-text">leaving on the table</span></h2>
+        <p class="section-sub">Adjust your monthly volume and current rate. We'll show you what switching to SpotOn Results could put back in your pocket.</p>
+        <br><br>
+        <div class="calc-form">
+          <div class="calc-field">
+            <div class="calc-lbl">
+              <span>Monthly Processing Volume</span>
+              <span class="calc-val" id="volDisp">$50,000</span>
+            </div>
+            <input type="range" id="volSlider" min="5000" max="500000" step="5000" value="50000" oninput="calcSavings()">
+          </div>
+          <div class="calc-field">
+            <div class="calc-lbl">
+              <span>Your Current Rate</span>
+              <span class="calc-val" id="rateDisp">2.9%</span>
+            </div>
+            <input type="range" id="rateSlider" min="1.5" max="4.5" step="0.1" value="2.9" oninput="calcSavings()">
+          </div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="calc-r">
+          <div class="cr-lbl">Your Estimated Annual Savings</div>
+          <div class="cr-amt" id="savAmt">$6,000</div>
+          <div class="cr-per" id="savPer">per year &nbsp;/&nbsp; $500 per month</div>
+          <div class="cr-row">
+            <div class="cr-item">
+              <div class="cr-il">Current Annual Cost</div>
+              <div class="cr-iv" id="curCost" style="color:#EF4444">$17,400</div>
+            </div>
+            <div class="cr-item">
+              <div class="cr-il">SpotOn Est. Cost</div>
+              <div class="cr-iv" id="newCost" style="color:#10B981">$11,400</div>
+            </div>
+          </div>
+          <a href="#cta" class="btn btn-gold" style="width:100%;justify-content:center;font-size:16px;padding:17px;">
+            Lock In These Savings →
+          </a>
+          <p class="cr-disc">* Based on typical 1.0% rate reduction. Actual savings vary. Book a free consultation for your exact numbers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== INDUSTRIES ==================== -->
+<section id="industries">
+  <div class="container">
+    <div class="ind-head">
+      <div class="section-pill reveal">Industries We Serve</div>
+      <h2 class="section-title reveal">Built for every type of<br><span class="gradient-text">local business</span></h2>
+    </div>
+    <div class="ind-grid">
+      <div class="ind reveal" style="transition-delay:.04s"><span class="ind-e">🍕</span><h3>Restaurants &amp; Food Service</h3><p>Table-side payments, QR ordering, tip management, happy-hour promotions</p></div>
+      <div class="ind reveal" style="transition-delay:.08s"><span class="ind-e">🛍️</span><h3>Retail Stores</h3><p>Inventory sync, multi-location support, e-commerce integration</p></div>
+      <div class="ind reveal" style="transition-delay:.12s"><span class="ind-e">🏥</span><h3>Healthcare &amp; Dental</h3><p>HSA/FSA accepted, HIPAA-aware processing, patient payment plans</p></div>
+      <div class="ind reveal" style="transition-delay:.16s"><span class="ind-e">💈</span><h3>Salons &amp; Spas</h3><p>Booking integration, membership billing, digital loyalty cards</p></div>
+      <div class="ind reveal" style="transition-delay:.04s"><span class="ind-e">🔧</span><h3>Home Services &amp; Contractors</h3><p>Mobile tap-to-pay, invoice financing, field payment collection</p></div>
+      <div class="ind reveal" style="transition-delay:.08s"><span class="ind-e">🚗</span><h3>Auto Repair &amp; Dealerships</h3><p>Large-ticket processing, text-to-pay, service financing options</p></div>
+      <div class="ind reveal" style="transition-delay:.12s"><span class="ind-e">💼</span><h3>Professional Services</h3><p>ACH bank payments, recurring invoicing, CRM pipeline integration</p></div>
+      <div class="ind reveal" style="transition-delay:.16s"><span class="ind-e">💪</span><h3>Gyms &amp; Fitness Studios</h3><p>Membership subscriptions, class pack billing, mobile check-in</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WHY ==================== -->
+<section id="why">
+  <div class="container">
+    <div class="why-wrap">
+      <div class="reveal-left">
+        <div class="section-pill">Why SpotOn Results</div>
+        <h2 class="section-title">The SpotOn Results <span class="gradient-text">difference</span></h2>
+        <ul class="why-list" style="margin-top:36px;">
+          <li class="why-item">
+            <div class="why-chk">✓</div>
+            <div class="why-txt">
+              <h4>We Work For You, Not the Processor</h4>
+              <p>We're independent advisors — not tied to any single provider. We shop 30+ processors and fight for the lowest rate possible on your behalf.</p>
+            </div>
+          </li>
+          <li class="why-item">
+            <div class="why-chk">✓</div>
+            <div class="why-txt">
+              <h4>No Contracts. No Cancellation Fees. Ever.</h4>
+              <p>Month-to-month agreements only. We earn your business every single month by delivering real, measurable savings.</p>
+            </div>
+          </li>
+          <li class="why-item">
+            <div class="why-chk">✓</div>
+            <div class="why-txt">
+              <h4>Real Local Support That Picks Up the Phone</h4>
+              <p>When your terminal goes down on a Friday evening, you call us — a real person who knows your account — and we fix it fast.</p>
+            </div>
+          </li>
+          <li class="why-item">
+            <div class="why-chk">✓</div>
+            <div class="why-txt">
+              <h4>Free Annual Rate Reviews</h4>
+              <p>We proactively review your account every year to ensure you still have the best deal as your business grows and market rates change.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="reveal-right">
+        <div class="comp-tbl">
+          <div class="comp-hd">
+            <div>Feature</div>
+            <div class="col-sr">SpotOn Results</div>
+            <div class="col-ot">Typical Processor</div>
+          </div>
+          <div class="comp-r"><div>No Long-Term Contracts</div><div class="ck">✓</div><div class="cx">✗</div></div>
+          <div class="comp-r"><div>Shops Multiple Processors</div><div class="ck">✓</div><div class="cx">✗</div></div>
+          <div class="comp-r"><div>Free Statement Analysis</div><div class="ck">✓</div><div class="cx">✗</div></div>
+          <div class="comp-r"><div>Real Local Support</div><div class="ck">✓</div><div class="cx">✗</div></div>
+          <div class="comp-r"><div>No Hidden Junk Fees</div><div class="ck">✓</div><div class="cx">✗</div></div>
+          <div class="comp-r"><div>Annual Rate Reviews</div><div class="ck">✓</div><div class="cx">✗</div></div>
+          <div class="comp-r"><div>POS + Loyalty + Marketing Bundle</div><div class="ck">✓</div><div class="cx">✗</div></div>
+          <div class="comp-r"><div>Business Funding Access</div><div class="ck">✓</div><div class="cx">✗</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TESTIMONIALS ==================== -->
+<section id="testimonials">
+  <div class="container">
+    <div class="test-head">
+      <div class="section-pill reveal">Client Success Stories</div>
+      <h2 class="section-title reveal">Real businesses,<br><span class="gradient-text">real results</span></h2>
+    </div>
+  </div>
+  <div class="test-wrap">
+    <div class="test-track" id="testTrack">
+      <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-q">"SpotOn Results cut our processing fees by $800/month. The switch took less than 48 hours and the new terminal is a massive upgrade. Shawn handled everything."</p><div class="test-auth"><div class="test-av">MR</div><div><div class="test-name">Mike R.</div><div class="test-biz">Pizza Parlor — Salt Lake City, UT</div></div></div></div>
+      <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-q">"I was paying 3.4% and had no idea. Shawn analyzed my statement and now I'm at 2.0%. That's over $14,000 a year back in my pocket. Wish I'd called sooner."</p><div class="test-auth"><div class="test-av">JT</div><div><div class="test-name">Jennifer T.</div><div class="test-biz">Dental Practice — Provo, UT</div></div></div></div>
+      <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-q">"The loyalty program has been a game changer. Customer return rate went from 31% to 58% in six months. I recommend SpotOn Results to every business owner I meet."</p><div class="test-auth"><div class="test-av">KL</div><div><div class="test-name">Karen L.</div><div class="test-biz">Salon Owner — Ogden, UT</div></div></div></div>
+      <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-q">"No pressure, no gimmicks. They found us a better rate AND free equipment. Setup was completely seamless. We've had zero issues in 18 months."</p><div class="test-auth"><div class="test-av">DA</div><div><div class="test-name">Dave A.</div><div class="test-biz">Auto Repair Shop — Murray, UT</div></div></div></div>
+      <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-q">"We were locked into a terrible contract. SpotOn helped us negotiate an exit and now we're saving $600/month. The whole process was stress-free."</p><div class="test-auth"><div class="test-av">RS</div><div><div class="test-name">Rachel S.</div><div class="test-biz">Boutique Clothing — Sandy, UT</div></div></div></div>
+      <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-q">"Their digital marketing got us to #1 on Google Maps in 3 months. Combined with the new payment system, revenue is up over 40% since we partnered with SpotOn."</p><div class="test-auth"><div class="test-av">BC</div><div><div class="test-name">Brian C.</div><div class="test-biz">HVAC Company — Draper, UT</div></div></div></div>
+      <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-q">"As a chiropractor I was overpaying on every HSA/FSA transaction. SpotOn found a processor that handles healthcare payments at a fraction of what I was paying."</p><div class="test-auth"><div class="test-av">DM</div><div><div class="test-name">Dr. Marcus</div><div class="test-biz">Chiropractic Clinic — Lehi, UT</div></div></div></div>
+      <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-q">"The business funding option saved our expansion project. We got $50K approved in 3 days based on our processing history. No bank would've moved that fast."</p><div class="test-auth"><div class="test-av">TN</div><div><div class="test-name">Tony N.</div><div class="test-biz">Restaurant Group — Orem, UT</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-head">
+      <div class="section-pill reveal">FAQ</div>
+      <h2 class="section-title reveal">Answers to your<br><span class="gradient-text">biggest questions</span></h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item reveal" style="transition-delay:.04s">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How much can I realistically expect to save?
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-in">Most businesses we work with save between 0.5% and 1.5% on their effective processing rate. For a business doing $50,000/month, that's $300–$750 per month, or $3,600–$9,000 per year. For higher-volume businesses, savings of $1,500–$3,000+/month are common. Use our savings calculator for your estimate, or book a free consultation for your exact numbers.</div></div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.06s">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Do I have to sign a long-term contract?
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-in">No. We only work with processors that offer month-to-month agreements. We firmly believe you should never be penalized for wanting better service. This keeps us accountable and keeps us working hard to earn your business every single month.</div></div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.08s">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How long does the switch take?
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-in">Most businesses are fully up and running with new rates within 24–48 hours. We coordinate everything — equipment ordering, software setup, and staff training — so there's zero downtime for your business. We time it so you're never without a way to accept payments.</div></div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.1s">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What if I'm already locked into a contract?
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-in">We'll review your contract terms carefully. In many cases, the monthly savings from switching outweigh the exit fees within just 1–2 months. If it doesn't make financial sense to switch yet, we'll tell you honestly and help you plan the right time to move. We never pressure you into a decision that isn't in your best interest.</div></div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.12s">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How does SpotOn Results make money?
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-in">We receive a referral fee from the payment processors we place business with — this never comes from your pocket and never affects your rates. Our model only works long-term if you're genuinely saving money and staying with us, so finding you the best possible rate is always our top priority.</div></div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.14s">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Do you only work with businesses in Utah?
+          <div class="faq-ico">+</div>
+        </div>
+        <div class="faq-a"><div class="faq-a-in">We're based in Utah and have deep relationships with hundreds of local businesses, but we serve businesses nationwide. Our entire process — statement analysis, setup, training, and ongoing support — can be handled completely remotely. Wherever you are, we can help.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FINAL CTA ==================== -->
+<section id="cta">
+  <div class="cta-glow"></div>
+  <div class="container">
+    <div class="cta-in reveal">
+      <div class="section-pill" style="justify-content:center;">Free — No Obligation</div>
+      <h2>Ready to stop <span class="gradient-text">overpaying?</span></h2>
+      <p>Book a free 30-minute consultation. We'll analyze your current statement, show you exactly what you're leaving on the table, and present your options. No pressure. No commitment required.</p>
+      <div class="cta-btns">
+        <a href="mailto:s.allen@spotonresults.com?subject=Free%20Consultation%20Request&body=Hi%20Shawn%2C%20I%27d%20like%20to%20book%20a%20free%20consultation%20to%20review%20my%20processing%20costs." class="btn btn-gold btn-gold-lg btn-pulse">📅 Book Free Consultation</a>
+        <a href="tel:+1" class="btn btn-ghost btn-ghost-lg">📞 Call Us Now</a>
+      </div>
+      <p class="cta-fine">✓ No credit card required &nbsp;&nbsp;&nbsp; ✓ No contracts &nbsp;&nbsp;&nbsp; ✓ Results or we'll tell you why not</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">
+          <div class="logo-mark">SR</div>
+          <div class="logo-name">SpotOn <em>Results</em></div>
+        </div>
+        <p>Business Payment Advisors helping local businesses streamline transactions, increase efficiency, and save on processing costs with our trusted network of providers.</p>
+        <div class="foot-contact">
+          <a href="mailto:s.allen@spotonresults.com">📧 s.allen@spotonresults.com</a>
+          <a href="https://spotonresults.com">🌐 spotonresults.com</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Credit Card Processing</a></li>
+          <li><a href="#services">POS Systems</a></li>
+          <li><a href="#services">Loyalty Programs</a></li>
+          <li><a href="#services">Digital Marketing</a></li>
+          <li><a href="#services">Websites &amp; CRM</a></li>
+          <li><a href="#services">Business Funding</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="#industries">Restaurants</a></li>
+          <li><a href="#industries">Retail</a></li>
+          <li><a href="#industries">Healthcare</a></li>
+          <li><a href="#industries">Salons &amp; Spas</a></li>
+          <li><a href="#industries">Home Services</a></li>
+          <li><a href="#industries">Auto Repair</a></li>
+          <li><a href="#industries">Professional Services</a></li>
+          <li><a href="#industries">Gyms &amp; Fitness</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#why">Why SpotOn Results</a></li>
+          <li><a href="#process">How It Works</a></li>
+          <li><a href="#calculator">Savings Calculator</a></li>
+          <li><a href="#testimonials">Client Stories</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#cta">Book Consultation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2025 SpotOn Results. All rights reserved.</span>
+      <span>Built for local businesses. Powered by results.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== JS ==================== -->
+<script>
+/* ---- Particles ---- */
+(function(){
+  const c = document.getElementById('pts');
+  for(let i=0;i<28;i++){
+    const d = document.createElement('div');
+    d.className='p';
+    const sz = Math.random()*3+1;
+    d.style.cssText = `left:${Math.random()*100}%;width:${sz}px;height:${sz}px;
+      animation-duration:${Math.random()*18+10}s;
+      animation-delay:${Math.random()*12}s;`;
+    c.appendChild(d);
+  }
+})();
+
+/* ---- Sticky Nav ---- */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('stuck', window.scrollY > 60);
+});
+
+/* ---- Mobile Nav ---- */
+function toggleNav(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('#navLinks a').forEach(a=>{
+  a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));
+});
+
+/* ---- Scroll Reveal ---- */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); });
+},{threshold:.1, rootMargin:'0px 0px -44px 0px'});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>io.observe(el));
+
+/* ---- Counter Animation ---- */
+function animCount(el){
+  const target = +el.dataset.t;
+  const dur = 1800;
+  const t0 = performance.now();
+  (function tick(now){
+    const p = Math.min((now-t0)/dur,1);
+    const ease = 1-Math.pow(1-p,3);
+    el.textContent = Math.round(target*ease).toLocaleString();
+    if(p<1) requestAnimationFrame(tick);
+  })(t0);
+}
+const cio = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ animCount(e.target); cio.unobserve(e.target); }});
+},{threshold:.5});
+document.querySelectorAll('.ctr').forEach(el=>cio.observe(el));
+
+/* ---- Savings Calculator ---- */
+function fmt(n){ return '$'+Math.round(n).toLocaleString(); }
+function calcSavings(){
+  const vol = +document.getElementById('volSlider').value;
+  const rate = +document.getElementById('rateSlider').value;
+  const srRate = Math.max(rate-1.0, 1.0);
+  document.getElementById('volDisp').textContent = fmt(vol);
+  document.getElementById('rateDisp').textContent = rate.toFixed(1)+'%';
+  const curAnn  = vol * (rate/100) * 12;
+  const newAnn  = vol * (srRate/100) * 12;
+  const savings = curAnn - newAnn;
+  const savMo   = savings/12;
+  document.getElementById('savAmt').textContent = fmt(savings);
+  document.getElementById('curCost').textContent = fmt(curAnn);
+  document.getElementById('newCost').textContent = fmt(newAnn);
+  document.getElementById('savPer').textContent = `per year  /  ${fmt(savMo)} per month`;
+}
+calcSavings();
+
+/* ---- Testimonials Infinite Scroll ---- */
+(function(){
+  const t = document.getElementById('testTrack');
+  if(t) t.innerHTML += t.innerHTML;
+})();
+
+/* ---- FAQ Accordion ---- */
+function toggleFaq(el){
+  const item = el.parentElement;
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!open) item.classList.add('open');
+}
+</script>
+</body>
+</html>
