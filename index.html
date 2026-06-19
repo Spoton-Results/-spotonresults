@@ -425,7 +425,7 @@
     .svc{
       background:var(--bg-card);border:1px solid var(--border);
       border-radius:var(--radius);padding:36px 32px;
-      transition:all .3s var(--ease);position:relative;overflow:hidden;
+      transition:border-color .3s var(--ease),background .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease);position:relative;
     }
     .svc::after{
       content:'';position:absolute;top:0;left:0;right:0;height:2px;
@@ -717,9 +717,10 @@
     .foot-col ul{list-style:none;}
     .foot-col ul li{margin-bottom:10px;}
     .foot-col ul li a{
-      color:var(--text-muted);font-size:14px;
+      color:rgba(245,158,11,.75);font-size:14px;
       transition:color .25s var(--ease),padding-left .25s var(--ease);
       display:inline-block; position:relative; padding-left:0;
+      text-decoration:none;
     }
     .foot-col ul li a::before{
       content:'→'; position:absolute; left:0;
@@ -1668,4 +1669,4 @@ function toggleFaq(el){
 </script>
 </body>
 </html>
-                                                                                                              
+      
