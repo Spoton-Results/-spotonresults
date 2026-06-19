@@ -726,6 +726,48 @@
       font-size:13px;color:var(--text-dim);flex-wrap:wrap;gap:12px;
     }
 
+    /* ===================== BOOKING MODAL ===================== */
+    .modal-overlay {
+      position:fixed; inset:0; z-index:9999;
+      background:rgba(5,8,17,.88);
+      backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+      display:flex; align-items:center; justify-content:center;
+      padding:20px;
+      opacity:0; pointer-events:none;
+      transition:opacity .3s var(--ease);
+    }
+    .modal-overlay.open { opacity:1; pointer-events:all; }
+    .modal-box {
+      background:#fff;
+      border-radius:20px;
+      width:100%; max-width:640px;
+      max-height:90vh; overflow-y:auto;
+      position:relative;
+      box-shadow:0 40px 100px rgba(0,0,0,.5);
+      transform:translateY(24px) scale(.97);
+      transition:transform .35s var(--ease);
+    }
+    .modal-overlay.open .modal-box { transform:none; }
+    .modal-head {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:22px 28px 0;
+    }
+    .modal-title {
+      font-family:'Plus Jakarta Sans',sans-serif;
+      font-size:18px; font-weight:800; color:var(--text-dark);
+    }
+    .modal-sub { font-size:13px; color:var(--text-dark-muted); margin-top:2px; }
+    .modal-close {
+      width:36px; height:36px; border-radius:50%;
+      background:#F1F5F9; border:none; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      font-size:18px; color:#64748B; flex-shrink:0;
+      transition:background .2s;
+    }
+    .modal-close:hover { background:#E2E8F0; }
+    .modal-iframe-wrap { padding:16px 0 8px; }
+    .modal-iframe-wrap iframe { display:block; min-height:580px; }
+
     /* ===================== STICKY FLOAT BTN ===================== */
     .float-cta{
       position:fixed;bottom:28px;right:28px;z-index:999;
@@ -781,7 +823,7 @@
 
 <!-- FLOATING CTA -->
 <div class="float-cta">
-  <a href="#cta">📅 Book Free Consultation</a>
+  <a href="#" onclick="openBooking();return false;">📅 Book Free Consultation</a>
 </div>
 
 <!-- ==================== NAV ==================== -->
@@ -798,7 +840,7 @@
         <li><a href="#industries">Industries</a></li>
         <li><a href="#testimonials">Reviews</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="#cta" class="btn btn-gold" style="padding:11px 22px;font-size:14px;">Book Consultation</a></li>
+        <li><a href="#" onclick="openBooking();return false;" class="btn btn-gold" style="padding:11px 22px;font-size:14px;">Book Consultation</a></li>
       </ul>
       <button class="ham" id="ham" onclick="toggleNav()" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -830,7 +872,7 @@
           We're your local payment advisor — we shop 30+ processors, analyze your statement, and deliver custom solutions that save your business real money. No contracts. No hidden fees. Just results.
         </p>
         <div class="hero-btns">
-          <a href="#cta" class="btn btn-gold btn-gold-lg">📅 Book Free Consultation</a>
+          <a href="#" onclick="openBooking();return false;" class="btn btn-gold btn-gold-lg">📅 Book Free Consultation</a>
           <a href="#calculator" class="btn btn-ghost btn-ghost-lg">💰 Calculate My Savings</a>
         </div>
         <div class="hero-proof">
@@ -975,7 +1017,7 @@
         <div class="section-pill reveal">What We Offer</div>
         <h2 class="section-title reveal">Everything your business<br>needs to <span class="gradient-text">thrive</span></h2>
       </div>
-      <a href="#cta" class="btn btn-ghost reveal">Get a Free Audit →</a>
+      <a href="#" onclick="openBooking();return false;" class="btn btn-ghost reveal">Get a Free Audit →</a>
     </div>
     <div class="services-grid">
 
@@ -1171,7 +1213,7 @@
               <div class="cr-iv" id="newCost" style="color:#10B981">$11,400</div>
             </div>
           </div>
-          <a href="#cta" class="btn btn-gold" style="width:100%;justify-content:center;font-size:16px;padding:17px;">
+          <a href="#" onclick="openBooking();return false;" class="btn btn-gold" style="width:100%;justify-content:center;font-size:16px;padding:17px;">
             Lock In These Savings →
           </a>
           <p class="cr-disc">* Based on typical 1.0% rate reduction. Actual savings vary. Book a free consultation for your exact numbers.</p>
@@ -1345,7 +1387,7 @@
       <h2>Ready to stop <span class="gradient-text">overpaying?</span></h2>
       <p>Book a free 30-minute consultation. We'll analyze your current statement, show you exactly what you're leaving on the table, and present your options. No pressure. No commitment required.</p>
       <div class="cta-btns">
-        <a href="mailto:s.allen@spotonresults.com?subject=Free%20Consultation%20Request&body=Hi%20Shawn%2C%20I%27d%20like%20to%20book%20a%20free%20consultation%20to%20review%20my%20processing%20costs." class="btn btn-gold btn-gold-lg btn-pulse">📅 Book Free Consultation</a>
+        <a href="#" onclick="openBooking();return false;" class="btn btn-gold btn-gold-lg btn-pulse">📅 Book Free Consultation</a>
         <a href="tel:+1" class="btn btn-ghost btn-ghost-lg">📞 Call Us Now</a>
       </div>
       <p class="cta-fine">✓ No credit card required &nbsp;&nbsp;&nbsp; ✓ No contracts &nbsp;&nbsp;&nbsp; ✓ Results or we'll tell you why not</p>
@@ -1400,7 +1442,7 @@
           <li><a href="#calculator">Savings Calculator</a></li>
           <li><a href="#testimonials">Client Stories</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#cta">Book Consultation</a></li>
+          <li><a href="#" onclick="openBooking();return false;">Book Consultation</a></li>
         </ul>
       </div>
     </div>
@@ -1411,8 +1453,39 @@
   </div>
 </footer>
 
+<!-- ==================== BOOKING MODAL ==================== -->
+<div class="modal-overlay" id="bookingModal" onclick="closeBookingOnOverlay(event)">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">📅 Book Your Free Consultation</div>
+        <div class="modal-sub">30 minutes · No pressure · No obligation</div>
+      </div>
+      <button class="modal-close" onclick="closeBooking()" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-iframe-wrap">
+      <iframe src="https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy" style="width:100%;border:none;overflow:hidden;" scrolling="no" id="t9jdITqtvi9gLjm329gy_1781866709074"></iframe>
+    </div>
+  </div>
+</div>
+<script src="https://link.spotonresults.com/js/form_embed.js" type="text/javascript"></script>
+
 <!-- ==================== JS ==================== -->
 <script>
+/* ---- Booking Modal ---- */
+function openBooking(){
+  document.getElementById('bookingModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBooking(){
+  document.getElementById('bookingModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeBookingOnOverlay(e){
+  if(e.target === document.getElementById('bookingModal')) closeBooking();
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeBooking(); });
+
 /* ---- Particles ---- */
 (function(){
   const c = document.getElementById('pts');
