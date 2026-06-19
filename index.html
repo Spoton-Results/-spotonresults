@@ -29,6 +29,13 @@
       --radius-sm:   10px;
       --shadow-gold: 0 0 60px rgba(245,158,11,0.12);
       --ease:        cubic-bezier(0.4, 0, 0.2, 1);
+      /* White section palette */
+      --bg-white:    #FFFFFF;
+      --bg-light:    #F4F6F9;
+      --text-dark:   #0F172A;
+      --text-dark-2: #1E293B;
+      --text-dark-muted: #475569;
+      --border-light: #E2E8F0;
     }
 
     /* ===================== RESET ===================== */
@@ -353,11 +360,36 @@
     }
     .stat-d{font-size:14px;color:var(--text-muted);font-weight:500;}
 
+    /* ===================== WHITE / LIGHT SECTIONS ===================== */
+    .sec-white { background: var(--bg-white); }
+    .sec-light  { background: var(--bg-light); }
+    .sec-white .section-title,
+    .sec-light  .section-title { color: var(--text-dark); }
+    .sec-white .section-sub,
+    .sec-light  .section-sub  { color: var(--text-dark-muted); }
+    .sec-white .section-pill,
+    .sec-light  .section-pill  { background:rgba(245,158,11,.1); border-color:rgba(245,158,11,.35); }
+
     /* ===================== PAIN ===================== */
     #pain{padding:108px 0;}
     .pain-head{text-align:center;margin-bottom:64px;}
     .pain-head .section-sub{margin:0 auto;}
     .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    /* white-section pain cards */
+    .sec-white .pain-card {
+      background:#fff;
+      border:1px solid var(--border-light);
+      border-radius:var(--radius);padding:34px;
+      transition:all .3s var(--ease);
+      box-shadow:0 2px 12px rgba(0,0,0,.05);
+    }
+    .sec-white .pain-card:hover{
+      border-color:rgba(245,158,11,.5);
+      box-shadow:0 10px 32px rgba(0,0,0,.1);
+      transform:translateY(-5px);
+    }
+    .sec-white .pain-card h3{font-size:18px;font-weight:700;margin-bottom:11px;color:var(--text-dark);}
+    .sec-white .pain-card p{font-size:14px;color:var(--text-dark-muted);line-height:1.65;}
     .pain-card{
       background:var(--bg-card);border:1px solid var(--border);
       border-radius:var(--radius);padding:34px;
@@ -380,6 +412,8 @@
     @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
     .solution-hed{text-align:center;font-family:'Plus Jakarta Sans',sans-serif;font-size:32px;font-weight:800;margin-bottom:12px;}
     .solution-p{text-align:center;color:var(--text-muted);max-width:540px;margin:0 auto;}
+    .sec-white .solution-hed { color:var(--text-dark); }
+    .sec-white .solution-p { color:var(--text-dark-muted); }
 
     /* ===================== SERVICES ===================== */
     #services{
@@ -422,9 +456,37 @@
     .svc-link{
       display:inline-flex;align-items:center;gap:6px;
       color:var(--gold);font-size:14px;font-weight:700;
+      background:none;border:none;cursor:pointer;padding:0;font-family:inherit;
     }
-    .svc-arrow{transition:transform .2s ease;}
+    .svc-arrow{transition:transform .35s ease;}
     .svc:hover .svc-arrow{transform:translateX(5px);}
+    /* Service expand panel */
+    .svc-more {
+      max-height:0; overflow:hidden;
+      transition:max-height .42s ease, opacity .35s ease;
+      opacity:0;
+    }
+    .svc.svc-open .svc-more { max-height:420px; opacity:1; }
+    .svc.svc-open .svc-arrow { transform:rotate(90deg); }
+    .svc-detail {
+      list-style:none; margin:18px 0 22px;
+      border-top:1px solid var(--border);padding-top:18px;
+    }
+    .svc-detail li {
+      font-size:13px; color:var(--text-muted); line-height:1.6;
+      padding:5px 0; display:flex; gap:9px; align-items:flex-start;
+    }
+    .svc-detail li::before {
+      content:'✓'; color:var(--gold); font-weight:800; flex-shrink:0; margin-top:1px;
+    }
+    .svc-cta {
+      display:inline-flex;align-items:center;gap:7px;
+      background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+      color:#000;font-weight:700;font-size:13px;
+      padding:10px 20px;border-radius:100px;margin-top:4px;
+      transition:all .25s;
+    }
+    .svc-cta:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(245,158,11,.4); }
 
     /* ===================== PROCESS ===================== */
     #process{padding:108px 0;}
@@ -450,6 +512,10 @@
     }
     .step h3{font-size:20px;font-weight:700;margin-bottom:12px;}
     .step p{font-size:14px;color:var(--text-muted);line-height:1.65;}
+    /* Light bg process overrides */
+    .sec-light .step h3 { color:var(--text-dark); }
+    .sec-light .step p { color:var(--text-dark-muted); }
+    .sec-light .steps::before { opacity:.5; }
 
     /* ===================== CALCULATOR ===================== */
     #calculator{padding:108px 0;background:var(--bg-2);}
@@ -516,6 +582,14 @@
     .ind-e{font-size:38px;margin-bottom:13px;display:block;}
     .ind h3{font-size:15px;font-weight:700;margin-bottom:6px;}
     .ind p{font-size:13px;color:var(--text-muted);line-height:1.5;}
+    /* White section industry cards */
+    .sec-white .ind {
+      background:#fff; border-color:var(--border-light);
+      box-shadow:0 2px 10px rgba(0,0,0,.05);
+    }
+    .sec-white .ind:hover { border-color:var(--gold); box-shadow:0 8px 28px rgba(0,0,0,.1); background:#FFFBF0; }
+    .sec-white .ind h3 { color:var(--text-dark); }
+    .sec-white .ind p  { color:var(--text-dark-muted); }
 
     /* ===================== WHY ===================== */
     #why{padding:108px 0;background:var(--bg-2);}
@@ -863,7 +937,7 @@
 </section>
 
 <!-- ==================== PAIN POINTS ==================== -->
-<section id="pain">
+<section id="pain" class="sec-white">
   <div class="container">
     <div class="pain-head reveal">
       <div class="section-pill">The Problem</div>
@@ -904,48 +978,133 @@
       <a href="#cta" class="btn btn-ghost reveal">Get a Free Audit →</a>
     </div>
     <div class="services-grid">
+
+      <!-- Credit Card Processing -->
       <div class="svc reveal" style="transition-delay:.05s">
         <div class="svc-ico">💳</div>
         <h3>Credit Card Processing</h3>
         <p>Custom interchange-plus rates based on your volume and industry. We accept every card type — Visa, Mastercard, Amex, Discover — and pass on the real savings to you.</p>
-        <span class="svc-link">Learn more <span class="svc-arrow">→</span></span>
+        <button class="svc-link" onclick="toggleSvc(this)">Learn more <span class="svc-arrow">→</span></button>
+        <div class="svc-more">
+          <ul class="svc-detail">
+            <li>Transparent interchange-plus pricing — you see every fee, no surprises</li>
+            <li>Accept all major cards, contactless, Apple Pay &amp; Google Pay</li>
+            <li>Next-day deposits for qualifying businesses</li>
+            <li>No monthly minimums, no PCI non-compliance penalties</li>
+            <li>Free statement analysis before you commit — see your exact savings first</li>
+            <li>Works with your existing equipment or we provide upgraded terminals at no cost</li>
+            <li>Avg. client rate reduction: 0.8%–1.5% — real money on every swipe</li>
+          </ul>
+          <a href="#cta" class="svc-cta">Get My Free Rate Analysis →</a>
+        </div>
       </div>
+
+      <!-- POS Systems -->
       <div class="svc reveal" style="transition-delay:.1s">
         <div class="svc-ico">🖥️</div>
         <h3>Point of Sale Systems</h3>
         <p>Modern POS solutions for restaurants, retail, and service businesses. Includes inventory management, employee tracking, detailed reporting, and next-day deposits.</p>
-        <span class="svc-link">Learn more <span class="svc-arrow">→</span></span>
+        <button class="svc-link" onclick="toggleSvc(this)">Learn more <span class="svc-arrow">→</span></button>
+        <div class="svc-more">
+          <ul class="svc-detail">
+            <li>Cloud-based systems — access reports from your phone anywhere</li>
+            <li>Restaurant-ready: table management, kitchen display, online ordering, tip pooling</li>
+            <li>Retail-ready: inventory sync, barcode scanning, multi-location support</li>
+            <li>Service-ready: appointment booking, recurring billing, client history</li>
+            <li>Employee time-clock, role-based access, and performance reporting</li>
+            <li>Integrated loyalty, gift cards, and customer-facing display</li>
+            <li>Free hardware options available — no upfront cost for qualifying businesses</li>
+          </ul>
+          <a href="#cta" class="svc-cta">See Which POS Fits Your Business →</a>
+        </div>
       </div>
+
+      <!-- Loyalty Programs -->
       <div class="svc reveal" style="transition-delay:.15s">
         <div class="svc-ico">🏆</div>
         <h3>Loyalty &amp; Rewards Programs</h3>
         <p>Fully customizable digital loyalty programs that drive repeat visits and increase average ticket. Our clients see 30–80% higher customer return rates within 6 months.</p>
-        <span class="svc-link">Learn more <span class="svc-arrow">→</span></span>
+        <button class="svc-link" onclick="toggleSvc(this)">Learn more <span class="svc-arrow">→</span></button>
+        <div class="svc-more">
+          <ul class="svc-detail">
+            <li>Custom branded digital punch cards and points programs — no physical cards needed</li>
+            <li>Automated SMS &amp; email campaigns to re-engage customers who haven't visited</li>
+            <li>Birthday &amp; anniversary rewards sent automatically</li>
+            <li>Customer portal and app so clients track their own points</li>
+            <li>Detailed analytics: visit frequency, average spend, campaign ROI</li>
+            <li>Integrates directly with your POS — no extra steps for staff or customers</li>
+            <li>Avg. client result: customer return rate increases 40–80% within 6 months</li>
+          </ul>
+          <a href="#cta" class="svc-cta">Build My Loyalty Program →</a>
+        </div>
       </div>
+
+      <!-- Digital Marketing -->
       <div class="svc reveal" style="transition-delay:.2s">
         <div class="svc-ico">📣</div>
         <h3>Digital Marketing</h3>
         <p>SEO campaigns, Google Business optimization, social media management, and reputation marketing — all designed to bring more qualified local customers through your door.</p>
-        <span class="svc-link">Learn more <span class="svc-arrow">→</span></span>
+        <button class="svc-link" onclick="toggleSvc(this)">Learn more <span class="svc-arrow">→</span></button>
+        <div class="svc-more">
+          <ul class="svc-detail">
+            <li>Google Business Profile optimization — show up first in local map searches</li>
+            <li>Local SEO: rank your website on page 1 for your city + service keywords</li>
+            <li>Reputation management: automated review requests after every transaction</li>
+            <li>Social media content creation and scheduling (Facebook, Instagram, Google)</li>
+            <li>Paid ads management — Google, Meta, and retargeting campaigns</li>
+            <li>Monthly performance reports: calls, clicks, direction requests, leads</li>
+            <li>Clients average 3–5x more online visibility within 90 days</li>
+          </ul>
+          <a href="#cta" class="svc-cta">Grow My Online Presence →</a>
+        </div>
       </div>
+
+      <!-- Websites & CRM -->
       <div class="svc reveal" style="transition-delay:.25s">
         <div class="svc-ico">🌐</div>
         <h3>Websites &amp; CRM</h3>
         <p>High-converting websites paired with a CRM to manage leads, book appointments, and automate follow-ups — turning more visitors into paying customers, automatically.</p>
-        <span class="svc-link">Learn more <span class="svc-arrow">→</span></span>
+        <button class="svc-link" onclick="toggleSvc(this)">Learn more <span class="svc-arrow">→</span></button>
+        <div class="svc-more">
+          <ul class="svc-detail">
+            <li>Professional, mobile-first websites built for local search and conversions</li>
+            <li>Online booking integration — customers schedule 24/7, no phone tag</li>
+            <li>Built-in CRM: track every lead, deal, and customer conversation in one place</li>
+            <li>Automated follow-up sequences: texts, emails, missed-call callbacks</li>
+            <li>Online payment links and invoicing directly from your CRM</li>
+            <li>Integrates with your Google, Facebook, and phone leads automatically</li>
+            <li>Average result: 40–60% more leads converted without extra ad spend</li>
+          </ul>
+          <a href="#cta" class="svc-cta">Get My Website + CRM Setup →</a>
+        </div>
       </div>
+
+      <!-- Business Funding -->
       <div class="svc reveal" style="transition-delay:.3s">
         <div class="svc-ico">🏦</div>
         <h3>Business Funding</h3>
         <p>Working capital advances based on your processing volume. Fast approvals, flexible repayment tied to daily sales — no collateral, no lengthy bank applications required.</p>
-        <span class="svc-link">Learn more <span class="svc-arrow">→</span></span>
+        <button class="svc-link" onclick="toggleSvc(this)">Learn more <span class="svc-arrow">→</span></button>
+        <div class="svc-more">
+          <ul class="svc-detail">
+            <li>Merchant cash advances from $5,000 to $500,000+ based on your sales history</li>
+            <li>Approvals in as little as 24–72 hours — no months-long bank process</li>
+            <li>Repayment tied to daily card sales — pay more when business is good, less when it's slow</li>
+            <li>No collateral required, no personal guarantee in most cases</li>
+            <li>Use funds for equipment, renovations, inventory, hiring, or marketing</li>
+            <li>Renewal options available as soon as 50% of advance is repaid</li>
+            <li>Processing clients get preferred terms and faster approvals</li>
+          </ul>
+          <a href="#cta" class="svc-cta">Check My Funding Options →</a>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
 <!-- ==================== PROCESS ==================== -->
-<section id="process">
+<section id="process" class="sec-light">
   <div class="container">
     <div class="process-head">
       <div class="section-pill reveal">How It Works</div>
@@ -1023,7 +1182,7 @@
 </section>
 
 <!-- ==================== INDUSTRIES ==================== -->
-<section id="industries">
+<section id="industries" class="sec-white">
   <div class="container">
     <div class="ind-head">
       <div class="section-pill reveal">Industries We Serve</div>
@@ -1328,6 +1487,14 @@ calcSavings();
   const t = document.getElementById('testTrack');
   if(t) t.innerHTML += t.innerHTML;
 })();
+
+/* ---- Service Expand ---- */
+function toggleSvc(btn){
+  const card = btn.closest('.svc');
+  const isOpen = card.classList.contains('svc-open');
+  document.querySelectorAll('.svc').forEach(s=>s.classList.remove('svc-open'));
+  if(!isOpen) card.classList.add('svc-open');
+}
 
 /* ---- FAQ Accordion ---- */
 function toggleFaq(el){
