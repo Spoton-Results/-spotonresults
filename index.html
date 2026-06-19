@@ -302,7 +302,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .faq-item.open .faq-ico{transform:rotate(45deg);border-color:var(--gold);background:rgba(245,158,11,.1)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
 .faq-ai{padding:0 26px 22px;font-size:15px;color:var(--text-m);line-height:1.75}
-.faq-item.open .faq-a{max-height:280px}
+.faq-item.open .faq-a{max-height:500px}
 
 /* ── SECTION: FINAL CTA ── */
 .cta-sec{background:linear-gradient(135deg,var(--navy3) 0%,var(--navy) 100%);text-align:center;position:relative;overflow:hidden}
@@ -329,7 +329,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
 .foot-col a::before{content:'→';position:absolute;left:0;color:var(--gold);opacity:0;font-size:11px;top:1px;transition:opacity .2s}
 .foot-col a:hover{color:var(--gold);padding-left:14px}
 .foot-col a:hover::before{opacity:1}
-.foot-bot{padding-top:24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:gap 16px}
+.foot-bot{padding-top:24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .foot-copy{font-size:13px;color:var(--text-d)}
 .foot-badge{font-size:12px;color:var(--text-d);display:flex;align-items:center;gap:6px}
 .foot-badge span{color:var(--gold)}
@@ -583,7 +583,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
       <p class="sec-s">One trusted advisor for payment processing, technology, marketing, and growth capital.</p>
     </div>
     <div class="bento">
-      <div class="bc reveal" id="svc-processing">
+      <div class="bc" id="svc-processing">
         <div style="display:flex;gap:20px;align-items:flex-start">
           <div class="bc-ico">💳</div>
           <div>
@@ -594,19 +594,19 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
           </div>
         </div>
       </div>
-      <div class="bc reveal" id="svc-pos">
+      <div class="bc" id="svc-pos">
         <div class="bc-ico">🖥️</div>
         <div class="bc-h">Point of Sale Systems</div>
         <div class="bc-d">Modern cloud-based POS for restaurants, retail, and service businesses. Inventory, employee tracking, detailed reporting, and next-day deposits.</div>
         <span class="bc-tag">Restaurant-Ready</span><span class="bc-tag">Retail-Ready</span>
       </div>
-      <div class="bc reveal" id="svc-loyalty">
+      <div class="bc" id="svc-loyalty">
         <div class="bc-ico">🏆</div>
         <div class="bc-h">Loyalty &amp; Rewards</div>
         <div class="bc-d">Fully customizable digital loyalty programs. Our clients see 30–80% higher customer return rates within 6 months. SMS campaigns, birthday rewards, detailed analytics.</div>
         <span class="bc-tag">Digital Punch Cards</span><span class="bc-tag">SMS Campaigns</span>
       </div>
-      <div class="bc reveal" id="svc-marketing">
+      <div class="bc" id="svc-marketing">
         <div style="display:flex;gap:20px;align-items:flex-start">
           <div class="bc-ico">📣</div>
           <div>
@@ -617,13 +617,13 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
           </div>
         </div>
       </div>
-      <div class="bc reveal" id="svc-crm">
+      <div class="bc" id="svc-crm">
         <div class="bc-ico">🌐</div>
         <div class="bc-h">Websites &amp; CRM</div>
         <div class="bc-d">High-converting websites paired with a CRM to manage leads, book appointments, and automate follow-ups — turning more visitors into paying customers, automatically. 40–60% more leads converted.</div>
         <span class="bc-tag">Mobile-First</span><span class="bc-tag">Online Booking</span>
       </div>
-      <div class="bc reveal" id="svc-funding">
+      <div class="bc" id="svc-funding">
         <div class="bc-ico">🏦</div>
         <div class="bc-h">Business Funding</div>
         <div class="bc-d">Working capital advances based on your processing volume. $5K–$500K+. Approvals in 24–72 hours — no collateral, no lengthy bank applications.</div>
@@ -673,19 +673,19 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
       <h2 class="sec-h" style="text-align:center">Up and running in <span class="acc">3 simple steps</span></h2>
     </div>
     <div class="proc-steps">
-      <div class="proc-step reveal">
+      <div class="proc-step">
         <div class="step-n">1</div>
         <div class="step-ico">🔍</div>
         <div class="step-h">Free Statement Analysis</div>
         <div class="step-d">Send us your current processing statement. We do a full line-by-line audit and show you exactly what you're overpaying — no obligation, no pressure, 100% free.</div>
       </div>
-      <div class="proc-step reveal">
+      <div class="proc-step">
         <div class="step-n">2</div>
         <div class="step-ico">⚡</div>
         <div class="step-h">Custom Solution Design</div>
         <div class="step-d">We match your business type, volume, and needs with the right processor, rate structure, and equipment from our network of 30+ top-tier providers.</div>
       </div>
-      <div class="proc-step reveal">
+      <div class="proc-step">
         <div class="step-n">3</div>
         <div class="step-ico">🚀</div>
         <div class="step-h">Seamless Setup &amp; Support</div>
@@ -729,14 +729,14 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
       <p class="sec-s">We specialize in the exact payment and technology needs of your industry.</p>
     </div>
     <div class="ind-grid">
-      <div class="ind-card reveal" id="ind-restaurants"><span class="ind-ico">🍕</span><div class="ind-h">Restaurants &amp; Food</div><div class="ind-d">Table-side payments, QR ordering, tip management, happy-hour promotions</div></div>
-      <div class="ind-card reveal" id="ind-retail"><span class="ind-ico">🛍️</span><div class="ind-h">Retail Stores</div><div class="ind-d">Inventory sync, multi-location support, e-commerce integration</div></div>
-      <div class="ind-card reveal" id="ind-healthcare"><span class="ind-ico">🏥</span><div class="ind-h">Healthcare &amp; Dental</div><div class="ind-d">HSA/FSA accepted, HIPAA-aware processing, patient payment plans</div></div>
-      <div class="ind-card reveal" id="ind-salons"><span class="ind-ico">💈</span><div class="ind-h">Salons &amp; Spas</div><div class="ind-d">Booking integration, membership billing, digital loyalty cards</div></div>
-      <div class="ind-card reveal" id="ind-home"><span class="ind-ico">🔧</span><div class="ind-h">Home Services</div><div class="ind-d">Mobile tap-to-pay, invoice financing, field payment collection</div></div>
-      <div class="ind-card reveal" id="ind-auto"><span class="ind-ico">🚗</span><div class="ind-h">Auto Repair</div><div class="ind-d">Large-ticket processing, text-to-pay, service financing options</div></div>
-      <div class="ind-card reveal" id="ind-professional"><span class="ind-ico">💼</span><div class="ind-h">Professional Services</div><div class="ind-d">ACH bank payments, recurring invoicing, CRM pipeline integration</div></div>
-      <div class="ind-card reveal" id="ind-fitness"><span class="ind-ico">💪</span><div class="ind-h">Gyms &amp; Fitness</div><div class="ind-d">Membership subscriptions, class pack billing, mobile check-in</div></div>
+      <div class="ind-card" id="ind-restaurants"><span class="ind-ico">🍕</span><div class="ind-h">Restaurants &amp; Food</div><div class="ind-d">Table-side payments, QR ordering, tip management, happy-hour promotions</div></div>
+      <div class="ind-card" id="ind-retail"><span class="ind-ico">🛍️</span><div class="ind-h">Retail Stores</div><div class="ind-d">Inventory sync, multi-location support, e-commerce integration</div></div>
+      <div class="ind-card" id="ind-healthcare"><span class="ind-ico">🏥</span><div class="ind-h">Healthcare &amp; Dental</div><div class="ind-d">HSA/FSA accepted, HIPAA-aware processing, patient payment plans</div></div>
+      <div class="ind-card" id="ind-salons"><span class="ind-ico">💈</span><div class="ind-h">Salons &amp; Spas</div><div class="ind-d">Booking integration, membership billing, digital loyalty cards</div></div>
+      <div class="ind-card" id="ind-home"><span class="ind-ico">🔧</span><div class="ind-h">Home Services</div><div class="ind-d">Mobile tap-to-pay, invoice financing, field payment collection</div></div>
+      <div class="ind-card" id="ind-auto"><span class="ind-ico">🚗</span><div class="ind-h">Auto Repair</div><div class="ind-d">Large-ticket processing, text-to-pay, service financing options</div></div>
+      <div class="ind-card" id="ind-professional"><span class="ind-ico">💼</span><div class="ind-h">Professional Services</div><div class="ind-d">ACH bank payments, recurring invoicing, CRM pipeline integration</div></div>
+      <div class="ind-card" id="ind-fitness"><span class="ind-ico">💪</span><div class="ind-h">Gyms &amp; Fitness</div><div class="ind-d">Membership subscriptions, class pack billing, mobile check-in</div></div>
     </div>
   </div>
 </section>
@@ -819,12 +819,12 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
       <h2 class="sec-h" style="text-align:center">Answers to your <span class="acc">biggest questions</span></h2>
     </div>
     <div class="faq-wrap">
-      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">How much can I realistically expect to save?<span class="faq-ico">+</span></button><div class="faq-a"><div class="faq-ai">Most businesses we work with save between 0.5% and 1.5% on their effective processing rate. For a business doing $50,000/month, that's $300–$750 per month, or $3,600–$9,000 per year. For higher-volume businesses, savings of $1,500–$3,000+/month are common. Use our savings calculator above for your estimate, or book a free consultation for your exact numbers.</div></div></div>
-      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Do I have to sign a long-term contract?<span class="faq-ico">+</span></button><div class="faq-a"><div class="faq-ai">No. We only work with processors that offer month-to-month agreements. We firmly believe you should never be penalized for wanting better service. This keeps us accountable and keeps us working hard to earn your business every single month.</div></div></div>
-      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">How long does the switch take?<span class="faq-ico">+</span></button><div class="faq-a"><div class="faq-ai">Most businesses are fully up and running with new rates within 24–48 hours. We coordinate everything — equipment ordering, software setup, and staff training — so there's zero downtime for your business. We time it so you're never without a way to accept payments.</div></div></div>
-      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">What if I'm already locked into a contract?<span class="faq-ico">+</span></button><div class="faq-a"><div class="faq-ai">We'll review your contract terms carefully. In many cases, the monthly savings from switching outweigh the exit fees within just 1–2 months. If it doesn't make financial sense to switch yet, we'll tell you honestly and help you plan the right time to move. We never pressure you into a decision that isn't in your best interest.</div></div></div>
-      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">How does SpotOn Results make money?<span class="faq-ico">+</span></button><div class="faq-a"><div class="faq-ai">We receive a referral fee from the payment processors we place business with — this never comes from your pocket and never affects your rates. Our model only works long-term if you're genuinely saving money and staying with us, so finding you the best possible rate is always our top priority.</div></div></div>
-      <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Do you only work with businesses in Utah?<span class="faq-ico">+</span></button><div class="faq-a"><div class="faq-ai">We're based in Utah and have deep relationships with hundreds of local businesses, but we serve businesses nationwide. Our entire process — statement analysis, setup, training, and ongoing support — can be handled completely remotely. Wherever you are, we can help.</div></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How much can I realistically expect to save?<span class="faq-ico">+</span></button><div class="faq-a"><div class="faq-ai">Most businesses we work with save between 0.5% and 1.5% on their effective processing rate. For a business doing $50,000/month, that's $300–$750 per month, or $3,600–$9,000 per year. For higher-volume businesses, savings of $1,500–$3,000+/month are common. Use our savings calculator above for your estimate, or book a free consultation for your exact numbers.</div></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do I have to sign a long-term contract?<span class="faq-ico">+</span></button><div class="faq-a"><div class="faq-ai">No. We only work with processors that offer month-to-month agreements. We firmly believe you should never be penalized for wanting better service. This keeps us accountable and keeps us working hard to earn your business every single month.</div></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How long does the switch take?<span class="faq-ico">+</span></button><div class="faq-a"><div class="faq-ai">Most businesses are fully up and running with new rates within 24–48 hours. We coordinate everything — equipment ordering, software setup, and staff training — so there's zero downtime for your business. We time it so you're never without a way to accept payments.</div></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if I'm already locked into a contract?<span class="faq-ico">+</span></button><div class="faq-a"><div class="faq-ai">We'll review your contract terms carefully. In many cases, the monthly savings from switching outweigh the exit fees within just 1–2 months. If it doesn't make financial sense to switch yet, we'll tell you honestly and help you plan the right time to move. We never pressure you into a decision that isn't in your best interest.</div></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How does SpotOn Results make money?<span class="faq-ico">+</span></button><div class="faq-a"><div class="faq-ai">We receive a referral fee from the payment processors we place business with — this never comes from your pocket and never affects your rates. Our model only works long-term if you're genuinely saving money and staying with us, so finding you the best possible rate is always our top priority.</div></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you only work with businesses in Utah?<span class="faq-ico">+</span></button><div class="faq-a"><div class="faq-ai">We're based in Utah and have deep relationships with hundreds of local businesses, but we serve businesses nationwide. Our entire process — statement analysis, setup, training, and ongoing support — can be handled completely remotely. Wherever you are, we can help.</div></div></div>
     </div>
   </div>
 </section>
@@ -902,7 +902,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
       </div>
     </div>
     <div class="foot-bot">
-      <div class="foot-copy">© 2025 SpotOn Results. All rights reserved. Built for local businesses. Powered by results.</div>
+      <div class="foot-copy">© <script>document.write(new Date().getFullYear())</script> SpotOn Results. All rights reserved. Built for local businesses. Powered by results.</div>
       <div class="foot-badge">📅 <span><a href="#" onclick="openBooking();return false" style="color:var(--gold)">Book Your Free Consultation</a></span></div>
     </div>
   </div>
@@ -1020,7 +1020,7 @@ function drawParticles() {
     // Mouse repulsion
     const dx = p.x - pmx, dy = p.y - pmy;
     const dist = Math.sqrt(dx * dx + dy * dy);
-    if (dist < 120) {
+    if (dist < 120 && dist > 0) {
       p.vx += (dx / dist) * 0.08;
       p.vy += (dy / dist) * 0.08;
     }
@@ -1063,7 +1063,8 @@ drawParticles();
 
 /* ── SECTION: SCROLL PROGRESS BAR ── */
 window.addEventListener('scroll', () => {
-  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  const denom = document.body.scrollHeight - window.innerHeight;
+  const pct = denom > 0 ? (window.scrollY / denom) * 100 : 0;
   document.getElementById('prog').style.width = pct + '%';
 });
 
@@ -1260,4 +1261,7 @@ function updateCalc() {
   cbSpoton.textContent = '$' + Math.round(spotonAnnual).toLocaleString();
 }
 volSlider.addEventListener('input', updateCalc);
-rateSlider.addEventListener('i
+rateSlider.addEventListener('input', updateCalc);
+updateCalc();
+
+/* ── SECTION
