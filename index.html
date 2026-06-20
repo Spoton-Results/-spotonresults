@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
 /* ── SECTION: CSS CUSTOM PROPERTIES ── */
 :root {
@@ -48,7 +48,7 @@
 /* ── SECTION: RESET & BASE ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--font-b);background:var(--navy);color:var(--text);overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;user-select:none;-webkit-user-select:none}
+body{font-family:var(--font-b);background:var(--navy);color:var(--text);overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 button{cursor:none;font-family:inherit;border:none;background:none}
 img{max-width:100%;height:auto}
@@ -70,19 +70,20 @@ img{max-width:100%;height:auto}
 .cursor-dot{
   position:fixed;top:0;left:0;z-index:9998;pointer-events:none;
   width:8px;height:8px;border-radius:50%;background:var(--gold);
-  opacity:0;
-  transition:scale .08s var(--ease),background .2s,opacity .15s;
+  transform:translate(-50%,-50%);
+  transition:transform .08s var(--ease),background .2s,opacity .2s;
 }
 .cursor-ring{
   position:fixed;top:0;left:0;z-index:9997;pointer-events:none;
   width:40px;height:40px;border-radius:50%;
   border:1.5px solid rgba(245,158,11,.55);
-  opacity:0;
-  transition:width .25s var(--spring),height .25s var(--spring),border-color .2s,background .2s,opacity .15s;
+  transform:translate(-50%,-50%);
+  transition:width .25s var(--spring),height .25s var(--spring),border-color .2s,background .2s,opacity .2s;
+  will-change:transform;
 }
-.cursor-dot.h{scale:2.2;background:#fff}
+.cursor-dot.h{transform:translate(-50%,-50%) scale(2.2);background:#fff}
 .cursor-ring.h{width:58px;height:58px;border-color:var(--gold);background:rgba(245,158,11,.05)}
-.cursor-dot.c{scale:.4}
+.cursor-dot.c{transform:translate(-50%,-50%) scale(.4)}
 .cursor-ring.c{width:26px;height:26px}
 
 /* ── SECTION: NAV ── */
@@ -113,13 +114,13 @@ nav.sc{padding:12px 0;background:rgba(6,15,30,.88);backdrop-filter:blur(22px);bo
 
 /* ── SECTION: HERO ── */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:140px 0 80px;overflow:hidden}
-#pcanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.9;pointer-events:none}
+#pcanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.9}
 .hero-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);width:800px;height:800px;background:radial-gradient(ellipse,rgba(245,158,11,.1) 0%,transparent 68%);pointer-events:none;z-index:1}
 .hero-in{position:relative;z-index:2;width:var(--cw);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px 7px 10px;background:rgba(245,158,11,.1);border:1px solid var(--border-m);border-radius:50px;font-size:13px;font-weight:600;color:var(--gold);margin-bottom:28px}
 .badge-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:pls 2s infinite}
 @keyframes pls{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.5}}
-.hero-h1{font-family:var(--font-d);font-size:clamp(22px,2.8vw,40px);font-weight:800;line-height:1.0;letter-spacing:-.03em;color:var(--text);margin-bottom:24px;overflow:hidden}
+.hero-h1{font-family:var(--font-d);font-size:clamp(40px,6vw,78px);font-weight:800;line-height:1.0;letter-spacing:-.03em;color:var(--text);margin-bottom:24px;overflow:hidden}
 .hero-h1 .hline{overflow:hidden;display:block}
 .hero-h1 .gold{color:var(--gold)}
 .hero-sub{font-size:clamp(15px,1.8vw,18px);color:var(--text-m);line-height:1.72;max-width:480px;margin-bottom:36px;font-weight:300}
@@ -155,7 +156,7 @@ nav.sc{padding:12px 0;background:rgba(6,15,30,.88);backdrop-filter:blur(22px);bo
 @keyframes si{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
 
 /* ── SECTION: MARQUEE BAR ── */
-.marquee-sec{padding:38px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(0,0,0,.2);overflow:hidden;pointer-events:none}
+.marquee-sec{padding:38px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(0,0,0,.2);overflow:hidden}
 .mq-track{display:flex;width:max-content;animation:mq 32s linear infinite}
 .mq-track:hover{animation-play-state:paused}
 .mq-item{display:flex;align-items:center;gap:10px;padding:0 42px;font-size:13px;font-weight:600;color:var(--text-d);white-space:nowrap;letter-spacing:.05em}
@@ -250,12 +251,12 @@ section{padding:var(--sp) 0;position:relative}
 
 /* ── SECTION: TESTIMONIALS ── */
 .test-sec{background:var(--navy2);overflow:hidden}
-.test-wrap{margin-top:52px;overflow:hidden;position:relative;pointer-events:none}
+.test-wrap{margin-top:52px;overflow:hidden;position:relative}
 .test-wrap::before,.test-wrap::after{content:'';position:absolute;top:0;bottom:0;width:200px;z-index:10;pointer-events:none}
 .test-wrap::before{left:0;background:linear-gradient(to right,var(--navy2),transparent)}
 .test-wrap::after{right:0;background:linear-gradient(to left,var(--navy2),transparent)}
-.test-track{display:flex;width:max-content;animation:mq 44s linear infinite;gap:18px;pointer-events:none}
-
+.test-track{display:flex;width:max-content;animation:mq 44s linear infinite;gap:18px}
+.test-track:hover{animation-play-state:paused}
 .test-card{width:310px;flex-shrink:0;padding:26px;background:var(--glass-m);border:1px solid var(--border-m);border-radius:var(--rl);backdrop-filter:blur(16px);transition:border-color .3s,box-shadow .3s}
 .test-card:hover{border-color:var(--border-s);box-shadow:0 12px 40px rgba(0,0,0,.3)}
 .test-stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:14px}
@@ -336,8 +337,6 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
 /* ── SECTION: BOOKING MODAL ── */
 .modal{position:fixed;inset:0;z-index:5000;display:flex;align-items:center;justify-content:center;background:rgba(6,15,30,.92);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transition:opacity .35s}
 .modal.open{opacity:1;pointer-events:all}
-.modal iframe{pointer-events:none}
-.modal.open iframe{pointer-events:auto}
 .modal-box{position:relative;width:min(720px,calc(100% - 32px));max-height:90vh;background:var(--navy3);border:1px solid var(--border-s);border-radius:var(--rx);overflow:hidden;transform:scale(.95) translateY(20px);transition:transform .4s var(--spring);box-shadow:0 40px 100px rgba(0,0,0,.6),var(--glow-s)}
 .modal.open .modal-box{transform:scale(1) translateY(0)}
 .modal-hdr{padding:26px 30px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
@@ -407,137 +406,6 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
   .ind-grid{grid-template-columns:1fr 1fr}
   .hero-card{display:none}
 }
-
-/* ─────────────────────────────────────────────
-   LIGHT SECTIONS — white / off-white backgrounds
-   ───────────────────────────────────────────── */
-:root {
-  --white: #ffffff;
-  --lite:  #f6f8fc;
-  --dk:    #0d1b33;
-  --dk-m:  rgba(13,27,51,.62);
-  --dk-d:  rgba(13,27,51,.38);
-  --blt:   rgba(13,27,51,.1);
-  --blt-s: rgba(13,27,51,.22);
-  --glt:   rgba(13,27,51,.04);
-}
-
-/* Section backgrounds */
-.ps-sec   { background: var(--white); }
-.svc-sec  { background: var(--lite);  }
-.proc-sec { background: var(--white); }
-.cmp-sec  { background: var(--lite);  }
-.ind-sec  { background: var(--white); }
-.calc-sec { background: var(--lite);  }
-.faq-sec  { background: var(--white); }
-
-/* Section headings */
-.ps-sec .sec-h,  .svc-sec .sec-h,  .proc-sec .sec-h,
-.cmp-sec .sec-h, .ind-sec .sec-h,  .calc-sec .sec-h,
-.faq-sec .sec-h  { color: var(--dk); }
-
-.ps-sec .acc, .svc-sec .acc, .proc-sec .acc,
-.cmp-sec .acc,.ind-sec .acc, .calc-sec .acc,
-.faq-sec .acc    { color: var(--gold-d); }
-
-.ps-sec .sec-s,  .svc-sec .sec-s,  .proc-sec .sec-s,
-.cmp-sec .sec-s, .ind-sec .sec-s,  .calc-sec .sec-s,
-.faq-sec .sec-s  { color: var(--dk-m); }
-
-/* Section tags in light sections */
-.ps-sec .sec-tag,  .svc-sec .sec-tag,  .proc-sec .sec-tag,
-.cmp-sec .sec-tag, .ind-sec .sec-tag,  .calc-sec .sec-tag,
-.faq-sec .sec-tag  { color: var(--gold-d); }
-
-.ps-sec .sec-tag::before,  .svc-sec .sec-tag::before,
-.proc-sec .sec-tag::before,.cmp-sec .sec-tag::before,
-.ind-sec .sec-tag::before, .calc-sec .sec-tag::before,
-.faq-sec .sec-tag::before  { background: var(--gold-d); }
-
-/* ── Problem / Solution ── */
-.ps-sec .ps-div               { background: var(--blt); }
-.ps-sec .ps-it                { color: var(--dk); }
-.ps-sec .ps-id                { color: var(--dk-m); }
-.ps-sec .ps-item:hover        { background: var(--glt); border-color: var(--blt-s); }
-.ps-sec .ps-col h3            { letter-spacing: -.01em; }
-
-/* ── Services / Bento cards ── */
-.svc-sec .bc {
-  background: var(--white);
-  border-color: var(--blt);
-  box-shadow: 0 2px 16px rgba(13,27,51,.07);
-}
-.svc-sec .bc:hover {
-  border-color: var(--gold);
-  background: var(--white);
-  box-shadow: 0 8px 32px rgba(13,27,51,.1);
-  transform: translateY(-4px);
-}
-.svc-sec .bc-h  { color: var(--dk); }
-.svc-sec .bc-d  { color: var(--dk-m); }
-
-/* ── Process steps ── */
-.proc-sec .proc-step {
-  background: var(--white);
-  border-color: var(--blt);
-  box-shadow: 0 2px 16px rgba(13,27,51,.07);
-}
-.proc-sec .proc-step:hover {
-  border-color: var(--gold);
-  box-shadow: 0 20px 50px rgba(13,27,51,.1);
-}
-.proc-sec .step-h { color: var(--dk); }
-.proc-sec .step-d { color: var(--dk-m); }
-
-/* ── Comparison table ── */
-.cmp-sec .cmp-tbl             { border-color: var(--blt); }
-.cmp-sec .cmp-hdr             { background: rgba(13,27,51,.05); }
-.cmp-sec .cmp-hc.theirs       { color: var(--dk-d); }
-.cmp-sec .cmp-row             { border-color: var(--blt); }
-.cmp-sec .cmp-row:hover       { background: rgba(245,158,11,.04); }
-.cmp-sec .cmp-c               { color: var(--dk-m); }
-.cmp-sec .cmp-c.feat          { color: var(--dk); font-weight: 600; }
-
-/* ── Industries ── */
-.ind-sec .ind-card {
-  background: var(--white);
-  border-color: var(--blt);
-  box-shadow: 0 2px 16px rgba(13,27,51,.06);
-}
-.ind-sec .ind-card:hover {
-  border-color: var(--gold);
-  background: var(--white);
-  box-shadow: 0 12px 40px rgba(13,27,51,.1);
-}
-.ind-sec .ind-h { color: var(--dk); }
-.ind-sec .ind-d { color: var(--dk-m); }
-
-/* ── Calculator ── */
-.calc-sec .calc-card {
-  background: var(--white);
-  border-color: var(--blt);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  box-shadow: 0 4px 24px rgba(13,27,51,.08);
-}
-.calc-sec input[type=range] { background: rgba(13,27,51,.18); }
-.calc-sec input[type=range]::-webkit-slider-runnable-track { background: rgba(13,27,51,.18); }
-.calc-sec input[type=range]::-moz-range-track { background: rgba(13,27,51,.18); }
-.calc-sec .calc-lbl  { color: var(--dk-m); }
-.calc-sec .calc-note { color: var(--dk-d); }
-.calc-sec .calc-per  { color: var(--dk-m); }
-.calc-sec .cb-item   { background: rgba(13,27,51,.05); }
-.calc-sec .cb-lbl    { color: var(--dk-d); }
-.calc-sec .cb-val    { color: var(--dk); }
-
-/* ── FAQ ── */
-.faq-sec .faq-item              { border-color: var(--blt); }
-.faq-sec .faq-item:hover        { border-color: rgba(245,158,11,.35); }
-.faq-sec .faq-q                 { color: var(--dk); }
-.faq-sec .faq-ai                { color: var(--dk-m); }
-.faq-sec .faq-ico               { border-color: var(--blt-s); color: var(--dk-d); }
-.faq-sec .faq-item.open .faq-q  { color: var(--gold-d); }
-.faq-sec .faq-item.open .faq-ico{ border-color: var(--gold-d); background: rgba(245,158,11,.08); }
 </style>
 </head>
 <body>
@@ -565,8 +433,9 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
       <li><a href="#industries">Industries</a></li>
       <li><a href="#testimonials">Reviews</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="/apply.html" style="color:var(--gold);font-weight:700;">Apply Now</a></li>
     </ul>
-    <button class="nav-cta" onclick="window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy','_blank')">Book Free Analysis</button>
+    <button class="nav-cta" onclick="openBooking()">Book Free Analysis</button>
     <button class="ham" id="ham-btn" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -581,9 +450,10 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
     <li><a href="#industries" onclick="closeMenu()">Industries</a></li>
     <li><a href="#testimonials" onclick="closeMenu()">Reviews</a></li>
     <li><a href="#faq" onclick="closeMenu()">FAQ</a></li>
+    <li><a href="/apply.html" onclick="closeMenu()" style="color:var(--gold);font-weight:700;">Apply Now</a></li>
   </ul>
   <div class="mob-cta">
-    <button class="btn-p" onclick="window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy','_blank');closeMenu()">📅 Book Free Analysis</button>
+    <button class="btn-p" onclick="openBooking();closeMenu()">📅 Book Free Analysis</button>
   </div>
 </div>
 
@@ -603,7 +473,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
       </h1>
       <p class="hero-sub" id="hero-sub">We're your local payment advisor — we shop 30+ processors, analyze your statement, and deliver custom solutions that save your business real money. No contracts. No hidden fees. Just results.</p>
       <div class="hero-ctas" id="hero-ctas">
-        <button class="btn-p" onclick="window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy','_blank')">📅 Book Free Consultation</button>
+        <button class="btn-p" onclick="openBooking()">📅 Book Free Consultation</button>
         <a href="#calculator" class="btn-g">💰 Calculate My Savings →</a>
       </div>
       <div class="hero-trust" id="hero-trust">
@@ -935,7 +805,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
             <div class="cb-item"><div class="cb-lbl">Current Annual Cost</div><div class="cb-val" id="cb-current">$17,400</div></div>
             <div class="cb-item"><div class="cb-lbl">SpotOn Est. Cost</div><div class="cb-val" id="cb-spoton">$11,400</div></div>
           </div>
-          <button class="btn-p" style="width:100%;margin-top:20px;text-align:center;display:block" onclick="window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy','_blank')">Lock In These Savings →</button>
+          <button class="btn-p" style="width:100%;margin-top:20px;text-align:center;display:block" onclick="openBooking()">Lock In These Savings →</button>
           <div class="calc-note">* Based on typical 1.0% rate reduction. Actual savings vary. Book a free consultation for your exact numbers.</div>
         </div>
       </div>
@@ -970,7 +840,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
       <h2 class="cta-h">Ready to stop <span style="color:var(--gold)">overpaying?</span></h2>
       <p class="cta-s">Book a free 30-minute consultation. We'll analyze your current statement, show you exactly what you're leaving on the table, and present your options. No pressure. No commitment required.</p>
       <div class="cta-acts">
-        <button class="btn-p" onclick="window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy','_blank')" style="font-size:16px;padding:17px 34px">📅 Book Free Consultation</button>
+        <button class="btn-p" onclick="openBooking()" style="font-size:16px;padding:17px 34px">📅 Book Free Consultation</button>
         <a href="tel:4358620910" class="btn-g" style="font-size:15px">📞 Call (435) 862-0910</a>
       </div>
       <div class="cta-trust">✓ No credit card required &nbsp;&nbsp; <em>✓ No contracts</em> &nbsp;&nbsp; ✓ Results or we'll tell you why not</div>
@@ -1029,17 +899,24 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
           <li><a href="#calculator">Savings Calculator</a></li>
           <li><a href="#testimonials">Client Stories</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#" onclick="window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy','_blank');return false">Book Consultation</a></li>
+          <li><a href="#" onclick="openBooking();return false">Book Consultation</a></li>
         </ul>
       </div>
     </div>
     <div class="foot-bot">
       <div class="foot-copy">© <span id="copy-year">2026</span> SpotOn Results. All rights reserved. Built for local businesses. Powered by results.</div>
-      <div class="foot-badge">📅 <span><a href="#" onclick="window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy','_blank');return false" style="color:var(--gold)">Book Your Free Consultation</a></span></div>
+      <div class="foot-badge">📅 <span><a href="#" onclick="openBooking();return false" style="color:var(--gold)">Book Your Free Consultation</a></span></div>
     </div>
   </div>
 </footer>
 
+<!-- ── SECTION: BOOKING MODAL ── -->
+<div class="modal" id="bookingModal" onclick="closeBookingOnOverlay(event)">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <h3>📅 Book Your Free Consultation</h3>
+      <button class="modal-close" onclick="closeBooking()">✕</button>
+    </div>
     <div class="modal-body">
       <div class="modal-info">
         <div class="mi-item"><div class="mi-lbl">Duration</div><div class="mi-val">30 minutes</div></div>
@@ -1047,7 +924,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
         <div class="mi-item"><div class="mi-lbl">Commitment</div><div class="mi-val">None required</div></div>
       </div>
       <div style="border-radius:var(--r);overflow:hidden;min-height:500px">
-        <iframe src="https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy" style="width:100%;height:600px;border:none" scrolling="no" id="t9jdITqtvi9gLjm329gy_1781915045407"></iframe>
+        <iframe src="https://api.leadconnectorhq.com/widget/booking/spotonresults" style="width:100%;height:600px;border:none" scrolling="no" id="hl-booking-widget"></iframe>
       </div>
     </div>
   </div>
@@ -1069,7 +946,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
   <div class="dv-con" id="dv-content"></div>
 </div>
 
-
+<script src="https://link.spotonresults.com/js/form_embed.js" type="text/javascript" async defer></script>
 
 <script>
 // Copyright year — set dynamically, no document.write
@@ -1083,32 +960,21 @@ else { gsap.registerPlugin(ScrollTrigger); }
 /* ── SECTION: CURSOR ── */
 const cdot = document.getElementById('cdot');
 const cring = document.getElementById('cring');
-let mx = 0, my = 0;
+let mx = 0, my = 0, rx = 0, ry = 0;
 
-let cursorVisible = false;
-const _cursorMove = e => {
+document.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
-  if (!cursorVisible && cdot && cring) {
-    cdot.style.opacity = '1';
-    cring.style.opacity = '1';
-    cursorVisible = true;
-  }
-};
-// Both pointermove + mousemove — if either gets swallowed the other still updates position
-window.addEventListener('pointermove', _cursorMove, true);
-window.addEventListener('mousemove', _cursorMove, true);
-// On pointer cancel (OS gesture interruption) — don't leave cursor frozen
-window.addEventListener('pointercancel', () => {
-  if (cdot) cdot.style.opacity = '0';
-  if (cring) cring.style.opacity = '0';
-  cursorVisible = false;
-}, true);
+  cdot.style.left = mx + 'px';
+  cdot.style.top = my + 'px';
+});
 
-// rAF loop: decouple cursor visual from event timing — always syncs at 60fps
-(function cursorLoop() {
-  if (cdot) cdot.style.transform = 'translate3d(' + (mx-4) + 'px,' + (my-4) + 'px,0)';
-  if (cring) cring.style.transform = 'translate3d(' + (mx-20) + 'px,' + (my-20) + 'px,0)';
-  requestAnimationFrame(cursorLoop);
+// ANIM: Cursor ring lerp
+(function animRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  cring.style.left = rx + 'px';
+  cring.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
 })();
 
 // Cursor hover states
@@ -1116,38 +982,26 @@ document.querySelectorAll('a,button,.bc,.ind-card,.proc-step,.test-card,.faq-q,.
   el.addEventListener('mouseenter', () => { cdot.classList.add('h'); cring.classList.add('h'); });
   el.addEventListener('mouseleave', () => { cdot.classList.remove('h'); cring.classList.remove('h'); });
 });
-document.addEventListener('dragstart', e => e.preventDefault());
-document.addEventListener('mousedown', () => { if(cdot) cdot.classList.add('c'); if(cring) cring.classList.add('c'); });
-document.addEventListener('mouseup', () => { if(cdot) cdot.classList.remove('c'); if(cring) cring.classList.remove('c'); });
-// Hide custom cursor when mouse leaves page content (e.g. scrollbar) — prevents freeze-then-jump
-document.documentElement.addEventListener('mouseleave', () => {
-  if (cdot) cdot.style.opacity = '0';
-  if (cring) cring.style.opacity = '0';
-  cursorVisible = false;
-});
-document.documentElement.addEventListener('mouseenter', () => {
-  // cursor visibility will restore on next pointermove
-});
+document.addEventListener('mousedown', () => { cdot.classList.add('c'); cring.classList.add('c'); });
+document.addEventListener('mouseup', () => { cdot.classList.remove('c'); cring.classList.remove('c'); });
 
 /* ── SECTION: PARTICLE CANVAS ── */
 const canvas = document.getElementById('pcanvas');
-const ctx = canvas ? canvas.getContext('2d') : null;
+const ctx = canvas.getContext('2d');
 let particles = [];
 let pmx = 0, pmy = 0;
 
 function resize() {
-  if (!canvas) return;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 }
 resize();
 window.addEventListener('resize', resize);
 
-window.addEventListener('pointermove', e => { pmx = e.clientX; pmy = e.clientY; }, true);
+document.addEventListener('mousemove', e => { pmx = e.clientX; pmy = e.clientY; });
 
 // ANIM: Particle init
 function createParticles() {
-  if (!canvas) return;
   particles = [];
   const count = Math.floor((canvas.width * canvas.height) / 18000);
   for (let i = 0; i < Math.min(count, 90); i++) {
@@ -1168,7 +1022,6 @@ window.addEventListener('resize', createParticles);
 // ANIM: Particle draw loop — paused when hero is off-screen
 let particleRaf = null;
 function drawParticles() {
-  if (!ctx) return;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   particles.forEach((p, i) => {
     // Mouse repulsion
@@ -1232,30 +1085,27 @@ if (heroSection && 'IntersectionObserver' in window) {
 }
 
 /* ── SECTION: SCROLL PROGRESS BAR ── */
-const prog = document.getElementById('prog');
 window.addEventListener('scroll', () => {
-  if (!prog) return;
   const denom = document.body.scrollHeight - window.innerHeight;
   const pct = denom > 0 ? (window.scrollY / denom) * 100 : 0;
-  prog.style.width = pct + '%';
-}, { passive: true });
+  document.getElementById('prog').style.width = pct + '%';
+});
 
 /* ── SECTION: NAV SCROLL ── */
 const nav = document.getElementById('main-nav');
 window.addEventListener('scroll', () => {
-  if (nav) nav.classList.toggle('sc', window.scrollY > 60);
-}, { passive: true });
+  nav.classList.toggle('sc', window.scrollY > 60);
+});
 
 /* ── SECTION: MOBILE MENU ── */
 const hamBtn = document.getElementById('ham-btn');
 const mobMenu = document.getElementById('mob-menu');
 function closeMenu() {
-  if (!hamBtn || !mobMenu) return;
   hamBtn.classList.remove('o');
   mobMenu.classList.remove('o');
   document.body.style.overflow = '';
 }
-if (hamBtn && mobMenu) hamBtn.addEventListener('click', () => {
+hamBtn.addEventListener('click', () => {
   const isOpen = mobMenu.classList.toggle('o');
   hamBtn.classList.toggle('o', isOpen);
   document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -1374,14 +1224,12 @@ try {
   }
 } catch(e) { console.error('Scroll anims failed:', e); }
 
-// ANIM: Bento card glow on mouse move — cache rect on enter to avoid forced layout each move
+// ANIM: Bento card glow on mouse move (no GSAP needed)
 document.querySelectorAll('.bc').forEach(card => {
-  let bcRect;
-  card.addEventListener('mouseenter', () => { bcRect = card.getBoundingClientRect(); });
   card.addEventListener('mousemove', e => {
-    if (!bcRect) bcRect = card.getBoundingClientRect();
-    card.style.setProperty('--mx', ((e.clientX - bcRect.left) / bcRect.width * 100).toFixed(1) + '%');
-    card.style.setProperty('--my', ((e.clientY - bcRect.top) / bcRect.height * 100).toFixed(1) + '%');
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%');
+    card.style.setProperty('--my', ((e.clientY - rect.top) / rect.height * 100).toFixed(1) + '%');
   });
 });
 
@@ -1390,7 +1238,7 @@ document.querySelectorAll('.bc').forEach(card => {
 try {
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     document.querySelectorAll('.ctr').forEach(el => {
-      const target = parseInt(el.dataset.val) || 0;
+      const target = parseInt(el.dataset.val);
       ScrollTrigger.create({
         trigger: el, start: 'top 90%',
         onEnter: () => {
@@ -1419,8 +1267,8 @@ const rateSlider = document.getElementById('rate-slider');
 const volDisp = document.getElementById('vol-disp');
 const rateDisp = document.getElementById('rate-disp');
 const calcSavings = document.getElementById('calc-savings');
-const cbSpoton = document.getElementById('cb-spoton');
 const cbCurrent = document.getElementById('cb-current');
+const cbSpoton = document.getElementById('cb-spoton');
 
 function updateCalc() {
   const vol = parseInt(volSlider.value);
@@ -1441,8 +1289,17 @@ updateCalc();
 
 /* ── SECTION: BOOKING MODAL ── */
 function openBooking() {
-  window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy', '_blank');
+  document.getElementById('bookingModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
+function closeBooking() {
+  document.getElementById('bookingModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeBookingOnOverlay(e) {
+  if (e.target === document.getElementById('bookingModal')) closeBooking();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBooking(); });
 
 /* ── SECTION: DEV PANEL ── */
 let devOpen = false;
@@ -1459,7 +1316,6 @@ function toggleDevPanel() {
     clearInterval(fpsCtr);
     cancelAnimationFrame(fpsRaf);
     fpsRaf = null;
-    // fpsRunning flag is local to startFPS closure — loop self-terminates on next tick
   }
 }
 
@@ -1475,8 +1331,7 @@ function switchTab(el, tab) {
 }
 
 function startFPS() {
-  let fpsRunning = true;
-  function loop() { if (!fpsRunning) return; fpsRaf = requestAnimationFrame(() => { frames++; loop(); }); }
+  function loop() { fpsRaf = requestAnimationFrame(() => { frames++; loop(); }); }
   loop();
   fpsCtr = setInterval(() => {
     fps = frames;
@@ -1493,11 +1348,13 @@ function renderDevPanel() {
     let html = '<div class="dv-sec"><div class="dv-slbl">Page Sections — click to highlight</div>';
     sections.forEach((s, idx) => {
       const tag = s.tagName.toLowerCase();
+      // Store id on a data-attribute to avoid onclick string injection XSS
       const safeLabel = tag + (s.id ? '#' + s.id.replace(/[<>"'&]/g, '') : '');
       html += `<div class="dv-si" data-sec-idx="${idx}"><span class="name">${safeLabel}</span><span class="id" style="color:var(--gold)">${s.childElementCount} children</span></div>`;
     });
     html += '</div>';
     con.innerHTML = html;
+    // Use event delegation — no raw ID values in onclick attributes
     const sectionList = Array.from(sections);
     con.querySelectorAll('.dv-si[data-sec-idx]').forEach(row => {
       row.addEventListener('click', () => {
@@ -1555,12 +1412,7 @@ function toggleGrid() {
   gridOn = !gridOn;
   let overlay = document.getElementById('dev-grid');
   if (gridOn) {
-    if (!overlay) {
-      overlay = document.createElement('div');
-      overlay.id = 'dev-grid';
-      overlay.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9500;background:repeating-linear-gradient(transparent,transparent 7px,rgba(245,158,11,.07) 7px,rgba(245,158,11,.07) 8px),repeating-linear-gradient(90deg,transparent,transparent 7px,rgba(245,158,11,.07) 7px,rgba(245,158,11,.07) 8px)';
-      document.body.appendChild(overlay);
-    }
+    if (!overlay) { overlay = document.createElement('div'); overlay.id = 'dev-grid'; overlay.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9500;background:repeating-linear-gradient(transparent,transparent 7px,rgba(245,158,11,.07) 7px,rgba(245,158,11,.07) 8px),repeating-linear-gradient(90deg,transparent,transparent 7px,rgba(245,158,11,.07) 7px,rgba(245,158,11,.07) 8px)'; document.body.appendChild(overlay); }
     overlay.style.display = 'block';
   } else if (overlay) { overlay.style.display = 'none'; }
 }

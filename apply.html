@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply | SpotOn Results</title>
+<meta name="description" content="Apply to start processing payments with SpotOn Results. Quick ISO onboarding for retail, e-commerce, and high-risk businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* ── CSS CUSTOM PROPERTIES (matches index.html) ── */
+:root {
+  --gold: #F59E0B;
+  --gold-l: #FCD34D;
+  --gold-m: #F97316;
+  --gold-d: #D97706;
+  --navy: #060f1e;
+  --navy2: #0a1628;
+  --navy3: #0f1e35;
+  --navy4: #162340;
+  --text: #E2EAF6;
+  --text-m: rgba(226,234,246,.58);
+  --text-d: rgba(226,234,246,.30);
+  --border: rgba(245,158,11,.13);
+  --border-m: rgba(245,158,11,.22);
+  --border-s: rgba(245,158,11,.40);
+  --glass: rgba(255,255,255,.035);
+  --glass-m: rgba(255,255,255,.07);
+  --glow: 0 0 40px rgba(245,158,11,.15);
+  --glow-s: 0 8px 32px rgba(245,158,11,.25),0 0 0 1px rgba(245,158,11,.2);
+  --font-d: 'Syne',sans-serif;
+  --font-b: 'DM Sans',sans-serif;
+  --cw: min(960px,calc(100% - 40px));
+  --r: 14px;
+  --rl: 22px;
+  --rx: 32px;
+  --ease: cubic-bezier(.25,.46,.45,.94);
+  --spring: cubic-bezier(.34,1.56,.64,1);
+  --out: cubic-bezier(.16,1,.3,1);
+  --red: #ef4444;
+  --green: #22c55e;
+}
+
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--navy);color:var(--text);overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{cursor:none;font-family:inherit;border:none;background:none}
+input,select,textarea{font-family:var(--font-b)}
+::selection{background:var(--gold);color:var(--navy)}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  body{cursor:auto}.cursor-dot,.cursor-ring{display:none}
+}
+
+/* ── CURSOR ── */
+.cursor-dot{position:fixed;top:0;left:0;z-index:9998;pointer-events:none;width:8px;height:8px;border-radius:50%;background:var(--gold);opacity:0;transition:scale .08s var(--ease),background .2s,opacity .15s}
+.cursor-ring{position:fixed;top:0;left:0;z-index:9997;pointer-events:none;width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(245,158,11,.55);opacity:0;transition:width .25s var(--spring),height .25s var(--spring),border-color .2s,background .2s,opacity .15s}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 0;background:rgba(6,15,30,.88);backdrop-filter:blur(22px);border-bottom:1px solid var(--border)}
+.nav-in{width:var(--cw);margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--font-d);font-size:20px;font-weight:800;letter-spacing:-.01em}
+.nav-logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--gold),var(--gold-m));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.nav-back{font-size:14px;font-weight:500;color:var(--text-m);display:flex;align-items:center;gap:6px;transition:color .25s}
+.nav-back:hover{color:var(--gold)}
+.nav-back svg{transition:transform .25s}
+.nav-back:hover svg{transform:translateX(-3px)}
+
+/* ── PAGE LAYOUT ── */
+.page{padding:120px 0 80px;min-height:100vh}
+.page-in{width:var(--cw);margin:0 auto}
+
+/* ── PROGRESS BAR ── */
+.prog-wrap{margin-bottom:48px}
+.prog-label{font-size:12px;font-weight:600;color:var(--text-d);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.prog-track{height:3px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}
+.prog-bar{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--gold-l));transition:width .5s var(--out);box-shadow:0 0 12px var(--gold)}
+
+/* ── STEP WRAPPER (animated transitions) ── */
+.steps-outer{position:relative;overflow:hidden}
+.step{display:none;animation:fadeUp .45s var(--out) both}
+.step.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SURVEY STEPS ── */
+.survey-head{margin-bottom:40px}
+.step-num{display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 8px;background:rgba(245,158,11,.1);border:1px solid var(--border-m);border-radius:50px;font-size:12px;font-weight:600;color:var(--gold);margin-bottom:20px}
+.step-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pls 2s infinite}
+@keyframes pls{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.5}}
+.survey-q{font-family:var(--font-d);font-size:clamp(26px,4vw,42px);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:var(--text);margin-bottom:12px}
+.survey-sub{font-size:15px;color:var(--text-m);line-height:1.6;max-width:540px}
+
+/* ── SURVEY OPTION CARDS ── */
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:32px}
+.opt-card{padding:24px 22px;background:var(--glass);border:1.5px solid var(--border);border-radius:var(--rl);cursor:none;transition:border-color .25s,background .25s,transform .2s var(--spring);position:relative;overflow:hidden;text-align:left}
+.opt-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(245,158,11,.08),transparent 70%);opacity:0;transition:opacity .3s}
+.opt-card:hover{border-color:var(--border-s);background:var(--glass-m);transform:translateY(-2px)}
+.opt-card:hover::before{opacity:1}
+.opt-icon{font-size:28px;margin-bottom:14px;display:block}
+.opt-title{font-family:var(--font-d);font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px}
+.opt-desc{font-size:13px;color:var(--text-m);line-height:1.5}
+.opt-arr{position:absolute;top:22px;right:22px;opacity:0;transition:opacity .25s,transform .25s}
+.opt-card:hover .opt-arr{opacity:1;transform:translateX(3px)}
+
+/* ── HIGH RISK TAGS ── */
+.risk-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.rtag{padding:4px 12px;background:rgba(245,158,11,.08);border:1px solid var(--border);border-radius:50px;font-size:12px;color:var(--text-m)}
+
+/* ── FORM SECTIONS ── */
+.form-header{margin-bottom:40px}
+.form-title{font-family:var(--font-d);font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;color:var(--text);margin-bottom:10px}
+.form-subtitle{font-size:15px;color:var(--text-m);line-height:1.6;max-width:600px}
+.form-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 8px;border-radius:50px;font-size:12px;font-weight:700;margin-bottom:20px}
+.form-badge.maverick{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#f87171}
+.form-badge.nmi{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ade80}
+.form-badge.spoton{background:rgba(245,158,11,.1);border:1px solid var(--border-m);color:var(--gold)}
+.badge-icon{font-size:14px}
+
+.form-section{margin-bottom:36px}
+.section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin-bottom:18px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.field-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.field-grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.field-grid.single{grid-template-columns:1fr}
+
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-size:13px;font-weight:600;color:var(--text-m)}
+.field label .req{color:var(--gold);margin-left:3px}
+.field input,.field select,.field textarea{
+  background:rgba(255,255,255,.04);
+  border:1.5px solid var(--border);
+  border-radius:var(--r);
+  color:var(--text);
+  font-size:15px;
+  padding:13px 16px;
+  outline:none;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  width:100%;
+}
+.field input::placeholder,.field textarea::placeholder{color:var(--text-d)}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--border-s);
+  background:rgba(245,158,11,.04);
+  box-shadow:0 0 0 3px rgba(245,158,11,.08);
+}
+.field input.error,.field select.error,.field textarea.error{border-color:rgba(239,68,68,.5);box-shadow:0 0 0 3px rgba(239,68,68,.08)}
+.field-hint{font-size:12px;color:var(--text-d);margin-top:2px}
+.field-error{font-size:12px;color:#f87171;margin-top:2px;display:none}
+.field-error.show{display:block}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(226,234,246,.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.field select option{background:var(--navy2);color:var(--text)}
+.field textarea{resize:vertical;min-height:90px;line-height:1.5}
+
+/* ── CHECKBOX / RADIO ── */
+.check-group{display:flex;flex-direction:column;gap:10px}
+.check-item{display:flex;align-items:flex-start;gap:12px;cursor:none}
+.check-item input[type=checkbox],.check-item input[type=radio]{width:18px;height:18px;accent-color:var(--gold);cursor:none;flex-shrink:0;margin-top:1px}
+.check-item span{font-size:14px;color:var(--text-m);line-height:1.5}
+.check-item span strong{color:var(--text);display:block;margin-bottom:2px}
+
+/* ── LEGAL CONSENT BOX ── */
+.legal-box{padding:20px;background:rgba(245,158,11,.04);border:1px solid var(--border);border-radius:var(--r);font-size:13px;color:var(--text-m);line-height:1.6;max-height:180px;overflow-y:auto;margin-bottom:16px}
+.legal-box p+p{margin-top:10px}
+
+/* ── FORM ACTIONS ── */
+.form-actions{display:flex;align-items:center;gap:14px;margin-top:40px;flex-wrap:wrap}
+.btn-submit{padding:16px 36px;font-size:15px;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--gold-m));color:var(--navy);border-radius:50px;cursor:none;transition:transform .25s var(--spring),box-shadow .25s,opacity .2s;box-shadow:0 6px 30px rgba(245,158,11,.35);display:flex;align-items:center;gap:10px}
+.btn-submit:hover:not(:disabled){transform:translateY(-3px) scale(1.02);box-shadow:0 14px 44px rgba(245,158,11,.45)}
+.btn-submit:disabled{opacity:.5;pointer-events:none}
+.btn-back-link{font-size:14px;color:var(--text-d);cursor:none;transition:color .2s;display:flex;align-items:center;gap:6px}
+.btn-back-link:hover{color:var(--text-m)}
+.form-note{font-size:12px;color:var(--text-d);display:flex;align-items:center;gap:6px;margin-top:12px}
+
+/* ── SPINNER ── */
+.spinner{width:18px;height:18px;border:2px solid rgba(6,15,30,.3);border-top-color:var(--navy);border-radius:50%;animation:spin .7s linear infinite;display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn-submit.loading .spinner{display:block}
+.btn-submit.loading .btn-text{display:none}
+
+/* ── SUCCESS STATE ── */
+.success-screen{display:none;text-align:center;padding:60px 20px;animation:fadeUp .5s var(--out) both}
+.success-screen.show{display:block}
+.success-icon{font-size:64px;margin-bottom:24px;display:block;animation:popIn .5s var(--spring) .1s both}
+@keyframes popIn{from{transform:scale(0.5);opacity:0}to{transform:scale(1);opacity:1}}
+.success-title{font-family:var(--font-d);font-size:36px;font-weight:800;color:var(--text);margin-bottom:14px}
+.success-msg{font-size:16px;color:var(--text-m);line-height:1.7;max-width:480px;margin:0 auto 32px}
+.success-ref{display:inline-block;padding:10px 20px;background:rgba(245,158,11,.1);border:1px solid var(--border-m);border-radius:var(--r);font-size:13px;color:var(--gold);font-weight:600;margin-bottom:32px}
+
+/* ── JOTFORM EMBED WRAPPER ── */
+.jotform-wrap{background:rgba(255,255,255,.02);border:1.5px solid var(--border);border-radius:var(--rl);overflow:hidden;min-height:600px}
+.jotform-wrap iframe{width:100%;border:none;min-height:600px;display:block}
+
+/* ── ALERT BANNER ── */
+.alert-banner{padding:14px 20px;border-radius:var(--r);font-size:14px;font-weight:500;margin-bottom:24px;display:none;align-items:center;gap:10px}
+.alert-banner.error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#f87171;display:flex}
+.alert-banner.success{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ade80;display:flex}
+
+/* ── MULTI-STEP FORM (NMI) ── */
+.form-steps-nav{display:flex;gap:0;margin-bottom:40px;border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
+.fsn-step{flex:1;padding:12px 8px;text-align:center;font-size:12px;font-weight:600;color:var(--text-d);border-right:1px solid var(--border);background:transparent;cursor:default;transition:background .2s,color .2s;position:relative}
+.fsn-step:last-child{border-right:none}
+.fsn-step.done{color:var(--gold);background:rgba(245,158,11,.05)}
+.fsn-step.active{color:var(--navy);background:var(--gold);font-weight:700}
+.fsn-step .fsn-num{display:block;font-size:18px;font-weight:800;margin-bottom:2px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .field-grid{grid-template-columns:1fr}
+  .field-grid.cols-3{grid-template-columns:1fr 1fr}
+  .survey-q{font-size:26px}
+  .opt-grid{grid-template-columns:1fr}
+  .form-steps-nav{flex-direction:column}
+  .fsn-step{border-right:none;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;text-align:left;padding:10px 16px}
+  .fsn-step .fsn-num{font-size:15px;margin-bottom:0}
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor-dot" id="cdot"></div>
+<div class="cursor-ring" id="cring"></div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-in">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-icon">⚡</div>
+      SpotOn Results
+    </a>
+    <a href="/" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to Home
+    </a>
+  </div>
+</nav>
+
+<!-- Main -->
+<main class="page">
+  <div class="page-in">
+
+    <!-- Progress bar -->
+    <div class="prog-wrap" id="progWrap">
+      <div class="prog-label" id="progLabel">Step 1 of 3</div>
+      <div class="prog-track"><div class="prog-bar" id="progBar" style="width:33%"></div></div>
+    </div>
+
+    <!-- ─────────────────────────────────────
+         SURVEY STEP 1: High-risk?
+    ───────────────────────────────────── -->
+    <div class="steps-outer">
+
+      <div class="step active" id="s1">
+        <div class="survey-head">
+          <div class="step-num"><span class="step-dot"></span>Question 1 of 3</div>
+          <h1 class="survey-q">Does your business fall into a<br><span style="color:var(--gold)">high-risk category?</span></h1>
+          <p class="survey-sub">High-risk businesses include industries that standard processors decline or charge excessive rates for.</p>
+          <div class="risk-tags">
+            <span class="rtag">CBD / Hemp</span>
+            <span class="rtag">Peptides / Supplements</span>
+            <span class="rtag">Nutraceuticals</span>
+            <span class="rtag">Adult / Entertainment</span>
+            <span class="rtag">Firearms / Ammo</span>
+            <span class="rtag">Kratom / Nootropics</span>
+            <span class="rtag">Travel / Timeshare</span>
+            <span class="rtag">Vape / E-cig</span>
+            <span class="rtag">Online Pharmacy</span>
+            <span class="rtag">Debt Collection</span>
+            <span class="rtag">Gambling / Gaming</span>
+            <span class="rtag">Forex / Crypto</span>
+            <span class="rtag">Tech Support</span>
+            <span class="rtag">Subscription Box</span>
+          </div>
+        </div>
+        <div class="opt-grid">
+          <button class="opt-card" onclick="answer(1,'yes')">
+            <span class="opt-icon">🔴</span>
+            <div class="opt-title">Yes, we're high-risk</div>
+            <div class="opt-desc">My business falls into one of the categories above or was previously declined by a processor.</div>
+            <svg class="opt-arr" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="opt-card" onclick="answer(1,'no')">
+            <span class="opt-icon">✅</span>
+            <div class="opt-title">No, standard business</div>
+            <div class="opt-desc">My business operates in a standard industry and hasn't had processing issues.</div>
+            <svg class="opt-arr" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ─────────────────────────────────────
+           SURVEY STEP 2: E-commerce?
+      ───────────────────────────────────── -->
+      <div class="step" id="s2">
+        <div class="survey-head">
+          <div class="step-num"><span class="step-dot"></span>Question 2 of 3</div>
+          <h1 class="survey-q">Do you sell products or services<br><span style="color:var(--gold)">online?</span></h1>
+          <p class="survey-sub">Tell us how your customers pay you — this determines which gateway and processing solution fits best.</p>
+        </div>
+        <div class="opt-grid">
+          <button class="opt-card" onclick="answer(2,'yes')">
+            <span class="opt-icon">🛒</span>
+            <div class="opt-title">Yes, e-commerce / online</div>
+            <div class="opt-desc">I run an online store, accept payments through a website, or need a payment gateway integration.</div>
+            <svg class="opt-arr" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="opt-card" onclick="answer(2,'no')">
+            <span class="opt-icon">🏪</span>
+            <div class="opt-title">No, in-person / mobile</div>
+            <div class="opt-desc">I operate a retail store, restaurant, food truck, or mobile business and take in-person payments.</div>
+            <svg class="opt-arr" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div style="margin-top:24px">
+          <button class="btn-back-link" onclick="goBack(1)">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back
+          </button>
+        </div>
+      </div>
+
+      <!-- ─────────────────────────────────────
+           SURVEY STEP 3: Confirm routing
+      ───────────────────────────────────── -->
+      <div class="step" id="s3">
+        <div class="survey-head">
+          <div class="step-num"><span class="step-dot"></span>Question 3 of 3</div>
+          <h1 class="survey-q">One last thing — what best<br><span style="color:var(--gold)">describes your setup?</span></h1>
+          <p class="survey-sub">We want to make sure we get you into the right program for your business type.</p>
+        </div>
+        <div class="opt-grid">
+          <button class="opt-card" onclick="routeTo('spoton')">
+            <span class="opt-icon">🍽️</span>
+            <div class="opt-title">Restaurant</div>
+            <div class="opt-desc">Full-service, fast-casual, food truck, catering, or café.</div>
+            <svg class="opt-arr" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="opt-card" onclick="routeTo('spoton')">
+            <span class="opt-icon">🏬</span>
+            <div class="opt-title">Retail / Mobile</div>
+            <div class="opt-desc">Brick-and-mortar store, boutique, market vendor, or mobile business.</div>
+            <svg class="opt-arr" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="opt-card" onclick="routeTo('spoton')">
+            <span class="opt-icon">🛠️</span>
+            <div class="opt-title">Service Business</div>
+            <div class="opt-desc">Contractor, salon, healthcare, automotive, or professional services.</div>
+            <svg class="opt-arr" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div style="margin-top:24px">
+          <button class="btn-back-link" onclick="goBack(2)">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back
+          </button>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════
+           MAVERICK FORM (High-Risk)
+      ═══════════════════════════════════════ -->
+      <div class="step" id="fMaverick">
+        <div class="form-header">
+          <div class="form-badge maverick"><span class="badge-icon">🔴</span> High-Risk Merchant Application — Maverick Payments</div>
+          <h2 class="form-title">Let's get you<br><span style="color:var(--gold)">approved.</span></h2>
+          <!-- MAVERICK EMBED WIDGET — replaces manual form -->
+        </div>
+        <div style="background:rgba(255,255,255,.02);border:1.5px solid var(--border);border-radius:var(--rl);overflow:hidden;min-height:500px;margin-bottom:28px">
+          <div id="maverick"></div>
+        </div>
+        <div style="margin-top:16px">
+          <button class="btn-back-link" onclick="showSurvey()">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Change answers
+          </button>
+        </div>
+        <!-- Maverick campaign widget — loads when this step becomes active -->
+        <script>
+        (function initMaverick() {
+          var loaded = false;
+          function load() {
+            if (loaded) return;
+            loaded = true;
+            new MaverickClient({
+              target: 'maverick',
+              url: window.webroot + '/js/campaign/client.js',
+              options: {
+                id: '1062',
+                agentId: '79187',
+                referral: '1',
+                title: 'SpotOn Results',
+                theme: 'dark',
+                label: 'true'
+              }
+            });
+          }
+          if (typeof window.MaverickClient === 'undefined') {
+            window.webroot = 'https://dashboard.maverickpayments.com';
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = window.webroot + '/js/campaign/client.js?v=' + Date.now();
+            document.getElementsByTagName('head')[0].appendChild(s);
+            s.onload = s.onreadystatechange = load;
+          } else {
+            load();
+          }
+        })();
+        </script>
+      </div>
+
+      <!-- old Maverick manual form removed — embed widget above handles everything -->
+        <form id="mavForm" novalidate style="display:none">
+
+          <!-- Business Info -->
+          <div class="form-section">
+            <div class="section-label">Business Information</div>
+            <div class="field-grid">
+              <div class="field">
+                <label>Legal Business Name <span class="req">*</span></label>
+                <input type="text" name="legal_name" placeholder="Acme Corp LLC" required>
+                <div class="field-error" id="err-mav-legal_name">Required</div>
+              </div>
+              <div class="field">
+                <label>DBA (Doing Business As)</label>
+                <input type="text" name="dba" placeholder="Acme Store">
+              </div>
+            </div>
+            <div class="field-grid" style="margin-top:16px">
+              <div class="field">
+                <label>Business Type <span class="req">*</span></label>
+                <select name="business_type" required>
+                  <option value="">Select type…</option>
+                  <option>Sole Proprietorship</option>
+                  <option>LLC</option>
+                  <option>S-Corp</option>
+                  <option>C-Corp</option>
+                  <option>Partnership</option>
+                  <option>Non-Profit</option>
+                </select>
+                <div class="field-error" id="err-mav-business_type">Required</div>
+              </div>
+              <div class="field">
+                <label>EIN / Federal Tax ID <span class="req">*</span></label>
+                <input type="text" name="ein" placeholder="12-3456789" maxlength="10" required>
+                <div class="field-error" id="err-mav-ein">Required</div>
+              </div>
+              <div class="field">
+                <label>Years in Business <span class="req">*</span></label>
+                <select name="years_in_business" required>
+                  <option value="">Select…</option>
+                  <option>Less than 1 year</option>
+                  <option>1–2 years</option>
+                  <option>3–5 years</option>
+                  <option>6–10 years</option>
+                  <option>10+ years</option>
+                </select>
+                <div class="field-error" id="err-mav-years_in_business">Required</div>
+              </div>
+            </div>
+            <div class="field-grid" style="margin-top:16px">
+              <div class="field">
+                <label>Business Address <span class="req">*</span></label>
+                <input type="text" name="address" placeholder="123 Main St" required>
+                <div class="field-error" id="err-mav-address">Required</div>
+              </div>
+              <div class="field">
+                <label>City <span class="req">*</span></label>
+                <input type="text" name="city" required>
+                <div class="field-error" id="err-mav-city">Required</div>
+              </div>
+              <div class="field">
+                <label>State <span class="req">*</span></label>
+                <select name="state" required>
+                  <option value="">State…</option>
+                  <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option>
+                  <option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option>
+                  <option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option>
+                  <option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+                  <option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option>
+                  <option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option>
+                  <option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option>
+                  <option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+                  <option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option>
+                  <option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+                </select>
+                <div class="field-error" id="err-mav-state">Required</div>
+              </div>
+              <div class="field">
+                <label>ZIP Code <span class="req">*</span></label>
+                <input type="text" name="zip" placeholder="12345" maxlength="5" required>
+                <div class="field-error" id="err-mav-zip">Required</div>
+              </div>
+            </div>
+            <div class="field-grid" style="margin-top:16px">
+              <div class="field">
+                <label>Business Phone <span class="req">*</span></label>
+                <input type="tel" name="phone" placeholder="(555) 555-5555" required>
+                <div class="field-error" id="err-mav-phone">Required</div>
+              </div>
+              <div class="field">
+                <label>Business Email <span class="req">*</span></label>
+                <input type="email" name="email" placeholder="owner@yourbusiness.com" required>
+                <div class="field-error" id="err-mav-email">Invalid email</div>
+              </div>
+              <div class="field">
+                <label>Website URL</label>
+                <input type="url" name="website" placeholder="https://yourbusiness.com">
+              </div>
+            </div>
+          </div>
+
+          <!-- High-Risk Category -->
+          <div class="form-section">
+            <div class="section-label">High-Risk Classification</div>
+            <div class="field-grid">
+              <div class="field">
+                <label>Primary Business Category <span class="req">*</span></label>
+                <select name="high_risk_category" required>
+                  <option value="">Select category…</option>
+                  <option>CBD / Hemp / Cannabis</option>
+                  <option>Peptides / Research Chemicals</option>
+                  <option>Nutraceuticals / Supplements</option>
+                  <option>Adult / Entertainment</option>
+                  <option>Firearms / Ammunition / Tactical</option>
+                  <option>Kratom / Nootropics</option>
+                  <option>Vape / E-cigarettes / Tobacco</option>
+                  <option>Travel / Timeshare</option>
+                  <option>Online Pharmacy</option>
+                  <option>Debt Collection / Recovery</option>
+                  <option>Gambling / Gaming / Lottery</option>
+                  <option>Forex / Crypto / Fintech</option>
+                  <option>Tech Support / Software</option>
+                  <option>Subscription Boxes</option>
+                  <option>MLM / Direct Sales</option>
+                  <option>Other High-Risk</option>
+                </select>
+                <div class="field-error" id="err-mav-high_risk_category">Required</div>
+              </div>
+              <div class="field">
+                <label>Business Description <span class="req">*</span></label>
+                <textarea name="business_description" placeholder="Briefly describe what your business sells and how customers pay…" required></textarea>
+                <div class="field-error" id="err-mav-business_description">Required</div>
+              </div>
+            </div>
+            <div class="field-grid" style="margin-top:16px">
+              <div class="field">
+                <label>Previously Terminated by a Processor? <span class="req">*</span></label>
+                <select name="previously_terminated" required>
+                  <option value="">Select…</option>
+                  <option value="no">No</option>
+                  <option value="yes">Yes</option>
+                </select>
+                <div class="field-error" id="err-mav-previously_terminated">Required</div>
+              </div>
+              <div class="field">
+                <label>Current / Previous Processor</label>
+                <input type="text" name="previous_processor" placeholder="e.g. Square, Stripe, PayPal…">
+              </div>
+              <div class="field">
+                <label>Chargeback Rate (if known)</label>
+                <input type="text" name="chargeback_rate" placeholder="e.g. under 1%">
+              </div>
+            </div>
+          </div>
+
+          <!-- Processing Volume -->
+          <div class="form-section">
+            <div class="section-label">Processing Volume</div>
+            <div class="field-grid cols-3">
+              <div class="field">
+                <label>Monthly Processing Volume <span class="req">*</span></label>
+                <select name="monthly_volume" required>
+                  <option value="">Select range…</option>
+                  <option>Under $10,000</option>
+                  <option>$10,000 – $25,000</option>
+                  <option>$25,000 – $50,000</option>
+                  <option>$50,000 – $100,000</option>
+                  <option>$100,000 – $250,000</option>
+                  <option>$250,000 – $500,000</option>
+                  <option>Over $500,000</option>
+                </select>
+                <div class="field-error" id="err-mav-monthly_volume">Required</div>
+              </div>
+              <div class="field">
+                <label>Average Ticket Size <span class="req">*</span></label>
+                <input type="text" name="avg_ticket" placeholder="e.g. $85" required>
+                <div class="field-error" id="err-mav-avg_ticket">Required</div>
+              </div>
+              <div class="field">
+                <label>Highest Single Ticket</label>
+                <input type="text" name="high_ticket" placeholder="e.g. $500">
+              </div>
+              <div class="field">
+                <label>Card-Present % <span class="req">*</span></label>
+                <select name="card_present_pct" required>
+                  <option value="">Select…</option>
+                  <option>100% in-person</option>
+                  <option>75% in-person / 25% online</option>
+                  <option>50% / 50%</option>
+                  <option>25% in-person / 75% online</option>
+                  <option>100% online / keyed</option>
+                </select>
+                <div class="field-error" id="err-mav-card_present_pct">Required</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Owner Info -->
+          <div class="form-section">
+            <div class="section-label">Principal Owner Information</div>
+            <div class="field-grid">
+              <div class="field">
+                <label>Owner Full Name <span class="req">*</span></label>
+                <input type="text" name="owner_name" placeholder="Jane Smith" required>
+                <div class="field-error" id="err-mav-owner_name">Required</div>
+              </div>
+              <div class="field">
+                <label>Title / Role <span class="req">*</span></label>
+                <input type="text" name="owner_title" placeholder="Owner / CEO" required>
+                <div class="field-error" id="err-mav-owner_title">Required</div>
+              </div>
+              <div class="field">
+                <label>Ownership % <span class="req">*</span></label>
+                <input type="text" name="ownership_pct" placeholder="e.g. 100%" required>
+                <div class="field-error" id="err-mav-ownership_pct">Required</div>
+              </div>
+            </div>
+            <div class="field-grid" style="margin-top:16px">
+              <div class="field">
+                <label>Date of Birth <span class="req">*</span></label>
+                <input type="date" name="owner_dob" required>
+                <div class="field-error" id="err-mav-owner_dob">Required</div>
+              </div>
+              <div class="field">
+                <label>SSN (last 4 digits) <span class="req">*</span></label>
+                <input type="text" name="ssn_last4" placeholder="XXXX" maxlength="4" pattern="\d{4}" required>
+                <div class="field-hint">We only collect the last 4 for identity verification.</div>
+                <div class="field-error" id="err-mav-ssn_last4">Must be exactly 4 digits</div>
+              </div>
+              <div class="field">
+                <label>Owner Phone</label>
+                <input type="tel" name="owner_phone" placeholder="(555) 555-5555">
+              </div>
+            </div>
+          </div>
+
+          <!-- Banking -->
+          <div class="form-section">
+            <div class="section-label">Bank Account for Deposits</div>
+            <div class="field-grid cols-3">
+              <div class="field">
+                <label>Bank Name <span class="req">*</span></label>
+                <input type="text" name="bank_name" placeholder="Chase, Wells Fargo…" required>
+                <div class="field-error" id="err-mav-bank_name">Required</div>
+              </div>
+              <div class="field">
+                <label>Routing Number <span class="req">*</span></label>
+                <input type="text" name="routing_number" placeholder="9-digit routing number" maxlength="9" required>
+                <div class="field-error" id="err-mav-routing_number">Required</div>
+              </div>
+              <div class="field">
+                <label>Account Number <span class="req">*</span></label>
+                <input type="text" name="account_number" placeholder="Account number" required>
+                <div class="field-error" id="err-mav-account_number">Required</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Legal -->
+          <div class="form-section">
+            <div class="section-label">Authorization & Consent</div>
+            <div class="legal-box">
+              <p>By submitting this application, I certify that all information provided is accurate and complete to the best of my knowledge. I authorize SpotOn Results and its processing partners to verify the information provided, including a soft credit inquiry.</p>
+              <p>I understand that submission of this application does not guarantee approval. Final approval is subject to underwriting review and the policies of the processing partner.</p>
+              <p>I agree to the Terms of Service and Privacy Policy and acknowledge that my information may be shared with Maverick Payments and affiliated underwriting parties for the purpose of reviewing this merchant application.</p>
+            </div>
+            <div class="check-group">
+              <label class="check-item">
+                <input type="checkbox" name="consent_authorized" id="mav-consent" required>
+                <span>I am an authorized signer for this business and all information above is accurate. <span class="req">*</span></span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" name="consent_tos" id="mav-tos" required>
+                <span>I agree to the Terms of Service and authorize a soft credit check. <span class="req">*</span></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-submit" id="mavBtn">
+              <span class="btn-text">Submit Application →</span>
+              <span class="spinner"></span>
+            </button>
+            <button type="button" class="btn-back-link" onclick="showSurvey()">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Change answers
+            </button>
+          </div>
+          <div class="form-note">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1a6 6 0 100 12A6 6 0 007 1zM7 6v4M7 4.5v.01" stroke="var(--text-d)" stroke-width="1.5" stroke-linecap="round"/></svg>
+            256-bit encrypted · Information shared only with Maverick Payments for underwriting
+          </div>
+        </form>
+      </div>
+
+      <!-- ═══════════════════════════════════════
+           NMI FORM (E-commerce / Gateway)
+      ═══════════════════════════════════════ -->
+      <div class="step" id="fNMI">
+        <div class="form-header">
+          <div class="form-badge nmi"><span class="badge-icon">🛒</span> E-Commerce Gateway — NMI</div>
+          <h2 class="form-title">Gateway setup<br><span style="color:var(--gold)">coming soon.</span></h2>
+          <p class="form-subtitle">Our NMI e-commerce gateway application is being finalized. In the meantime, reach out directly and we'll get you set up personally.</p>
+        </div>
+
+        <!-- NMI holding card -->
+        <div style="padding:40px 36px;background:var(--glass);border:1.5px solid var(--border);border-radius:var(--rl);text-align:center;margin-bottom:28px">
+          <div style="font-size:48px;margin-bottom:20px">⚡</div>
+          <div style="font-family:var(--font-d);font-size:22px;font-weight:700;color:var(--text);margin-bottom:10px">Let's talk directly</div>
+          <p style="font-size:15px;color:var(--text-m);line-height:1.6;max-width:400px;margin:0 auto 28px">We're setting up our online gateway application. Contact us now and we'll get your e-commerce processing configured within one business day.</p>
+          <a href="mailto:s.allen@spotonresults.com?subject=E-Commerce Gateway Application&body=I'm interested in setting up an NMI payment gateway for my online store." class="btn-submit" style="display:inline-flex;text-decoration:none;cursor:pointer">
+            Email Us to Apply →
+          </a>
+          <div style="margin-top:16px;font-size:13px;color:var(--text-d)">or call us directly for same-day setup</div>
+        </div>
+
+        <div>
+          <button class="btn-back-link" onclick="showSurvey()">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back to start
+          </button>
+        </div>
+
+        <!-- NMI full form (hidden until API access approved) -->
+        <div id="nmiFullForm" style="display:none">
+        <!-- NMI multi-step nav -->
+        <div class="form-steps-nav">
+          <div class="fsn-step active" id="nmi-nav-1"><span class="fsn-num">1</span>Business</div>
+          <div class="fsn-step" id="nmi-nav-2"><span class="fsn-num">2</span>Owner</div>
+          <div class="fsn-step" id="nmi-nav-3"><span class="fsn-num">3</span>Processing</div>
+          <div class="fsn-step" id="nmi-nav-4"><span class="fsn-num">4</span>Banking</div>
+          <div class="fsn-step" id="nmi-nav-5"><span class="fsn-num">5</span>Review</div>
+        </div>
+
+        <div class="alert-banner" id="nmi-alert"></div>
+
+        <form id="nmiForm" novalidate>
+
+          <!-- NMI Step 1: Business -->
+          <div id="nmi-s1">
+            <div class="form-section">
+              <div class="section-label">Business Information</div>
+              <div class="field-grid">
+                <div class="field">
+                  <label>Legal Business Name <span class="req">*</span></label>
+                  <input type="text" name="legal_name" placeholder="Acme Corp LLC" required>
+                </div>
+                <div class="field">
+                  <label>DBA (Doing Business As)</label>
+                  <input type="text" name="dba" placeholder="Acme Store">
+                </div>
+              </div>
+              <div class="field-grid" style="margin-top:16px">
+                <div class="field">
+                  <label>Business Type <span class="req">*</span></label>
+                  <select name="business_type" required>
+                    <option value="">Select…</option>
+                    <option>Sole Proprietorship</option>
+                    <option>LLC</option>
+                    <option>S-Corp</option>
+                    <option>C-Corp</option>
+                    <option>Partnership</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>EIN / Federal Tax ID <span class="req">*</span></label>
+                  <input type="text" name="ein" placeholder="12-3456789" maxlength="10" required>
+                </div>
+                <div class="field">
+                  <label>Website URL <span class="req">*</span></label>
+                  <input type="url" name="website" placeholder="https://yourstore.com" required>
+                </div>
+              </div>
+              <div class="field-grid" style="margin-top:16px">
+                <div class="field">
+                  <label>Business Address <span class="req">*</span></label>
+                  <input type="text" name="address" placeholder="123 Main St" required>
+                </div>
+                <div class="field">
+                  <label>City <span class="req">*</span></label>
+                  <input type="text" name="city" required>
+                </div>
+                <div class="field">
+                  <label>State <span class="req">*</span></label>
+                  <select name="state" required>
+                    <option value="">State…</option>
+                    <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option>
+                    <option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option>
+                    <option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option>
+                    <option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+                    <option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option>
+                    <option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option>
+                    <option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option>
+                    <option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+                    <option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option>
+                    <option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>ZIP <span class="req">*</span></label>
+                  <input type="text" name="zip" placeholder="12345" maxlength="5" required>
+                </div>
+              </div>
+              <div class="field-grid" style="margin-top:16px">
+                <div class="field">
+                  <label>Business Phone <span class="req">*</span></label>
+                  <input type="tel" name="phone" placeholder="(555) 555-5555" required>
+                </div>
+                <div class="field">
+                  <label>Business Email <span class="req">*</span></label>
+                  <input type="email" name="email" placeholder="owner@yourstore.com" required>
+                </div>
+                <div class="field">
+                  <label>Years in Business <span class="req">*</span></label>
+                  <select name="years_in_business" required>
+                    <option value="">Select…</option>
+                    <option>Less than 1 year</option>
+                    <option>1–2 years</option>
+                    <option>3–5 years</option>
+                    <option>6–10 years</option>
+                    <option>10+ years</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field-grid single" style="margin-top:16px">
+                <div class="field">
+                  <label>Business Description <span class="req">*</span></label>
+                  <textarea name="business_description" placeholder="What does your online store sell? What are your primary products or services?" required></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- E-commerce specifics -->
+            <div class="form-section">
+              <div class="section-label">E-Commerce Details</div>
+              <div class="field-grid">
+                <div class="field">
+                  <label>Shopping Cart / Platform <span class="req">*</span></label>
+                  <select name="cart_platform" required>
+                    <option value="">Select…</option>
+                    <option>Shopify</option>
+                    <option>WooCommerce</option>
+                    <option>BigCommerce</option>
+                    <option>Magento</option>
+                    <option>Custom / API</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Integration Type <span class="req">*</span></label>
+                  <select name="integration_type" required>
+                    <option value="">Select…</option>
+                    <option>Hosted Payment Page</option>
+                    <option>Direct API</option>
+                    <option>Plugin / Extension</option>
+                    <option>Virtual Terminal Only</option>
+                    <option>Not Sure</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>MCC Code (if known)</label>
+                  <input type="text" name="mcc_code" placeholder="e.g. 5945" maxlength="4">
+                  <div class="field-hint">4-digit Merchant Category Code. Leave blank if unsure.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn-submit" onclick="nmiNext(1)">
+                Continue <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="margin-left:4px"><path d="M6 4l4 4-4 4" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button type="button" class="btn-back-link" onclick="showSurvey()">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Change answers
+              </button>
+            </div>
+          </div>
+
+          <!-- NMI Step 2: Owner -->
+          <div id="nmi-s2" style="display:none">
+            <div class="form-section">
+              <div class="section-label">Principal Owner Information</div>
+              <div class="field-grid">
+                <div class="field">
+                  <label>First Name <span class="req">*</span></label>
+                  <input type="text" name="owner_first" placeholder="Jane" required>
+                </div>
+                <div class="field">
+                  <label>Last Name <span class="req">*</span></label>
+                  <input type="text" name="owner_last" placeholder="Smith" required>
+                </div>
+                <div class="field">
+                  <label>Title / Role <span class="req">*</span></label>
+                  <input type="text" name="owner_title" placeholder="Owner / CEO" required>
+                </div>
+              </div>
+              <div class="field-grid" style="margin-top:16px">
+                <div class="field">
+                  <label>Date of Birth <span class="req">*</span></label>
+                  <input type="date" name="owner_dob" required>
+                </div>
+                <div class="field">
+                  <label>SSN (last 4) <span class="req">*</span></label>
+                  <input type="text" name="ssn_last4" placeholder="XXXX" maxlength="4" pattern="\d{4}" required>
+                </div>
+                <div class="field">
+                  <label>Ownership % <span class="req">*</span></label>
+                  <input type="text" name="ownership_pct" placeholder="e.g. 100%" required>
+                </div>
+              </div>
+              <div class="field-grid" style="margin-top:16px">
+                <div class="field">
+                  <label>Owner Email <span class="req">*</span></label>
+                  <input type="email" name="owner_email" placeholder="jane@yourstore.com" required>
+                </div>
+                <div class="field">
+                  <label>Owner Phone <span class="req">*</span></label>
+                  <input type="tel" name="owner_phone" placeholder="(555) 555-5555" required>
+                </div>
+              </div>
+              <div class="field-grid" style="margin-top:16px">
+                <div class="field">
+                  <label>Home Address (if different from business)</label>
+                  <input type="text" name="owner_address" placeholder="123 Home St">
+                </div>
+                <div class="field">
+                  <label>City</label>
+                  <input type="text" name="owner_city">
+                </div>
+                <div class="field">
+                  <label>State</label>
+                  <select name="owner_state">
+                    <option value="">State…</option>
+                    <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option>
+                    <option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option>
+                    <option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option>
+                    <option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+                    <option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option>
+                    <option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option>
+                    <option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option>
+                    <option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+                    <option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option>
+                    <option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>ZIP</label>
+                  <input type="text" name="owner_zip" maxlength="5">
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn-submit" onclick="nmiNext(2)">Continue →</button>
+              <button type="button" class="btn-back-link" onclick="nmiBack(1)">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Back
+              </button>
+            </div>
+          </div>
+
+          <!-- NMI Step 3: Processing -->
+          <div id="nmi-s3" style="display:none">
+            <div class="form-section">
+              <div class="section-label">Processing Volume</div>
+              <div class="field-grid cols-3">
+                <div class="field">
+                  <label>Monthly Processing Volume <span class="req">*</span></label>
+                  <select name="monthly_volume" required>
+                    <option value="">Select…</option>
+                    <option>Under $10,000</option>
+                    <option>$10,000 – $25,000</option>
+                    <option>$25,000 – $50,000</option>
+                    <option>$50,000 – $100,000</option>
+                    <option>$100,000 – $250,000</option>
+                    <option>$250,000 – $500,000</option>
+                    <option>Over $500,000</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Average Ticket Size <span class="req">*</span></label>
+                  <input type="text" name="avg_ticket" placeholder="e.g. $65" required>
+                </div>
+                <div class="field">
+                  <label>Highest Single Ticket</label>
+                  <input type="text" name="high_ticket" placeholder="e.g. $500">
+                </div>
+                <div class="field">
+                  <label>Card-Not-Present % <span class="req">*</span></label>
+                  <select name="cnp_pct" required>
+                    <option value="">Select…</option>
+                    <option>100% online</option>
+                    <option>75% online / 25% in-person</option>
+                    <option>50% / 50%</option>
+                    <option>25% online / 75% in-person</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Products Shipped / Delivered?</label>
+                  <select name="products_shipped">
+                    <option value="">Select…</option>
+                    <option>Yes — physical goods</option>
+                    <option>Digital delivery only</option>
+                    <option>Services / SaaS</option>
+                    <option>Mix of physical and digital</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Refund / Return Policy</label>
+                  <select name="refund_policy">
+                    <option value="">Select…</option>
+                    <option>30-day full refund</option>
+                    <option>14-day refund</option>
+                    <option>Exchange only</option>
+                    <option>No refunds</option>
+                    <option>Custom policy</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn-submit" onclick="nmiNext(3)">Continue →</button>
+              <button type="button" class="btn-back-link" onclick="nmiBack(2)">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Back
+              </button>
+            </div>
+          </div>
+
+          <!-- NMI Step 4: Banking -->
+          <div id="nmi-s4" style="display:none">
+            <div class="form-section">
+              <div class="section-label">Bank Account for Deposits</div>
+              <div class="field-grid cols-3">
+                <div class="field">
+                  <label>Bank Name <span class="req">*</span></label>
+                  <input type="text" name="bank_name" placeholder="Chase, Wells Fargo…" required>
+                </div>
+                <div class="field">
+                  <label>Routing Number <span class="req">*</span></label>
+                  <input type="text" name="routing_number" placeholder="9-digit routing number" maxlength="9" required>
+                </div>
+                <div class="field">
+                  <label>Account Number <span class="req">*</span></label>
+                  <input type="text" name="account_number" placeholder="Account number" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <div class="section-label">Authorization & Consent</div>
+              <div class="legal-box">
+                <p>By submitting this application I authorize SpotOn Results and NMI (Network Merchants Inc.) to verify the information provided, including business and identity verification.</p>
+                <p>I understand that gateway provisioning is subject to approval by NMI and its banking partners. I agree to NMI's Terms of Service and the applicable processing agreement.</p>
+                <p>I certify I am an authorized signer for this business and that all information provided is accurate to the best of my knowledge.</p>
+              </div>
+              <div class="check-group">
+                <label class="check-item">
+                  <input type="checkbox" name="consent_authorized" required>
+                  <span>I am authorized to sign for this business and all information is accurate. <span class="req">*</span></span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" name="consent_tos" required>
+                  <span>I agree to NMI's Terms of Service and authorize identity verification. <span class="req">*</span></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn-submit" onclick="nmiNext(4)">Review Application →</button>
+              <button type="button" class="btn-back-link" onclick="nmiBack(3)">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Back
+              </button>
+            </div>
+          </div>
+
+          <!-- NMI Step 5: Review & Submit -->
+          <div id="nmi-s5" style="display:none">
+            <div class="form-section">
+              <div class="section-label">Review Your Application</div>
+              <div id="nmiReviewContent" style="font-size:14px;color:var(--text-m);line-height:1.8;background:var(--glass);border:1px solid var(--border);border-radius:var(--r);padding:24px;">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn-submit" id="nmiBtn">
+                <span class="btn-text">Submit Application →</span>
+                <span class="spinner"></span>
+              </button>
+              <button type="button" class="btn-back-link" onclick="nmiBack(4)">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Back to edit
+              </button>
+            </div>
+            <div class="form-note">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1a6 6 0 100 12A6 6 0 007 1zM7 6v4M7 4.5v.01" stroke="var(--text-d)" stroke-width="1.5" stroke-linecap="round"/></svg>
+              256-bit encrypted · Shared with NMI for gateway provisioning only
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- ═══════════════════════════════════════
+           SPOTON JOTFORM (Retail / Restaurant)
+      ═══════════════════════════════════════ -->
+      <div class="step" id="fSpotOn">
+        <div class="form-header">
+          <div class="form-badge spoton"><span class="badge-icon">⚡</span> SpotOn Results Merchant Application</div>
+          <h2 class="form-title">You're in the<br><span style="color:var(--gold)">right place.</span></h2>
+          <p class="form-subtitle">Complete the form below to get started with SpotOn Results. Our team will reach out within one business day to review your account and get you set up.</p>
+        </div>
+
+        <!-- JotForm embed — replace src URL with your actual JotForm URL -->
+        <div class="jotform-wrap">
+          <iframe
+            id="jotformEmbed"
+            src="https://form.jotform.com/202924012560040"
+            title="SpotOn Results Merchant Application"
+            allowtransparency="true"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div style="margin-top:24px">
+          <button class="btn-back-link" onclick="showSurvey()">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Change answers
+          </button>
+        </div>
+      </div>
+
+      </div><!-- /nmiFullForm hidden wrapper -->
+
+      <!-- ═══════════════════════════════════════
+           NMI CONSENT STEP (after form submits)
+      ═══════════════════════════════════════ -->
+      <div class="step" id="fNMIConsent">
+        <div class="form-header">
+          <div class="form-badge nmi"><span class="badge-icon">✍️</span> Step 2 of 2 — Sign Your Agreement</div>
+          <h2 class="form-title">Almost done —<br><span style="color:var(--gold)">sign below.</span></h2>
+          <p class="form-subtitle">Your application has been created. Please review and sign the merchant agreement below to submit it for underwriting review.</p>
+        </div>
+
+        <div class="alert-banner" id="consent-alert"></div>
+
+        <!-- NMI Legal Consent Widget loads here -->
+        <div id="nmi-consent-container" style="background:rgba(255,255,255,.02);border:1.5px solid var(--border);border-radius:var(--rl);overflow:hidden;min-height:400px;margin-bottom:28px;position:relative">
+          <div id="consent-loading" style="display:flex;align-items:center;justify-content:center;gap:12px;padding:60px;color:var(--text-d);font-size:14px">
+            <div style="width:20px;height:20px;border:2px solid var(--border-m);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite"></div>
+            Loading agreement…
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button id="consentSubmitBtn" class="btn-submit" disabled onclick="nmiConsentComplete()">
+            <span class="btn-text">Complete Application →</span>
+            <span class="spinner"></span>
+          </button>
+          <div style="font-size:13px;color:var(--text-d)">Button activates after signing above</div>
+        </div>
+
+        <div class="form-note" style="margin-top:16px">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1a6 6 0 100 12A6 6 0 007 1zM7 6v4M7 4.5v.01" stroke="var(--text-d)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Your application ID: <span id="nmi-app-id-display" style="color:var(--gold);font-weight:600;margin-left:4px"></span>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════
+           SUCCESS SCREEN (shared)
+      ═══════════════════════════════════════ -->
+      <div class="success-screen" id="successScreen">
+        <span class="success-icon">🎉</span>
+        <h2 class="success-title">Application Submitted!</h2>
+        <p class="success-msg" id="successMsg">Your application has been received. Our team will review everything and reach out within 24–48 hours with next steps.</p>
+        <div class="success-ref" id="successRef"></div>
+        <a href="/" class="btn-submit" style="display:inline-flex;text-decoration:none">← Back to SpotOn Results</a>
+      </div>
+
+    </div><!-- /steps-outer -->
+  </div><!-- /page-in -->
+</main>
+
+<script>
+// ─── CONFIG ─────────────────────────────────────────────────
+// Replace these with your deployed Cloudflare Worker URLs
+const WORKERS = {
+  maverick:   'https://spoton-maverick.YOUR_SUBDOMAIN.workers.dev/apply',
+  nmi_apply:  'https://spoton-nmi.YOUR_SUBDOMAIN.workers.dev/apply',
+  nmi_submit: 'https://spoton-nmi.YOUR_SUBDOMAIN.workers.dev/submit',
+};
+
+// ─── CURSOR ─────────────────────────────────────────────────
+const cdot = document.getElementById('cdot');
+const cring = document.getElementById('cring');
+let mx = 0, my = 0, cursorVisible = false;
+const _cm = e => {
+  mx = e.clientX; my = e.clientY;
+  if (!cursorVisible) { cdot.style.opacity='1'; cring.style.opacity='1'; cursorVisible=true; }
+};
+window.addEventListener('pointermove',_cm,true);
+window.addEventListener('mousemove',_cm,true);
+window.addEventListener('pointercancel',()=>{ cdot.style.opacity='0'; cring.style.opacity='0'; cursorVisible=false; },true);
+(function loop(){ cdot.style.transform='translate3d('+(mx-4)+'px,'+(my-4)+'px,0)'; cring.style.transform='translate3d('+(mx-20)+'px,'+(my-20)+'px,0)'; requestAnimationFrame(loop); })();
+document.documentElement.addEventListener('mouseleave',()=>{ cdot.style.opacity='0'; cring.style.opacity='0'; cursorVisible=false; });
+document.querySelectorAll('a,button,.opt-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ cdot.style.scale='2.2'; cring.style.width='58px'; cring.style.height='58px'; });
+  el.addEventListener('mouseleave',()=>{ cdot.style.scale='1'; cring.style.width='40px'; cring.style.height='40px'; });
+});
+
+// ─── SURVEY STATE ───────────────────────────────────────────
+let answers = {};
+let currentSurveyStep = 1;
+
+function setProgress(step, total, label) {
+  document.getElementById('progLabel').textContent = label;
+  document.getElementById('progBar').style.width = (step/total*100)+'%';
+  document.getElementById('progWrap').style.display = '';
+}
+
+function showStep(id) {
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function answer(q, val) {
+  answers['q'+q] = val;
+  if (q === 1) {
+    if (val === 'yes') {
+      // High-risk → Maverick
+      setProgress(3,3,'Application — High-Risk (Maverick)');
+      showStep('fMaverick');
+    } else {
+      // Not high-risk → ask about e-commerce
+      currentSurveyStep = 2;
+      setProgress(2,3,'Step 2 of 3 — Business Type');
+      showStep('s2');
+    }
+  } else if (q === 2) {
+    if (val === 'yes') {
+      // E-commerce → NMI
+      setProgress(3,3,'Application — E-Commerce Gateway (NMI)');
+      showStep('fNMI');
+    } else {
+      // Retail/Restaurant → survey step 3
+      currentSurveyStep = 3;
+      setProgress(3,3,'Step 3 of 3 — Business Category');
+      showStep('s3');
+    }
+  }
+}
+
+function routeTo(dest) {
+  if (dest === 'spoton') {
+    setProgress(3,3,'Application — SpotOn Results');
+    showStep('fSpotOn');
+  }
+}
+
+function goBack(toStep) {
+  currentSurveyStep = toStep;
+  if (toStep === 1) { setProgress(1,3,'Step 1 of 3'); showStep('s1'); }
+  else if (toStep === 2) { setProgress(2,3,'Step 2 of 3'); showStep('s2'); }
+}
+
+function showSurvey() {
+  answers = {};
+  currentSurveyStep = 1;
+  setProgress(1,3,'Step 1 of 3');
+  showStep('s1');
+}
+
+// ─── MAVERICK FORM ──────────────────────────────────────────
+const mavForm = document.getElementById('mavForm');
+const mavBtn  = document.getElementById('mavBtn');
+
+function validateMavForm() {
+  const required = mavForm.querySelectorAll('[required]');
+  let ok = true;
+  required.forEach(el => {
+    const errId = 'err-mav-'+el.name;
+    const errEl = document.getElementById(errId);
+    let invalid = false;
+    if (el.type === 'checkbox') {
+      invalid = !el.checked;
+    } else if (el.type === 'email') {
+      invalid = !el.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+    } else {
+      invalid = !el.value.trim();
+    }
+    el.classList.toggle('error', invalid);
+    if (errEl) errEl.classList.toggle('show', invalid);
+    if (invalid) ok = false;
+  });
+  return ok;
+}
+
+mavForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  if (!validateMavForm()) {
+    showAlert('mav-alert','error','Please fill in all required fields before submitting.');
+    return;
+  }
+  setLoading(mavBtn, true);
+  const data = collectForm(mavForm);
+  data._type = 'maverick';
+
+  try {
+    const res = await fetch(WORKERS.maverick, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    if (res.ok && json.success) {
+      handleMaverickResult(json);
+    } else {
+      throw new Error(json.error || 'Submission failed. Please try again.');
+    }
+  } catch(err) {
+    setLoading(mavBtn, false);
+    showAlert('mav-alert','error', err.message || 'Network error. Please try again.');
+  }
+});
+
+// Handle per-status messaging from Maverick underwriting response
+function handleMaverickResult(json) {
+  const status = json.status || 'pending';
+  const icons  = { approved:'🎉', pending:'⏳', declined:'⚠️' };
+  const titles = { approved:'Approved!', pending:'Application Submitted', declined:'Under Review' };
+  const msgs   = {
+    approved: 'Your merchant account has been approved and is being activated. You will receive gateway credentials and account details by email within one business day.',
+    pending:  'Your high-risk merchant application has been submitted to Maverick Payments for underwriting review. This typically takes 1–3 business days. Our team will contact you with next steps.',
+    declined: 'Your application requires additional review. A SpotOn Results advisor will contact you within one business day to discuss your options and next steps.',
+  };
+  document.querySelector('#successScreen .success-icon').textContent = icons[status] || '📋';
+  document.querySelector('#successScreen .success-title').textContent = titles[status] || 'Application Received';
+  document.getElementById('successMsg').textContent = msgs[status] || msgs.pending;
+  document.getElementById('successRef').textContent = 'Reference: ' + (json.reference_id || '');
+  document.querySelector('.steps-outer').style.display = 'none';
+  document.getElementById('progWrap').style.display = 'none';
+  document.getElementById('successScreen').classList.add('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ─── NMI MULTI-STEP FORM ────────────────────────────────────
+let nmiStep = 1;
+const nmiForm = document.getElementById('nmiForm');
+const nmiBtn  = document.getElementById('nmiBtn');
+
+function nmiNext(fromStep) {
+  // Validate visible required fields in current step
+  const container = document.getElementById('nmi-s'+fromStep);
+  const required = container.querySelectorAll('[required]');
+  let ok = true;
+  required.forEach(el => {
+    const invalid = el.type === 'checkbox' ? !el.checked : !el.value.trim();
+    el.classList.toggle('error', invalid);
+    if (invalid) ok = false;
+  });
+  if (!ok) {
+    showAlert('nmi-alert','error','Please complete all required fields to continue.');
+    return;
+  }
+  hideAlert('nmi-alert');
+  document.getElementById('nmi-s'+fromStep).style.display = 'none';
+  document.getElementById('nmi-nav-'+fromStep).classList.remove('active');
+  document.getElementById('nmi-nav-'+fromStep).classList.add('done');
+  nmiStep = fromStep + 1;
+  document.getElementById('nmi-s'+nmiStep).style.display = '';
+  document.getElementById('nmi-nav-'+nmiStep).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if (nmiStep === 5) buildNmiReview();
+}
+
+function nmiBack(toStep) {
+  document.getElementById('nmi-s'+(toStep+1)).style.display = 'none';
+  document.getElementById('nmi-nav-'+(toStep+1)).classList.remove('active');
+  nmiStep = toStep;
+  document.getElementById('nmi-s'+nmiStep).style.display = '';
+  document.getElementById('nmi-nav-'+nmiStep).classList.remove('done');
+  document.getElementById('nmi-nav-'+nmiStep).classList.add('active');
+}
+
+function buildNmiReview() {
+  const data = collectForm(nmiForm);
+  const skip = ['consent_authorized','consent_tos'];
+  let html = '<table style="width:100%;border-collapse:collapse">';
+  for (const [k,v] of Object.entries(data)) {
+    if (skip.includes(k) || !v) continue;
+    const label = k.replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+    html += `<tr><td style="padding:5px 12px 5px 0;color:var(--text-d);white-space:nowrap;font-size:13px">${label}</td><td style="padding:5px 0;font-weight:500;color:var(--text)">${v}</td></tr>`;
+  }
+  html += '</table>';
+  document.getElementById('nmiReviewContent').innerHTML = html;
+}
+
+// ─── NMI STEP 1: Submit form → Worker creates app → show consent widget ─────
+nmiForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  setLoading(nmiBtn, true);
+  hideAlert('nmi-alert');
+  const data = collectForm(nmiForm);
+
+  try {
+    const res = await fetch(WORKERS.nmi_apply, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    });
+    const result = await res.json();
+
+    if (!res.ok || !result.success) {
+      throw new Error(result.error || 'Submission failed. Please try again.');
+    }
+
+    // Show consent step
+    setLoading(nmiBtn, false);
+    setProgress(3, 3, 'Step 2 of 2 — Sign Agreement');
+    showStep('fNMIConsent');
+
+    // Store app ID for display and tracking
+    document.getElementById('nmi-app-id-display').textContent = result.application_id || result.reference_id;
+
+    // Load NMI legal consent widget
+    if (result.consent_url) {
+      loadNmiConsentWidget(result.consent_url);
+    } else {
+      // consent_url missing (shouldn't happen) — show warning
+      showAlert('consent-alert', 'error', result.warning || 'Could not load the agreement form. Please contact us directly at s.allen@spotonresults.com with your Application ID.');
+      document.getElementById('consent-loading').style.display = 'none';
+    }
+
+  } catch(err) {
+    setLoading(nmiBtn, false);
+    showAlert('nmi-alert', 'error', err.message || 'Network error. Please try again.');
+  }
+});
+
+// ─── NMI STEP 2: Load consent widget ────────────────────────────────────────
+// Uses NMI's LegalConsent.load() — loaded from their CDN on demand.
+// The widget fires onAccepted({accepted: true}) when the merchant signs.
+function loadNmiConsentWidget(consentUrl) {
+  const loading = document.getElementById('consent-loading');
+  const submitBtn = document.getElementById('consentSubmitBtn');
+
+  // Determine if sandbox or production based on the consent URL
+  const isSandbox = consentUrl.includes('sandbox');
+  const scriptSrc = isSandbox
+    ? 'https://sandbox.signup.nmi.com/build/consent-helper-1.0.0.umd.js'
+    : 'https://signup.nmi.com/build/consent-helper-1.0.0.umd.js';
+
+  // Load NMI consent helper script dynamically
+  const script = document.createElement('script');
+  script.src = scriptSrc;
+  script.onload = () => {
+    loading.style.display = 'none';
+    // Initialize the widget
+    LegalConsent.load(
+      consentUrl,
+      { selector: '#nmi-consent-container', overlay: 'transparent' },
+      {
+        onLoad: () => {
+          // Widget loaded — nothing needed
+        },
+        onAccepted: ({ accepted }) => {
+          // Enable/disable the submit button based on signature status
+          submitBtn.disabled = !accepted;
+          if (accepted) {
+            submitBtn.style.opacity = '1';
+          } else {
+            submitBtn.style.opacity = '';
+          }
+        },
+        onError: ({ message }) => {
+          console.error('NMI consent widget error:', message);
+          showAlert('consent-alert', 'error', 'Error loading agreement form: ' + (message || 'Unknown error') + '. Please refresh and try again.');
+          submitBtn.disabled = true;
+        },
+      }
+    );
+  };
+  script.onerror = () => {
+    loading.style.display = 'none';
+    showAlert('consent-alert', 'error', 'Could not load the agreement form. Please check your connection and refresh.');
+  };
+  document.head.appendChild(script);
+}
+
+// ─── NMI STEP 3: Consent signed → call /submit → show success ────────────────
+async function nmiConsentComplete() {
+  const appId = document.getElementById('nmi-app-id-display').textContent;
+  const btn   = document.getElementById('consentSubmitBtn');
+
+  setLoading(btn, true);
+  hideAlert('consent-alert');
+
+  try {
+    const res = await fetch(WORKERS.nmi_submit, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ application_id: appId }),
+    });
+    const result = await res.json();
+
+    if (!res.ok || !result.success) {
+      throw new Error(result.error || 'Submission failed. Please contact support.');
+    }
+
+    // Clean up widget and show success
+    if (typeof LegalConsent !== 'undefined') LegalConsent.destroy();
+    showSuccess('nmi', appId);
+
+  } catch(err) {
+    setLoading(btn, false);
+    showAlert('consent-alert', 'error', err.message || 'Could not submit. Please try again or contact us.');
+  }
+}
+
+// ─── UTILITIES ──────────────────────────────────────────────
+function collectForm(form) {
+  const data = {};
+  const fd = new FormData(form);
+  for (const [k,v] of fd.entries()) {
+    if (data[k]) {
+      data[k] = [].concat(data[k], v);
+    } else {
+      data[k] = v;
+    }
+  }
+  return data;
+}
+
+function setLoading(btn, loading) {
+  btn.classList.toggle('loading', loading);
+  btn.disabled = loading;
+}
+
+function showAlert(id, type, msg) {
+  const el = document.getElementById(id);
+  el.className = 'alert-banner ' + type;
+  el.innerHTML = (type==='error'?'⚠️':'✅') + ' ' + msg;
+  el.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function hideAlert(id) {
+  const el = document.getElementById(id);
+  el.style.display = 'none';
+  el.className = 'alert-banner';
+}
+
+function generateRef(prefix) {
+  return prefix + '-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+}
+
+function showSuccess(type, refId) {
+  document.querySelector('.steps-outer').style.display = 'none';
+  document.getElementById('progWrap').style.display = 'none';
+  const screen = document.getElementById('successScreen');
+  const msgs = {
+    maverick: 'Your high-risk merchant application has been submitted to Maverick Payments. Our team will review it and contact you within 24–48 hours with next steps and any additional requirements.',
+    nmi: 'Your NMI gateway application has been received. Our team will provision your gateway and reach out within 1–3 business days with login credentials and integration details.',
+    spoton: 'Your application has been submitted. A SpotOn Results advisor will contact you within one business day to review your account and get you set up.'
+  };
+  document.getElementById('successMsg').textContent = msgs[type] || msgs.spoton;
+  document.getElementById('successRef').textContent = 'Reference: ' + refId;
+  screen.classList.add('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Clear error on input change
+document.querySelectorAll('input,select,textarea').forEach(el => {
+  el.addEventListener('change', () => el.classList.remove('error'));
+  el.addEventListener('input', () => el.classList.remove('error'));
+});
+</script>
+</body>
+</html>
