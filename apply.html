@@ -189,10 +189,10 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 0;backgroun
 .success-msg{font-size:16px;color:var(--text-m);line-height:1.7;max-width:480px;margin:0 auto 32px}
 .success-ref{display:inline-block;padding:10px 20px;background:rgba(245,158,11,.1);border:1px solid var(--border-m);border-radius:var(--r);font-size:13px;color:var(--gold);font-weight:600;margin-bottom:32px}
 
-/* ── MAVERICK BRIGHTNESS FIX ── */
-/* invert(0.15) lifts pure black (which brightness alone can't affect) to ~24% gray,
-   then brightness(1.8) pulls everything up — labels/placeholders/typed text all become light */
-#maverick { filter: invert(0.15) brightness(1.8); }
+/* ── MAVERICK WRAPPER (light theme) ── */
+/* Maverick's dark theme renders input text as black — unfixable via CSS filter on cross-origin
+   iframe (brightness can't lift 0,0,0). Light theme = dark text on white = always readable. */
+.maverick-card { background:#ffffff; border-radius:var(--rl); overflow:hidden; padding:4px 0; }
 
 /* ── JOTFORM EMBED WRAPPER ── */
 .jotform-wrap{background:rgba(255,255,255,.02);border:1.5px solid var(--border);border-radius:var(--rl);overflow:hidden;min-height:600px}
@@ -373,7 +373,7 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 0;backgroun
           <h2 class="form-title">Let's get you<br><span style="color:var(--gold)">approved.</span></h2>
           <!-- MAVERICK EMBED WIDGET — replaces manual form -->
         </div>
-        <div style="background:rgba(255,255,255,.02);border:1.5px solid var(--border);border-radius:var(--rl);overflow:hidden;min-height:500px;margin-bottom:28px">
+        <div class="maverick-card" style="border:1.5px solid var(--border-m);min-height:500px;margin-bottom:28px">
           <div id="maverick"></div>
         </div>
         <div style="margin-top:16px">
@@ -397,7 +397,7 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 0;backgroun
                 agentId: '79187',
                 referral: '1',
                 title: 'SpotOn Results',
-                theme: 'dark',
+                theme: 'light',
                 label: 'true'
               }
             });
