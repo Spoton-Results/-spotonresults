@@ -1101,7 +1101,7 @@ window.addEventListener('pointermove', e => {
     cring.style.opacity = '1';
     cursorVisible = true;
   }
-});
+}, true);
 
 // Cursor hover states
 document.querySelectorAll('a,button,.bc,.ind-card,.proc-step,.test-card,.faq-q,.ps-item').forEach(el => {
@@ -1126,7 +1126,7 @@ function resize() {
 resize();
 window.addEventListener('resize', resize);
 
-window.addEventListener('pointermove', e => { pmx = e.clientX; pmy = e.clientY; });
+window.addEventListener('pointermove', e => { pmx = e.clientX; pmy = e.clientY; }, true);
 
 // ANIM: Particle init
 function createParticles() {
