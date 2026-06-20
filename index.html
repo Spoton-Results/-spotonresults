@@ -1418,19 +1418,10 @@ volSlider.addEventListener('input', updateCalc);
 rateSlider.addEventListener('input', updateCalc);
 updateCalc();
 
-/* ── SECTION: BOOKING MODAL ── */
+/* ── SECTION: BOOKING ── */
 function openBooking() {
-  document.getElementById('bookingModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  window.open('https://link.spotonresults.com/widget/booking/t9jdITqtvi9gLjm329gy','_blank');
 }
-function closeBooking() {
-  document.getElementById('bookingModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function closeBookingOnOverlay(e) {
-  if (e.target === document.getElementById('bookingModal')) closeBooking();
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBooking(); });
 
 /* ── SECTION: DEV PANEL ── */
 let devOpen = false;

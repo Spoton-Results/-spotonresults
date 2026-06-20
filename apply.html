@@ -1124,16 +1124,22 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 0;backgroun
           <p class="form-subtitle">Complete the form below to get started with SpotOn Results. Our team will reach out within one business day to review your account and get you set up.</p>
         </div>
 
-        <!-- JotForm embed — replace src URL with your actual JotForm URL -->
+        <!-- JotForm embed -->
         <div class="jotform-wrap">
           <iframe
-            id="jotformEmbed"
-            src="https://form.jotform.com/202924012560040"
+            id="JotFormIFrame-202924012560040"
             title="SpotOn Results Merchant Application"
+            onload="window.parent.scrollTo(0,0)"
             allowtransparency="true"
-            allowfullscreen>
+            allow="geolocation; microphone; camera; fullscreen"
+            src="https://form.jotform.com/202924012560040"
+            frameborder="0"
+            style="min-width:100%;max-width:100%;height:700px;border:none;display:block"
+            scrolling="yes">
           </iframe>
         </div>
+        <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
+        <script>window.jotformEmbedHandler("iFrameId=JotFormIFrame-202924012560040","https://form.jotfor.ms/")</script>
 
         <div style="margin-top:24px">
           <button class="btn-back-link" onclick="showSurvey()">
