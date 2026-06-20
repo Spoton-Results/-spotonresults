@@ -406,6 +406,134 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
   .ind-grid{grid-template-columns:1fr 1fr}
   .hero-card{display:none}
 }
+
+/* ─────────────────────────────────────────────
+   LIGHT SECTIONS — white / off-white backgrounds
+   ───────────────────────────────────────────── */
+:root {
+  --white: #ffffff;
+  --lite:  #f6f8fc;
+  --dk:    #0d1b33;
+  --dk-m:  rgba(13,27,51,.62);
+  --dk-d:  rgba(13,27,51,.38);
+  --blt:   rgba(13,27,51,.1);
+  --blt-s: rgba(13,27,51,.22);
+  --glt:   rgba(13,27,51,.04);
+}
+
+/* Section backgrounds */
+.ps-sec   { background: var(--white); }
+.svc-sec  { background: var(--lite);  }
+.proc-sec { background: var(--white); }
+.cmp-sec  { background: var(--lite);  }
+.ind-sec  { background: var(--white); }
+.calc-sec { background: var(--lite);  }
+.faq-sec  { background: var(--white); }
+
+/* Section headings */
+.ps-sec .sec-h,  .svc-sec .sec-h,  .proc-sec .sec-h,
+.cmp-sec .sec-h, .ind-sec .sec-h,  .calc-sec .sec-h,
+.faq-sec .sec-h  { color: var(--dk); }
+
+.ps-sec .acc, .svc-sec .acc, .proc-sec .acc,
+.cmp-sec .acc,.ind-sec .acc, .calc-sec .acc,
+.faq-sec .acc    { color: var(--gold-d); }
+
+.ps-sec .sec-s,  .svc-sec .sec-s,  .proc-sec .sec-s,
+.cmp-sec .sec-s, .ind-sec .sec-s,  .calc-sec .sec-s,
+.faq-sec .sec-s  { color: var(--dk-m); }
+
+/* Section tags in light sections */
+.ps-sec .sec-tag,  .svc-sec .sec-tag,  .proc-sec .sec-tag,
+.cmp-sec .sec-tag, .ind-sec .sec-tag,  .calc-sec .sec-tag,
+.faq-sec .sec-tag  { color: var(--gold-d); }
+
+.ps-sec .sec-tag::before,  .svc-sec .sec-tag::before,
+.proc-sec .sec-tag::before,.cmp-sec .sec-tag::before,
+.ind-sec .sec-tag::before, .calc-sec .sec-tag::before,
+.faq-sec .sec-tag::before  { background: var(--gold-d); }
+
+/* ── Problem / Solution ── */
+.ps-sec .ps-div               { background: var(--blt); }
+.ps-sec .ps-it                { color: var(--dk); }
+.ps-sec .ps-id                { color: var(--dk-m); }
+.ps-sec .ps-item:hover        { background: var(--glt); border-color: var(--blt-s); }
+.ps-sec .ps-col h3            { letter-spacing: -.01em; }
+
+/* ── Services / Bento cards ── */
+.svc-sec .bc {
+  background: var(--white);
+  border-color: var(--blt);
+  box-shadow: 0 2px 16px rgba(13,27,51,.07);
+}
+.svc-sec .bc:hover {
+  border-color: var(--gold);
+  background: var(--white);
+  box-shadow: 0 8px 32px rgba(13,27,51,.1);
+  transform: translateY(-4px);
+}
+.svc-sec .bc-h  { color: var(--dk); }
+.svc-sec .bc-d  { color: var(--dk-m); }
+
+/* ── Process steps ── */
+.proc-sec .proc-step {
+  background: var(--white);
+  border-color: var(--blt);
+  box-shadow: 0 2px 16px rgba(13,27,51,.07);
+}
+.proc-sec .proc-step:hover {
+  border-color: var(--gold);
+  box-shadow: 0 20px 50px rgba(13,27,51,.1);
+}
+.proc-sec .step-h { color: var(--dk); }
+.proc-sec .step-d { color: var(--dk-m); }
+
+/* ── Comparison table ── */
+.cmp-sec .cmp-tbl             { border-color: var(--blt); }
+.cmp-sec .cmp-hdr             { background: rgba(13,27,51,.05); }
+.cmp-sec .cmp-hc.theirs       { color: var(--dk-d); }
+.cmp-sec .cmp-row             { border-color: var(--blt); }
+.cmp-sec .cmp-row:hover       { background: rgba(245,158,11,.04); }
+.cmp-sec .cmp-c               { color: var(--dk-m); }
+.cmp-sec .cmp-c.feat          { color: var(--dk); font-weight: 600; }
+
+/* ── Industries ── */
+.ind-sec .ind-card {
+  background: var(--white);
+  border-color: var(--blt);
+  box-shadow: 0 2px 16px rgba(13,27,51,.06);
+}
+.ind-sec .ind-card:hover {
+  border-color: var(--gold);
+  background: var(--white);
+  box-shadow: 0 12px 40px rgba(13,27,51,.1);
+}
+.ind-sec .ind-h { color: var(--dk); }
+.ind-sec .ind-d { color: var(--dk-m); }
+
+/* ── Calculator ── */
+.calc-sec .calc-card {
+  background: var(--white);
+  border-color: var(--blt);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 4px 24px rgba(13,27,51,.08);
+}
+.calc-sec .calc-lbl  { color: var(--dk-m); }
+.calc-sec .calc-note { color: var(--dk-d); }
+.calc-sec .calc-per  { color: var(--dk-m); }
+.calc-sec .cb-item   { background: rgba(13,27,51,.05); }
+.calc-sec .cb-lbl    { color: var(--dk-d); }
+.calc-sec .cb-val    { color: var(--dk); }
+
+/* ── FAQ ── */
+.faq-sec .faq-item              { border-color: var(--blt); }
+.faq-sec .faq-item:hover        { border-color: rgba(245,158,11,.35); }
+.faq-sec .faq-q                 { color: var(--dk); }
+.faq-sec .faq-ai                { color: var(--dk-m); }
+.faq-sec .faq-ico               { border-color: var(--blt-s); color: var(--dk-d); }
+.faq-sec .faq-item.open .faq-q  { color: var(--gold-d); }
+.faq-sec .faq-item.open .faq-ico{ border-color: var(--gold-d); background: rgba(245,158,11,.08); }
 </style>
 </head>
 <body>
@@ -922,7 +1050,7 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
         <div class="mi-item"><div class="mi-lbl">Commitment</div><div class="mi-val">None required</div></div>
       </div>
       <div style="border-radius:var(--r);overflow:hidden;min-height:500px">
-        <iframe src="https://api.leadconnectorhq.com/widget/booking/spotonresults" style="width:100%;height:600px;border:none" scrolling="no" id="hl-booking-widget"></iframe>
+        <iframe src="https://link.spotonresults.com/widget/booking/spotonresults" style="width:100%;height:600px;border:none" scrolling="no" id="hl-booking-widget"></iframe>
       </div>
     </div>
   </div>
