@@ -519,6 +519,9 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:60px 0
   -webkit-backdrop-filter: none;
   box-shadow: 0 4px 24px rgba(13,27,51,.08);
 }
+.calc-sec input[type=range] { background: rgba(13,27,51,.18); }
+.calc-sec input[type=range]::-webkit-slider-runnable-track { background: rgba(13,27,51,.18); }
+.calc-sec input[type=range]::-moz-range-track { background: rgba(13,27,51,.18); }
 .calc-sec .calc-lbl  { color: var(--dk-m); }
 .calc-sec .calc-note { color: var(--dk-d); }
 .calc-sec .calc-per  { color: var(--dk-m); }
@@ -1413,9 +1416,10 @@ rateSlider.addEventListener('input', updateCalc);
 updateCalc();
 
 /* ── SECTION: BOOKING MODAL ── */
+const GHL_BOOKING_URL = 'https://link.spotonresults.com/widget/booking/spotonresults';
 function openBooking() {
-  document.getElementById('bookingModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  // Open GHL calendar in new tab — update GHL_BOOKING_URL with your calendar link
+  window.open(GHL_BOOKING_URL, '_blank', 'noopener');
 }
 function closeBooking() {
   document.getElementById('bookingModal').classList.remove('open');
