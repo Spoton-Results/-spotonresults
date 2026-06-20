@@ -155,7 +155,7 @@ nav.sc{padding:12px 0;background:rgba(6,15,30,.88);backdrop-filter:blur(22px);bo
 @keyframes si{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
 
 /* ── SECTION: MARQUEE BAR ── */
-.marquee-sec{padding:38px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(0,0,0,.2);overflow:hidden}
+.marquee-sec{padding:38px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(0,0,0,.2);overflow:hidden;pointer-events:none}
 .mq-track{display:flex;width:max-content;animation:mq 32s linear infinite}
 .mq-track:hover{animation-play-state:paused}
 .mq-item{display:flex;align-items:center;gap:10px;padding:0 42px;font-size:13px;font-weight:600;color:var(--text-d);white-space:nowrap;letter-spacing:.05em}
@@ -250,12 +250,12 @@ section{padding:var(--sp) 0;position:relative}
 
 /* ── SECTION: TESTIMONIALS ── */
 .test-sec{background:var(--navy2);overflow:hidden}
-.test-wrap{margin-top:52px;overflow:hidden;position:relative}
+.test-wrap{margin-top:52px;overflow:hidden;position:relative;pointer-events:none}
 .test-wrap::before,.test-wrap::after{content:'';position:absolute;top:0;bottom:0;width:200px;z-index:10;pointer-events:none}
 .test-wrap::before{left:0;background:linear-gradient(to right,var(--navy2),transparent)}
 .test-wrap::after{right:0;background:linear-gradient(to left,var(--navy2),transparent)}
-.test-track{display:flex;width:max-content;animation:mq 44s linear infinite;gap:18px}
-.test-track:hover{animation-play-state:paused}
+.test-track{display:flex;width:max-content;animation:mq 44s linear infinite;gap:18px;pointer-events:none}
+
 .test-card{width:310px;flex-shrink:0;padding:26px;background:var(--glass-m);border:1px solid var(--border-m);border-radius:var(--rl);backdrop-filter:blur(16px);transition:border-color .3s,box-shadow .3s}
 .test-card:hover{border-color:var(--border-s);box-shadow:0 12px 40px rgba(0,0,0,.3)}
 .test-stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:14px}
