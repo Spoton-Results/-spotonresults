@@ -70,14 +70,14 @@ img{max-width:100%;height:auto}
 .cursor-dot{
   position:fixed;top:0;left:0;z-index:9998;pointer-events:none;
   width:8px;height:8px;border-radius:50%;background:var(--gold);
-  will-change:transform;opacity:0;
+  opacity:0;
   transition:scale .08s var(--ease),background .2s,opacity .15s;
 }
 .cursor-ring{
   position:fixed;top:0;left:0;z-index:9997;pointer-events:none;
   width:40px;height:40px;border-radius:50%;
   border:1.5px solid rgba(245,158,11,.55);
-  will-change:transform;opacity:0;
+  opacity:0;
   transition:width .25s var(--spring),height .25s var(--spring),border-color .2s,background .2s,opacity .15s;
 }
 .cursor-dot.h{scale:2.2;background:#fff}
@@ -1093,13 +1093,22 @@ const cring = document.getElementById('cring');
 let mx = 0, my = 0;
 
 let cursorVisible = false;
-window.addEventListener('pointermove', e => {
+const _cursorMove = e => {
   mx = e.clientX; my = e.clientY;
   if (!cursorVisible && cdot && cring) {
     cdot.style.opacity = '1';
     cring.style.opacity = '1';
     cursorVisible = true;
   }
+};
+// Both pointermove + mousemove — if either gets swallowed the other still updates position
+window.addEventListener('pointermove', _cursorMove, true);
+window.addEventListener('mousemove', _cursorMove, true);
+// On pointer cancel (OS gesture interruption) — don't leave cursor frozen
+window.addEventListener('pointercancel', () => {
+  if (cdot) cdot.style.opacity = '0';
+  if (cring) cring.style.opacity = '0';
+  cursorVisible = false;
 }, true);
 
 // rAF loop: decouple cursor visual from event timing — always syncs at 60fps
