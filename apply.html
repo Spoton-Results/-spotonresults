@@ -190,8 +190,9 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 0;backgroun
 .success-ref{display:inline-block;padding:10px 20px;background:rgba(245,158,11,.1);border:1px solid var(--border-m);border-radius:var(--r);font-size:13px;color:var(--gold);font-weight:600;margin-bottom:32px}
 
 /* ── MAVERICK BRIGHTNESS FIX ── */
-/* Maverick iframe uses dark theme but low-contrast placeholders — brightness filter fixes it */
-#maverick { filter: brightness(1.6); }
+/* invert(0.15) lifts pure black (which brightness alone can't affect) to ~24% gray,
+   then brightness(1.8) pulls everything up — labels/placeholders/typed text all become light */
+#maverick { filter: invert(0.15) brightness(1.8); }
 
 /* ── JOTFORM EMBED WRAPPER ── */
 .jotform-wrap{background:rgba(255,255,255,.02);border:1.5px solid var(--border);border-radius:var(--rl);overflow:hidden;min-height:600px}
