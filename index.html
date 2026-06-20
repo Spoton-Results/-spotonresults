@@ -1117,6 +1117,15 @@ document.querySelectorAll('a,button,.bc,.ind-card,.proc-step,.test-card,.faq-q,.
 document.addEventListener('dragstart', e => e.preventDefault());
 document.addEventListener('mousedown', () => { if(cdot) cdot.classList.add('c'); if(cring) cring.classList.add('c'); });
 document.addEventListener('mouseup', () => { if(cdot) cdot.classList.remove('c'); if(cring) cring.classList.remove('c'); });
+// Hide custom cursor when mouse leaves page content (e.g. scrollbar) — prevents freeze-then-jump
+document.documentElement.addEventListener('mouseleave', () => {
+  if (cdot) cdot.style.opacity = '0';
+  if (cring) cring.style.opacity = '0';
+  cursorVisible = false;
+});
+document.documentElement.addEventListener('mouseenter', () => {
+  // cursor visibility will restore on next pointermove
+});
 
 /* ── SECTION: PARTICLE CANVAS ── */
 const canvas = document.getElementById('pcanvas');
