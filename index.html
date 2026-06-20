@@ -1112,11 +1112,12 @@ document.addEventListener('mouseup', () => { cdot.classList.remove('c'); cring.c
 
 /* ── SECTION: PARTICLE CANVAS ── */
 const canvas = document.getElementById('pcanvas');
-const ctx = canvas.getContext('2d');
+const ctx = canvas ? canvas.getContext('2d') : null;
 let particles = [];
 let pmx = 0, pmy = 0;
 
 function resize() {
+  if (!canvas) return;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 }
@@ -1147,6 +1148,7 @@ window.addEventListener('resize', createParticles);
 // ANIM: Particle draw loop — paused when hero is off-screen
 let particleRaf = null;
 function drawParticles() {
+  if (!ctx) return;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   particles.forEach((p, i) => {
     // Mouse repulsion
@@ -1210,10 +1212,12 @@ if (heroSection && 'IntersectionObserver' in window) {
 }
 
 /* ── SECTION: SCROLL PROGRESS BAR ── */
+const prog = document.getElementById('prog');
 window.addEventListener('scroll', () => {
+  if (!prog) return;
   const denom = document.body.scrollHeight - window.innerHeight;
   const pct = denom > 0 ? (window.scrollY / denom) * 100 : 0;
-  document.getElementById('prog').style.width = pct + '%';
+  prog.style.width = pct + '%';
 });
 
 /* ── SECTION: NAV SCROLL ── */
