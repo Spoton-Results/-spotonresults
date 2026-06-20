@@ -48,7 +48,7 @@
 /* ── SECTION: RESET & BASE ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--font-b);background:var(--navy);color:var(--text);overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-b);background:var(--navy);color:var(--text);overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;user-select:none;-webkit-user-select:none}
 a{color:inherit;text-decoration:none}
 button{cursor:none;font-family:inherit;border:none;background:none}
 img{max-width:100%;height:auto}
@@ -1091,7 +1091,7 @@ const cring = document.getElementById('cring');
 let mx = 0, my = 0, rx = 0, ry = 0;
 
 let cursorVisible = false;
-document.addEventListener('mousemove', e => {
+window.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
   cdot.style.transform = 'translate3d(' + (mx-4) + 'px,' + (my-4) + 'px,0)';
   cring.style.transform = 'translate3d(' + (mx-20) + 'px,' + (my-20) + 'px,0)';
@@ -1123,7 +1123,7 @@ function resize() {
 resize();
 window.addEventListener('resize', resize);
 
-document.addEventListener('mousemove', e => { pmx = e.clientX; pmy = e.clientY; });
+window.addEventListener('mousemove', e => { pmx = e.clientX; pmy = e.clientY; });
 
 // ANIM: Particle init
 function createParticles() {
