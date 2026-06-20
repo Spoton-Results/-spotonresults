@@ -189,6 +189,10 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 0;backgroun
 .success-msg{font-size:16px;color:var(--text-m);line-height:1.7;max-width:480px;margin:0 auto 32px}
 .success-ref{display:inline-block;padding:10px 20px;background:rgba(245,158,11,.1);border:1px solid var(--border-m);border-radius:var(--r);font-size:13px;color:var(--gold);font-weight:600;margin-bottom:32px}
 
+/* ── MAVERICK BRIGHTNESS FIX ── */
+/* Maverick iframe uses dark theme but low-contrast placeholders — brightness filter fixes it */
+#maverick { filter: brightness(1.6); }
+
 /* ── JOTFORM EMBED WRAPPER ── */
 .jotform-wrap{background:rgba(255,255,255,.02);border:1.5px solid var(--border);border-radius:var(--rl);overflow:hidden;min-height:600px}
 .jotform-wrap iframe{width:100%;border:none;min-height:600px;display:block}
