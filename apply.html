@@ -1209,9 +1209,9 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 0;backgroun
 // ─── CONFIG ─────────────────────────────────────────────────
 // Replace these with your deployed Cloudflare Worker URLs
 const WORKERS = {
-  maverick:   'https://spoton-maverick.YOUR_SUBDOMAIN.workers.dev/apply',
-  nmi_apply:  'https://spoton-nmi.YOUR_SUBDOMAIN.workers.dev/apply',
-  nmi_submit: 'https://spoton-nmi.YOUR_SUBDOMAIN.workers.dev/submit',
+  maverick:   'https://spoton-maverick.s-allen.workers.dev/apply',
+  nmi_apply:  'https://spoton-nmi.s-allen.workers.dev/apply',
+  nmi_submit: 'https://spoton-nmi.s-allen.workers.dev/submit',
 };
 
 // ─── CURSOR ─────────────────────────────────────────────────
@@ -1440,22 +1440,9 @@ nmiForm.addEventListener('submit', async e => {
       throw new Error(result.error || 'Submission failed. Please try again.');
     }
 
-    // Show consent step
+    // v4 Partner API — no consent widget step needed, go straight to success
     setLoading(nmiBtn, false);
-    setProgress(3, 3, 'Step 2 of 2 — Sign Agreement');
-    showStep('fNMIConsent');
-
-    // Store app ID for display and tracking
-    document.getElementById('nmi-app-id-display').textContent = result.application_id || result.reference_id;
-
-    // Load NMI legal consent widget
-    if (result.consent_url) {
-      loadNmiConsentWidget(result.consent_url);
-    } else {
-      // consent_url missing (shouldn't happen) — show warning
-      showAlert('consent-alert', 'error', result.warning || 'Could not load the agreement form. Please contact us directly at s.allen@spotonresults.com with your Application ID.');
-      document.getElementById('consent-loading').style.display = 'none';
-    }
+    showSuccess('nmi', result.reference_id || result.merchant_id);
 
   } catch(err) {
     setLoading(nmiBtn, false);
