@@ -1171,18 +1171,18 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 0;backgroun
         </div>
       </div>
 
-      <!-- ═══════════════════════════════════════
-           SUCCESS SCREEN (shared)
-      ═══════════════════════════════════════ -->
-      <div class="success-screen" id="successScreen">
-        <span class="success-icon">🎉</span>
-        <h2 class="success-title">Application Submitted!</h2>
-        <p class="success-msg" id="successMsg">Your application has been received. Our team will review everything and reach out within 24–48 hours with next steps.</p>
-        <div class="success-ref" id="successRef"></div>
-        <a href="/" class="btn-submit" style="display:inline-flex;text-decoration:none">← Back to SpotOn Results</a>
-      </div>
-
     </div><!-- /steps-outer -->
+
+    <!-- ═══════════════════════════════════════
+         SUCCESS SCREEN (shared) — outside steps-outer so hiding the container doesn't hide success
+    ═══════════════════════════════════════ -->
+    <div class="success-screen" id="successScreen">
+      <span class="success-icon">🎉</span>
+      <h2 class="success-title">Application Submitted!</h2>
+      <p class="success-msg" id="successMsg">Your application has been received. Our team will review everything and reach out within 24–48 hours with next steps.</p>
+      <div class="success-ref" id="successRef"></div>
+      <a href="/" class="btn-submit" style="display:inline-flex;text-decoration:none">← Back to SpotOn Results</a>
+    </div>
   </div><!-- /page-in -->
 </main>
 
@@ -1539,7 +1539,7 @@ function showAlert(id, type, msg) {
 
 function hideAlert(id) {
   const el = document.getElementById(id);
-  el.style.display = 'none';
+  el.style.display = '';   // clear inline style so CSS (.alert-banner default hidden) takes over
   el.className = 'alert-banner';
 }
 
